@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My First Blog on Octopress - 杨叫兽的技术博客</title>
+  <title>利用NSString的Hash方法比较字符串 - 杨叫兽的技术博客</title>
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="Hello Octopress! 欢迎来到我的技术博客，这个博客是由Octopress构建的。
-同时也欢迎访问我在网易的博客。
-">
+  <meta name="description" content="实际编程总会涉及到比较两个字符串的内容，一般会用 [string1
+isEqualsToString:string2] 来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。
+偶然间我发现NSString类里有个hash方法， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://nijino.github.io/blog/2013/06/01/my-first-blog">
+  <link rel="canonical" href="http://nijino.github.io/blog/2013/06/19/nsstring-hash">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杨叫兽的技术博客" type="application/atom+xml">
@@ -82,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">My First Blog on Octopress</h1>
+      <h1 class="entry-title">利用NSString的Hash方法比较字符串</h1>
     
     
       <p class="meta">
@@ -98,17 +98,42 @@
   
 
 
-<time datetime="2013-06-01T06:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+<time datetime="2013-06-19T14:10:00+08:00" pubdate data-updated="true">Jun 19<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h2>Hello Octopress!</h2>
+<div class="entry-content"><p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
 
-<p>欢迎来到我的技术博客，这个博客是由Octopress构建的。
-同时也欢迎访问我在<a href="http://blog.163.com/nijino_saki/">网易的博客</a>。</p>
+<p><code>[string1
+isEqualsToString:string2]</code></p>
+
+<p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。<br/>
+偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。<br/>
+于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
+
+<p><code>if ([string1 hash] == [string2 hash]){  
+}</code></p>
+
+<p>实践中发现了一个问题：有时候字符串返回的散列值为负数，而苹果文档说hash方法一定返回无符号数，不知是不是位数问题造成的。</p>
+
+<p><img src="/images/nsstring-hash.png" alt="image" /></p>
+
+<p>例如：</p>
+
+<pre><code>NSString *string1 = @"yyb";
+NSString *string2 = @"nijino_saki";
+NSLog(@"string1 hash %d",[string1 hash]);
+NSLog(@"string2 hash %d",[string2 hash]);  
+</code></pre>
+
+<p>输出结果为：</p>
+
+<p>  2013-06-19 18:47:11.612 test[26719:c07] string1 hash 530522127</p>
+
+<p>2013-06-19 18:47:11.613 test[26719:c07] string2 hash -975949159</p>
 </div>
 
 
@@ -131,12 +156,12 @@
   
 
 
-<time datetime="2013-06-01T06:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+<time datetime="2013-06-19T14:10:00+08:00" pubdate data-updated="true">Jun 19<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/objective-c/'>Objective-C</a>
   
 </span>
 
@@ -177,8 +202,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2013/06/01/my-first-blog/" title="Previous Post: My First Blog on Octopress">&laquo; My First Blog on Octopress</a>
       
-        <a class="basic-alignment right" href="/blog/2013/06/19/nsstring-hash/" title="Next Post: 利用NSString的Hash方法比较字符串">利用NSString的Hash方法比较字符串 &raquo;</a>
       
     </p>
   </footer>

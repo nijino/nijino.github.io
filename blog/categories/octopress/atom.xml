@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | 杨叫兽的技术博客]]></title>
+  <link href="http://nijino.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://nijino.github.io/"/>
+  <updated>2013-06-19T18:52:16+08:00</updated>
+  <id>http://nijino.github.io/</id>
+  <author>
+    <name><![CDATA[杨叫兽]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My First Blog on Octopress]]></title>
+    <link href="http://nijino.github.io/blog/2013/06/01/my-first-blog/"/>
+    <updated>2013-06-01T06:00:00+08:00</updated>
+    <id>http://nijino.github.io/blog/2013/06/01/my-first-blog</id>
+    <content type="html"><![CDATA[<h2>Hello Octopress!</h2>
+
+<p>欢迎来到我的技术博客，这个博客是由Octopress构建的。
+同时也欢迎访问我在<a href="http://blog.163.com/nijino_saki/">网易的博客</a>。</p>
+]]></content>
+  </entry>
+  
+</feed>
