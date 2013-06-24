@@ -10,8 +10,7 @@
 
   
   <meta name="description" content="实际编程总会涉及到比较两个字符串的内容，一般会用 [string1
-isEqualsToString:string2] 来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。
-偶然间我发现NSString类里有个hash方法， &hellip;">
+isEqualsToString:string2] 来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。 偶然间我发现NSString类里有个hash方法， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +71,7 @@ isEqualsToString:string2] 来比较两个字符串是否一致。对于字符串
 <ul class="main-navigation">
   <li><a href="/">首页</a></li>
   <li><a href="/blog/archives">全部文章</a></li>
+  <!-- <li><a href="/blog/categories">分类目录</a></li> -->
 </ul>
 
 </nav>
@@ -110,7 +110,12 @@ isEqualsToString:string2] 来比较两个字符串是否一致。对于字符串
 <p><code>[string1
 isEqualsToString:string2]</code></p>
 
-<p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。<br/>
+<p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
+
+<!-- more -->
+
+
+<p>
 偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。<br/>
 于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
 
@@ -161,7 +166,7 @@ NSLog(@"string2 hash %d",[string2 hash]);
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/objective-c/'>Objective-C</a>
+    <a class='category' href='/blog/categories/nsstring/'>NSString</a>, <a class='category' href='/blog/categories/objective-c/'>Objective-C</a>
   
 </span>
 
@@ -205,6 +210,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
         <a class="basic-alignment left" href="/blog/2013/06/01/my-first-blog/" title="Previous Post: My First Blog on Octopress">&laquo; My First Blog on Octopress</a>
       
       
+        <a class="basic-alignment right" href="/blog/2013/06/24/iboutlet-arc/" title="Next Post: ARC在IBOutlet属性中的使用">ARC在IBOutlet属性中的使用 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -218,6 +225,10 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/24/iboutlet-arc/">ARC在IBOutlet属性中的使用</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/19/nsstring-hash/">利用NSString的Hash方法比较字符串</a>
       </li>
     
@@ -228,14 +239,53 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
   </ul>
 </section>
 <section>
+  <h1>分类目录</h1>
+    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/ios/'>iOS (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (1)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li></ul>
+</section>
+<section>
   <h1>关于我</h1>
-  <p>iOS开发者，陌陌iOS客户端开发工程师<br>
+  <p>iOS开发者，陌陌前iOS开发工程师<br>
   新浪微博：<a href="http://www.weibo.com/nijinosaki" target="_blank">3G杨叫兽</a><br>
   QQ:20118368<br />
   E-mail:nijino_saki@163.com</p>
 </section>
 
+<section>
+  <h1>GitHub开源项目</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/nijino">@nijino</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
 
+        github.showRepos({
+            user: 'nijino',
+            count: 2,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+	<h1>新浪微博</h1>
+	<p>
+		<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1410220154&verifier=ef43caf4&dpc=1">
+		</iframe>
+	</p>
+</section>
 
 
 
@@ -247,7 +297,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
   </div>
   <footer role="contentinfo"><p>
   Copyright &copy; 2013 - 杨叫兽 -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span><br>
+  原创文章，版权声明：自由转载-非商用-非衍生-保持署名  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh"><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
 </p>
 
 </footer>
