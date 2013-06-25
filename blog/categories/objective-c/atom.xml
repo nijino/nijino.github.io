@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Objective-C | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.github.io/blog/categories/objective-c/atom.xml" rel="self"/>
   <link href="http://nijino.github.io/"/>
-  <updated>2013-06-25T02:16:38+08:00</updated>
+  <updated>2013-06-25T10:41:09+08:00</updated>
   <id>http://nijino.github.io/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -25,12 +25,12 @@ isEqualsToString:string2]</code></p>
 
 <p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
 
+<p>偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。</p>
+
 <!-- more -->
 
 
-<p>
-偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。<br/>
-于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
+<p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
 
 <p><code>if ([string1 hash] == [string2 hash]){  
 }</code></p>
