@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[杨叫兽的技术博客]]></title>
-  <link href="http://nijino.github.io/atom.xml" rel="self"/>
-  <link href="http://nijino.github.io/"/>
-  <updated>2013-06-25T10:41:09+08:00</updated>
-  <id>http://nijino.github.io/</id>
+  <link href="http://blog.nijino.cn/atom.xml" rel="self"/>
+  <link href="http://blog.nijino.cn/"/>
+  <updated>2013-06-25T10:42:44+08:00</updated>
+  <id>http://blog.nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ARC在IBOutlet属性中的使用]]></title>
-    <link href="http://nijino.github.io/blog/2013/06/24/iboutlet-arc/"/>
+    <link href="http://blog.nijino.cn/blog/2013/06/24/iboutlet-arc/"/>
     <updated>2013-06-24T22:12:00+08:00</updated>
-    <id>http://nijino.github.io/blog/2013/06/24/iboutlet-arc</id>
+    <id>http://blog.nijino.cn/blog/2013/06/24/iboutlet-arc</id>
     <content type="html"><![CDATA[<p>ARC提供四种所有权修饰符:
 <li>strong<br/>
 <li>weak<br/>
@@ -43,23 +43,23 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
 由于我自己很熟悉Interface Bulider中的操作，所以非常喜欢那种拉控件然后连线并直接声称属性代码的操作。对于直接从xib或者storyboard拉出来生成的IBOutlet属性，一般是选择strong还是weak呢？  <br/>
 <strong>这里有个原则</strong>：如果该控件位于控件树的顶部，比如UIViewController下的view，那就应该选择strong，因为viewcontroller直接拥有该view。例如下图所示：</p>
 
-<p><img src="http://nijino.github.io/images/IBOutlet-ARC-1.png" alt="image" /></p>
+<p><img src="http://blog.nijino.cn/images/IBOutlet-ARC-1.png" alt="image" /></p>
 
 <p>而如果控件是viewcontroller中view的子视图，对于这个子视图，它的所有者是它的父视图，代码中只是想引用一下这个子视图的指针而已，那么就应该选择weak（iOS5以下选择unsafe_unretained）。例如下图的UILabel:</p>
 
-<p><img src="http://nijino.github.io/images/IBOutlet-ARC-2.png" alt="image" /></p>
+<p><img src="http://blog.nijino.cn/images/IBOutlet-ARC-2.png" alt="image" /></p>
 
 <p>对于以上的概念，我用一张图表来说明：</p>
 
-<p><img src="http://nijino.github.io/images/IBOutlet-ARC-3.png" alt="image" /></p>
+<p><img src="http://blog.nijino.cn/images/IBOutlet-ARC-3.png" alt="image" /></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[利用NSString的Hash方法比较字符串]]></title>
-    <link href="http://nijino.github.io/blog/2013/06/19/nsstring-hash/"/>
+    <link href="http://blog.nijino.cn/blog/2013/06/19/nsstring-hash/"/>
     <updated>2013-06-19T14:10:00+08:00</updated>
-    <id>http://nijino.github.io/blog/2013/06/19/nsstring-hash</id>
+    <id>http://blog.nijino.cn/blog/2013/06/19/nsstring-hash</id>
     <content type="html"><![CDATA[<p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
 
 <p><code>[string1
@@ -79,7 +79,7 @@ isEqualsToString:string2]</code></p>
 
 <p>实践中发现了一个问题：有时候字符串返回的散列值为负数，而苹果文档说hash方法一定返回无符号数，不知是不是位数问题造成的。</p>
 
-<p><img src="http://nijino.github.io/images/nsstring-hash.png" alt="image" /></p>
+<p><img src="http://blog.nijino.cn/images/nsstring-hash.png" alt="image" /></p>
 
 <p>例如：</p>
 
@@ -99,9 +99,9 @@ NSLog(@"string2 hash %d",[string2 hash]);
   
   <entry>
     <title type="html"><![CDATA[My First Blog on Octopress]]></title>
-    <link href="http://nijino.github.io/blog/2013/06/01/my-first-blog/"/>
+    <link href="http://blog.nijino.cn/blog/2013/06/01/my-first-blog/"/>
     <updated>2013-06-01T06:00:00+08:00</updated>
-    <id>http://nijino.github.io/blog/2013/06/01/my-first-blog</id>
+    <id>http://blog.nijino.cn/blog/2013/06/01/my-first-blog</id>
     <content type="html"><![CDATA[<h2>Hello Octopress!</h2>
 
 <p>欢迎来到我的技术博客，这个博客是由Octopress构建的。
