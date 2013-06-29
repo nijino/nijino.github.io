@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Objective-C | 杨叫兽的技术博客]]></title>
-  <link href="http://blog.nijino.cn/blog/categories/objective-c/atom.xml" rel="self"/>
-  <link href="http://blog.nijino.cn/"/>
-  <updated>2013-06-25T10:44:04+08:00</updated>
-  <id>http://blog.nijino.cn/</id>
+  <link href="http://nijino.cn/blog/categories/objective-c/atom.xml" rel="self"/>
+  <link href="http://nijino.cn/"/>
+  <updated>2013-06-29T11:11:28+08:00</updated>
+  <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[利用NSString的Hash方法比较字符串]]></title>
-    <link href="http://blog.nijino.cn/blog/2013/06/19/nsstring-hash/"/>
+    <link href="http://nijino.cn/blog/2013/06/19/nsstring-hash/"/>
     <updated>2013-06-19T14:10:00+08:00</updated>
-    <id>http://blog.nijino.cn/blog/2013/06/19/nsstring-hash</id>
+    <id>http://nijino.cn/blog/2013/06/19/nsstring-hash</id>
     <content type="html"><![CDATA[<p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
 
 <p><code>[string1

@@ -1,27 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://blog.nijino.cn/blog/2013/06/01/my-first-blog/</loc>
+        <loc>http://nijino.cn/blog/2013/06/01/my-first-blog/</loc>
         <lastmod>2013-06-19T18:51:42+08:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.nijino.cn/blog/2013/06/19/nsstring-hash/</loc>
+        <loc>http://nijino.cn/blog/2013/06/19/nsstring-hash/</loc>
         <lastmod>2013-06-25T02:29:53+08:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.nijino.cn/blog/2013/06/24/iboutlet-arc/</loc>
-        <lastmod>2013-06-24T23:18:48+08:00</lastmod>
+        <loc>http://nijino.cn/blog/2013/06/24/iboutlet-arc/</loc>
+        <lastmod>2013-06-25T23:17:59+08:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.nijino.cn/blog/archives/</loc>
-        <lastmod>2013-06-25T02:29:53+08:00</lastmod>
+        <loc>http://nijino.cn/blog/archives/</loc>
+        <lastmod>2013-06-25T23:17:59+08:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.nijino.cn/</loc>
-        <lastmod>2013-06-25T02:29:53+08:00</lastmod>
+        <loc>http://nijino.cn/</loc>
+        <lastmod>2013-06-25T23:17:59+08:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.nijino.cn/robots.txt</loc>
+        <loc>http://nijino.cn/robots.txt</loc>
         <lastmod>2013-05-30T01:21:50+08:00</lastmod>
     </url>
 </urlset>

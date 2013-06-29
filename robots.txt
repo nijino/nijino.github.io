@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://blog.nijino.cn/sitemap.xml 
+Sitemap: http://nijino.cn/sitemap.xml 
