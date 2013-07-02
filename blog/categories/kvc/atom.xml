@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Objective-C | 杨叫兽的技术博客]]></title>
-  <link href="http://nijino.cn/blog/categories/objective-c/atom.xml" rel="self"/>
+  <title><![CDATA[Category: KVC | 杨叫兽的技术博客]]></title>
+  <link href="http://nijino.cn/blog/categories/kvc/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
   <updated>2013-07-02T15:15:24+08:00</updated>
   <id>http://nijino.cn/</id>
@@ -52,48 +52,6 @@
 <p>小结：</p>
 
 <p>KVC是Objective－C特有的语法现象，可以加以利用实现代码的简洁性和可维护性。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[利用NSString的Hash方法比较字符串]]></title>
-    <link href="http://nijino.cn/blog/2013/06/19/nsstring-hash/"/>
-    <updated>2013-06-19T14:10:00+08:00</updated>
-    <id>http://nijino.cn/blog/2013/06/19/nsstring-hash</id>
-    <content type="html"><![CDATA[<p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
-
-<p><code>[string1
-isEqualsToString:string2]</code></p>
-
-<p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
-
-<p>偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。</p>
-
-<!-- more -->
-
-
-<p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
-
-<p><code>if ([string1 hash] == [string2 hash]){  
-}</code></p>
-
-<p>实践中发现了一个问题：有时候字符串返回的散列值为负数，而苹果文档说hash方法一定返回无符号数，不知是不是位数问题造成的。</p>
-
-<p><img src="/images/nsstring-hash.png" alt="image" /></p>
-
-<p>例如：</p>
-
-<pre><code>NSString *string1 = @"yyb";
-NSString *string2 = @"nijino_saki";
-NSLog(@"string1 hash %d",[string1 hash]);
-NSLog(@"string2 hash %d",[string2 hash]);  
-</code></pre>
-
-<p>输出结果为：</p>
-
-<p>  2013-06-19 18:47:11.612 test[26719:c07] string1 hash 530522127</p>
-
-<p>2013-06-19 18:47:11.613 test[26719:c07] string2 hash -975949159</p>
 ]]></content>
   </entry>
   

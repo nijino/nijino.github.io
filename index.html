@@ -9,11 +9,7 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="ARC提供四种所有权修饰符:
-strong
-weak
-unsafe_unretained
-autoreleasing 其中前三个可以用于属性中声明所有权。对于这三个用于属性声明的修饰符，下面分别讲讲他们对应的使用场景。 ">
+  <meta name="description" content="说两个与KVC相关的技巧。 1.KVC与字典 有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典： NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}}; ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +78,53 @@ autoreleasing 其中前三个可以用于属性中声明所有权。对于这三
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/02/using-kvc/">KVC技巧二则</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-02T14:31:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>说两个与KVC相关的技巧。</p>
+
+<p>1.KVC与字典</p>
+
+<p>有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典：</p>
+
+<p><code>   NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}};</code></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/07/02/using-kvc/">阅读全部 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -237,6 +280,10 @@ isEqualsToString:string2]</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/02/using-kvc/">KVC技巧二则</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/24/iboutlet-arc/">ARC在IBOutlet属性中的使用</a>
       </li>
     
@@ -252,7 +299,7 @@ isEqualsToString:string2]</code></p>
 </section>
 <section>
   <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/ios/'>iOS (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (1)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/ios/'>iOS (1)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li></ul>
 </section>
 
 <section>
