@@ -4,7 +4,7 @@
   <title><![CDATA[杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2013-07-02T15:15:24+08:00</updated>
+  <updated>2013-08-14T01:41:16+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Xcode5中cellForRowAtIndexPath:方法]]></title>
+    <link href="http://nijino.cn/blog/2013/08/12/new-cell-for-row/"/>
+    <updated>2013-08-12T14:57:00+08:00</updated>
+    <id>http://nijino.cn/blog/2013/08/12/new-cell-for-row</id>
+    <content type="html"><![CDATA[<p>UITableView是绝大部分iOS开发中必不可少的类。它的优势在于自身会维持一个可复用的队列，对于提高系统运行的流畅性有着不可磨灭的作用。</p>
+
+<p>可复用的队列一般要写在UITableView的cellForRowAtIndexPath:方法中，之前的写法一般是这样：</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<pre><code>static NSString *CellIdentifier = @"Cell";
+UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+if (cell == nil){
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+}
+
+// Configure the cell
+
+return cell;    
+</code></pre>
+
+<p>上面这段代码的原理是首先会定义一个静态单元格标识，之后看看可复用队列中是否存在带有这个标识的单元格，如果没有就要重新生成。</p>
+
+<p>对于一些拥有一段iOS开发经验的开发者来说这段代码应该是再熟悉不过，因为好多应用都会用到UITableView。但是最近我在Xcode DP版本上发现这段代码有了变化，在Xcode5中新生成UITableView的cellForRowAtIndexPath:方法中的写法变成了以下这样：</p>
+
+<pre><code>static NSString *CellIdentifier = @"Cell";
+UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+// Configure the cell...
+
+return cell;
+</code></pre>
+
+<p>表面上看UITableView好像支持了一个新方法：dequeueReusableCellWithIdentifier:forIndexPath:,这个方法是怎么回事呢？赶紧来看看这个方法的说明：</p>
+
+<p><img src="http://nijino.cn/images/xcode5-cellForRow.png" alt="image" /></p>
+
+<p>从这个说明文档中可以知道这个方法也可以从复用队列中提取cell。如果cell没有在复用队列中，那就会调用cell的initWithStyle:reuseIdentifier:方法生成新的cell。至于之前在代码中指定cell的风格，现在已经可以在storyboard中指定了。</p>
+
+<p>上面这个例子充分说明了苹果在简化代码方面作出的巨大努力。Objective－C本身语法就有些长，如果不深入研究一些简化代码的写法，那么一个项目的代码就会变的非常冗余。这也是程序员经常说的把代码写多容易，而把代码量减少并且不丧失功能才是有难度的。</p>
+
+<p>另外我注意到这个方法是从iOS6.0版本开始支持的，可是在Xcode4.6.3中生成新的UITableViewController并不会默认生成新方法，只有Xcode5中才会生成，不知道这个方法在Xcode4.6.3中是否可以使用，需要通过实践来检验。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[KVC技巧二则]]></title>
