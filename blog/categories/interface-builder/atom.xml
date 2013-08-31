@@ -4,7 +4,7 @@
   <title><![CDATA[Category: interface builder | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/interface-builder/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2013-08-31T02:05:57+08:00</updated>
+  <updated>2013-08-31T20:10:30+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -23,16 +23,15 @@
 <!-- more -->
 
 
-<p></p>
-
-<p>1.快速显示元素相对位置<br/>
+<p>
+1.快速显示元素相对位置<br/>
 这个技巧由<a href="http://weibo.com/ysy441088327">@余书懿</a>在新浪微博分享。<br/>
 在IB中，选中一个control A,然后按住alt键，鼠标指向B，就显示A和B的相对位置关系，指向父view也行。</p>
 
 <p><img src="/images/IB-skills-1.png" alt="image" /></p>
 
 <p>2.给页面添加水平、垂直辅助线<br/>
-这个技巧是由我一个好朋友，同时也是陌陌的产品经理发现的。<br/>
+这个技巧是由我一个好朋友，同时也是陌陌的产品经理<a href="http://weibo.com/memtimen">@Memtimen</a>发现的。<br/>
 IB中是可以添加水平和垂直的辅助线的。并且辅助线是可以拖动、重复添加和删除的。  <br/>
 水平辅助线的快捷键是：Command ＋ Shift ＋ －<br/>
 垂直辅助线的快捷键是：Command ＋ Shift ＋ ｜<br/>

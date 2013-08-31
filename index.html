@@ -9,7 +9,7 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="在我工作中经常会遇到有人吐槽Xcode中的interface builder（以下简称IB）不好用的开发者。在我看来，IB是一个非常棒的可视化开发工具，可以非常快捷的设置UI控件的大部分常用属性。下面就说两个IB中的技巧： ">
+  <meta name="description" content="Settings bundle是iOS开发中独有的一个特性，它可以存放app的一些设置，使用起来非常方便。最近公司有一个项目用到了这个技术，于是我认真的研究了一下，发现了一些需要注意的地方，想跟大家分享一下。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,47 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/31/settings-bundle/">Settings.bundle的应用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-31T16:08:00+08:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Settings bundle是iOS开发中独有的一个特性，它可以存放app的一些设置，使用起来非常方便。最近公司有一个项目用到了这个技术，于是我认真的研究了一下，发现了一些需要注意的地方，想跟大家分享一下。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/08/31/settings-bundle/">继续阅读 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -366,6 +407,10 @@ isEqualsToString:string2]</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/31/settings-bundle/">Settings.bundle的应用</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/28/interface-builder-skills/">Interface Builder中的技巧</a>
       </li>
     
@@ -381,15 +426,11 @@ isEqualsToString:string2]</code></p>
         <a href="/blog/2013/06/24/iboutlet-arc/">ARC在IBOutlet属性中的使用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/06/19/nsstring-hash/">利用NSString的Hash方法比较字符串</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (3)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (4)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
 </section>
 
 <section>
@@ -423,13 +464,13 @@ isEqualsToString:string2]</code></p>
 
 <section>
   <h1>友情链接</h1>
-  <p> <a href="http://blog.hellosa.org">陌陌系统运维工程师小虫的博客</a><br>
-    <a href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></br>
-    <a href="http://www.macx.cn">MacX</a><br>
-    <a href="http://www.macdang.com">Mac党</a><br>
-    <a href="http://www.macgg.com/archives/category/mac软件">MacGG</a><br>
-    <a href="http://www.waerfa.com">玩儿法</a><br>
-    <a href="http://macshuo.com">MacTalk-池建强的随想录</a><br>
+  <li> <a href="http://blog.hellosa.org">陌陌系统运维工程师小虫的博客</a></li>
+  <li> <a href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
+  <li> <a href="http://www.macx.cn">MacX</a></li>
+  <li> <a href="http://www.macdang.com">Mac党</a></li>
+  <li> <a href="http://www.macgg.com/archives/category/mac软件">MacGG</a></li>
+  <li><a href="http://www.waerfa.com">玩儿法</a></li>
+  <li><a href="http://macshuo.com">MacTalk-池建强的随想录</a></li>
   </p>
 </section>
 <section>
