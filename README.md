@@ -4,4 +4,6 @@
 #### 
 #### E-mail: nijino_saki@163.com
 #### 
-#### QQ: 20118368
+#### QQ: 20118368   
+ 
+[My Tech Blog](http://nijino.cn)
