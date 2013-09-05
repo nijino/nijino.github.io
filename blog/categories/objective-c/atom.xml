@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Objective-C | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/objective-c/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2013-08-31T20:21:56+08:00</updated>
+  <updated>2013-09-05T22:35:38+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -26,13 +26,13 @@
 
 <p><code>   NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}};</code></p>
 
-<!-- more -->
-
-
 <p>需要取出<code>subKey</code>这个键的值。以前总是用<code>valueForKey</code>嵌套的语法来做，其实根本不用那么麻烦，直接利用<code>valueForKeyPath</code>方法就可以实现。代码如下：</p>
 
 <pre><code>NSString *str = [dict valueForKeyPath:@"subDict.subKey"];
 </code></pre>
+
+<!-- more -->
+
 
 <p>2.KVC实现高阶消息传递</p>
 
@@ -69,13 +69,13 @@ isEqualsToString:string2]</code></p>
 
 <p>偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。</p>
 
-<!-- more -->
-
-
 <p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
 
 <p><code>if ([string1 hash] == [string2 hash]){  
 }</code></p>
+
+<!-- more -->
+
 
 <p>实践中发现了一个问题：有时候字符串返回的散列值为负数，而苹果文档说hash方法一定返回无符号数，不知是不是位数问题造成的。</p>
 

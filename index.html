@@ -9,7 +9,7 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="Settings bundle是iOS开发中独有的一个特性，它可以存放app的一些设置，使用起来非常方便。最近公司有一个项目用到了这个技术，于是我认真的研究了一下，发现了一些需要注意的地方，想跟大家分享一下。 ">
+  <meta name="description" content="开发过iOS应用的朋友都知道，iOS平台里的字体样式很多，其中的大多数都很美观。但是在这些字体中并没有中文字体，如果想用一些好看的中文字体（比如楷体、隶书等）该怎么做呢？ 其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。 NSArray *familyNames &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -50,7 +50,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">杨叫兽的技术博客</a></h1>
   
-    <h2>记录技术成长点滴</h2>
+    <h2>专注Objective－C、iOS、Mac开发技巧，重视代码的简洁与质量</h2>
   
 </hgroup>
 
@@ -84,6 +84,59 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/09/05/using-custom-font/">在iOS应用中使用自定义字体</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-05T21:31:00+08:00" pubdate data-updated="true">Sep 5<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>开发过iOS应用的朋友都知道，iOS平台里的字体样式很多，其中的大多数都很美观。但是在这些字体中并没有中文字体，如果想用一些好看的中文字体（比如楷体、隶书等）该怎么做呢？</p>
+
+<p>其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。</p>
+
+<pre><code>NSArray *familyNames = [UIFont familyNames];
+for (NSString *familyName in familyNames) {
+    printf("Family: %s \n",[familyName UTF8String]);
+    NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
+    for (NSString * fontName in fontNames) {
+        printf("\tFont: %s \n",[fontName UTF8String]);
+    }
+}  
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/09/05/using-custom-font/">继续阅读 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/08/31/settings-bundle/">Settings.bundle的应用</a></h1>
     
     
@@ -108,6 +161,10 @@
 
 
   <div class="entry-content"><p>Settings bundle是iOS开发中独有的一个特性，它可以存放app的一些设置，使用起来非常方便。最近公司有一个项目用到了这个技术，于是我认真的研究了一下，发现了一些需要注意的地方，想跟大家分享一下。</p>
+
+<p>任何一个项目都可以设置它的settings bundle，settings bundle字面意思就是设置的大集合，里面可以存放系统的默认设置和用户选择的值。我们可以通过点击左下角的➕然后选择添加新文件（new file&hellip;）来生成：</p>
+
+<p><img src="/images/settings-bundle-1.png" alt="image" /></p>
 
 </div>
   
@@ -149,6 +206,12 @@
 
 
   <div class="entry-content"><p>在我工作中经常会遇到有人吐槽Xcode中的interface builder（以下简称IB）不好用的开发者。在我看来，IB是一个非常棒的可视化开发工具，可以非常快捷的设置UI控件的大部分常用属性。下面就说两个IB中的技巧：</p>
+
+<p>1.快速显示元素相对位置<br/>
+这个技巧由<a href="http://weibo.com/ysy441088327">@余书懿</a>在新浪微博分享。<br/>
+在IB中，选中一个control A,然后按住alt键，鼠标指向B，就显示A和B的相对位置关系，指向父view也行。</p>
+
+<p><img src="/images/IB-skills-1.png" alt="image" /></p>
 
 </div>
   
@@ -192,6 +255,17 @@
   <div class="entry-content"><p>UITableView是绝大部分iOS开发中必不可少的类。它的优势在于自身会维持一个可复用的队列，对于提高系统运行的流畅性有着不可磨灭的作用。</p>
 
 <p>可复用的队列一般要写在UITableView的cellForRowAtIndexPath:方法中，之前的写法一般是这样：</p>
+
+<pre><code>static NSString *CellIdentifier = @"Cell";
+UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+if (cell == nil){
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+}
+
+// Configure the cell
+
+return cell;    
+</code></pre>
 
 </div>
   
@@ -240,6 +314,11 @@
 
 <p><code>   NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}};</code></p>
 
+<p>需要取出<code>subKey</code>这个键的值。以前总是用<code>valueForKey</code>嵌套的语法来做，其实根本不用那么麻烦，直接利用<code>valueForKeyPath</code>方法就可以实现。代码如下：</p>
+
+<pre><code>NSString *str = [dict valueForKeyPath:@"subDict.subKey"];
+</code></pre>
+
 </div>
   
   
@@ -286,6 +365,12 @@
 <li>autoreleasing</p>
 
 <p>其中前三个可以用于属性中声明所有权。对于这三个用于属性声明的修饰符，下面分别讲讲他们对应的使用场景。</p>
+
+<p>1.strong<br/>
+strong与之前的retain差不多，可以增加属性引用计数的值。在不需要的时候，需要手动设置属性为nil。</p>
+
+<p>2.weak<br/>
+weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。可以只是持有指针而不增加引用计数来避免循环保留。当指针指向的内存被销毁后，声明weak的属性指针会自动置为nil，这也是它被称为归零弱引用的原因。</p>
 
 </div>
   
@@ -334,6 +419,11 @@ isEqualsToString:string2]</code></p>
 <p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
 
 <p>偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。</p>
+
+<p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
+
+<p><code>if ([string1 hash] == [string2 hash]){  
+}</code></p>
 
 </div>
   
@@ -396,7 +486,7 @@ isEqualsToString:string2]</code></p>
     <section>
   <h1>关于我</h1>
   <p> <img width="220" src="/images/avatar.png"><br>
-    iOS开发者，陌陌前iOS开发工程师<br>
+    杨叫兽，80后，魔羯座，iOS开发者，果粉，曾供职于陌陌科技、联想集团<br>
     新浪微博：<a href="http://www.weibo.com/nijinosaki" target="_blank">3G杨叫兽</a><br>
     <a href="http://blog.163.com/nijino_saki">我在网易的技术博客（已停止维护）</a><br>
     QQ:20118368<br />
@@ -405,6 +495,10 @@ isEqualsToString:string2]</code></p>
 <section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/05/using-custom-font/">在iOS应用中使用自定义字体</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/08/31/settings-bundle/">Settings.bundle的应用</a>
@@ -422,15 +516,11 @@ isEqualsToString:string2]</code></p>
         <a href="/blog/2013/07/02/using-kvc/">KVC技巧二则</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/06/24/iboutlet-arc/">ARC在IBOutlet属性中的使用</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (4)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (5)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
 </section>
 
 <section>
@@ -466,11 +556,11 @@ isEqualsToString:string2]</code></p>
   <h1>友情链接</h1>
   <li> <a href="http://blog.hellosa.org">陌陌系统运维工程师小虫的博客</a></li>
   <li> <a href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
+  <li><a href="http://macshuo.com">MacTalk-池建强的随想录</a></li>
   <li> <a href="http://www.macx.cn">MacX</a></li>
   <li> <a href="http://www.macdang.com">Mac党</a></li>
   <li> <a href="http://www.macgg.com/archives/category/mac软件">MacGG</a></li>
   <li><a href="http://www.waerfa.com">玩儿法</a></li>
-  <li><a href="http://macshuo.com">MacTalk-池建强的随想录</a></li>
   </p>
 </section>
 <section>

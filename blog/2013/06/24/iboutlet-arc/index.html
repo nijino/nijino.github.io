@@ -55,7 +55,7 @@ strong与之前的retain差不多， &hellip;">
   <header role="banner"><hgroup>
   <h1><a href="/">杨叫兽的技术博客</a></h1>
   
-    <h2>记录技术成长点滴</h2>
+    <h2>专注Objective－C、iOS、Mac开发技巧，重视代码的简洁与质量</h2>
   
 </hgroup>
 
@@ -117,17 +117,17 @@ strong与之前的retain差不多， &hellip;">
 
 <p>其中前三个可以用于属性中声明所有权。对于这三个用于属性声明的修饰符，下面分别讲讲他们对应的使用场景。</p>
 
-<!-- more -->
-
-
-<p>
-1.strong<br/>
+<p>1.strong<br/>
 strong与之前的retain差不多，可以增加属性引用计数的值。在不需要的时候，需要手动设置属性为nil。</p>
 
 <p>2.weak<br/>
 weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。可以只是持有指针而不增加引用计数来避免循环保留。当指针指向的内存被销毁后，声明weak的属性指针会自动置为nil，这也是它被称为归零弱引用的原因。</p>
 
-<p>3.unsafe_unretained<br/>
+<!-- more -->
+
+
+<p>
+3.unsafe_unretained<br/>
 对于iOS5以下版本，并不支持ARC中的weak声明，可以用unsafe_unretained声明来代替weak。unsafe_unretained同样也是不增加引用计数的值，但它没有“归零”的动作，需要手动操作，一般作为支持iOS5以下weak的替代方案。</p>
 
 <p>解释了3种属性的意义，下面说说对于属性声明为IBOutlet时3种所有权修饰符的取舍以及使用技巧。<br/>
@@ -227,7 +227,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     <section>
   <h1>关于我</h1>
   <p> <img width="220" src="/images/avatar.png"><br>
-    iOS开发者，陌陌前iOS开发工程师<br>
+    杨叫兽，80后，魔羯座，iOS开发者，果粉，曾供职于陌陌科技、联想集团<br>
     新浪微博：<a href="http://www.weibo.com/nijinosaki" target="_blank">3G杨叫兽</a><br>
     <a href="http://blog.163.com/nijino_saki">我在网易的技术博客（已停止维护）</a><br>
     QQ:20118368<br />
@@ -236,6 +236,10 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/05/using-custom-font/">在iOS应用中使用自定义字体</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/08/31/settings-bundle/">Settings.bundle的应用</a>
@@ -253,15 +257,11 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
         <a href="/blog/2013/07/02/using-kvc/">KVC技巧二则</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/06/24/iboutlet-arc/">ARC在IBOutlet属性中的使用</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (4)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (5)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
 </section>
 
 <section>
@@ -297,11 +297,11 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
   <h1>友情链接</h1>
   <li> <a href="http://blog.hellosa.org">陌陌系统运维工程师小虫的博客</a></li>
   <li> <a href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
+  <li><a href="http://macshuo.com">MacTalk-池建强的随想录</a></li>
   <li> <a href="http://www.macx.cn">MacX</a></li>
   <li> <a href="http://www.macdang.com">Mac党</a></li>
   <li> <a href="http://www.macgg.com/archives/category/mac软件">MacGG</a></li>
   <li><a href="http://www.waerfa.com">玩儿法</a></li>
-  <li><a href="http://macshuo.com">MacTalk-池建强的随想录</a></li>
   </p>
 </section>
 <section>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ARC | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/arc/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2013-08-31T20:21:56+08:00</updated>
+  <updated>2013-09-05T22:35:38+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -26,17 +26,17 @@
 
 <p>其中前三个可以用于属性中声明所有权。对于这三个用于属性声明的修饰符，下面分别讲讲他们对应的使用场景。</p>
 
-<!-- more -->
-
-
-<p>
-1.strong<br/>
+<p>1.strong<br/>
 strong与之前的retain差不多，可以增加属性引用计数的值。在不需要的时候，需要手动设置属性为nil。</p>
 
 <p>2.weak<br/>
 weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。可以只是持有指针而不增加引用计数来避免循环保留。当指针指向的内存被销毁后，声明weak的属性指针会自动置为nil，这也是它被称为归零弱引用的原因。</p>
 
-<p>3.unsafe_unretained<br/>
+<!-- more -->
+
+
+<p>
+3.unsafe_unretained<br/>
 对于iOS5以下版本，并不支持ARC中的weak声明，可以用unsafe_unretained声明来代替weak。unsafe_unretained同样也是不增加引用计数的值，但它没有“归零”的动作，需要手动操作，一般作为支持iOS5以下weak的替代方案。</p>
 
 <p>解释了3种属性的意义，下面说说对于属性声明为IBOutlet时3种所有权修饰符的取舍以及使用技巧。<br/>

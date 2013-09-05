@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My First Blog on Octopress - 杨叫兽的技术博客</title>
+  <title>在iOS应用中使用自定义字体 - 杨叫兽的技术博客</title>
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="Hello Octopress! 欢迎来到我的技术博客，这个博客是由Octopress构建的。
-同时也欢迎访问我在网易的博客。
-">
+  <meta name="description" content="开发过iOS应用的朋友都知道，iOS平台里的字体样式很多，其中的大多数都很美观。但是在这些字体中并没有中文字体，如果想用一些好看的中文字体（比如楷体、隶书等）该怎么做呢？ 其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。 NSArray *familyNames &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://nijino.cn/blog/2013/06/01/my-first-blog">
+  <link rel="canonical" href="http://nijino.cn/blog/2013/09/05/using-custom-font">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杨叫兽的技术博客" type="application/atom+xml">
@@ -83,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">My First Blog on Octopress</h1>
+      <h1 class="entry-title">在iOS应用中使用自定义字体</h1>
     
     
       <p class="meta">
@@ -99,17 +97,49 @@
   
 
 
-<time datetime="2013-06-01T06:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+<time datetime="2013-09-05T21:31:00+08:00" pubdate data-updated="true">Sep 5<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h2>Hello Octopress!</h2>
+<div class="entry-content"><p>开发过iOS应用的朋友都知道，iOS平台里的字体样式很多，其中的大多数都很美观。但是在这些字体中并没有中文字体，如果想用一些好看的中文字体（比如楷体、隶书等）该怎么做呢？</p>
 
-<p>欢迎来到我的技术博客，这个博客是由Octopress构建的。
-同时也欢迎访问我在<a href="http://blog.163.com/nijino_saki/">网易的博客</a>。</p>
+<p>其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。</p>
+
+<pre><code>NSArray *familyNames = [UIFont familyNames];
+for (NSString *familyName in familyNames) {
+    printf("Family: %s \n",[familyName UTF8String]);
+    NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
+    for (NSString * fontName in fontNames) {
+        printf("\tFont: %s \n",[fontName UTF8String]);
+    }
+}  
+</code></pre>
+
+<!-- more -->
+
+
+<p> <br/>
+从网上下载到自己想要的字体文件，比如：楷体_GB2312.ttf（.ttf和.odf均可）。将字体文件添加到项目中，并确保字体文件已加入工程的Copy Bundle Resources中：</p>
+
+<p><img src="/images/using-custom-font-1.png" alt="image" /></p>
+
+<p>同时要在工程的info.plist文件中添加一个名为&#8221;Fonts provided by application&#8221;的键，这个键的值是一个数组，将自定义字体文件的全名添加进去。</p>
+
+<p><img src="/images/using-custom-font-2.png" alt="image" /></p>
+
+<p>以上两步做完之后，还需要再执行一下之前提到的列举所有字体的代码，从打印的字体名称中找到自定义字体的名称。例如楷体_GB2312的字体名称为：KaiTi_GB2312。</p>
+
+<p>现在就可以在项目中使用这个自定义字体了，例如将一个UILabel对象的字体设置为楷体_GB2312，代码如下：</p>
+
+<pre><code>self.KaitiLabel.font = [UIFont fontWithName:@"STKaiti" size:25];  
+</code></pre>
+
+<p>最后，送给大家一个使用了娃娃体Label的效果图：</p>
+
+<p><img src="/images/using-custom-font-3.png" alt="image" /></p>
 </div>
 
 
@@ -132,12 +162,12 @@
   
 
 
-<time datetime="2013-06-01T06:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+<time datetime="2013-09-05T21:31:00+08:00" pubdate data-updated="true">Sep 5<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/custom-font/'>Custom Font</a>, <a class='category' href='/blog/categories/ios/'>iOS</a>
   
 </span>
 
@@ -178,8 +208,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2013/08/31/settings-bundle/" title="Previous Post: Settings.bundle的应用">&laquo; Settings.bundle的应用</a>
       
-        <a class="basic-alignment right" href="/blog/2013/06/19/nsstring-hash/" title="Next Post: 利用NSString的Hash方法比较字符串">利用NSString的Hash方法比较字符串 &raquo;</a>
       
     </p>
   </footer>
