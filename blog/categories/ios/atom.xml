@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2013-09-06T09:43:02+08:00</updated>
+  <updated>2013-10-09T23:31:48+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS调用Emoji表情的方法]]></title>
+    <link href="http://nijino.cn/blog/2013/10/05/emoji/"/>
+    <updated>2013-10-05T22:11:00+08:00</updated>
+    <id>http://nijino.cn/blog/2013/10/05/emoji</id>
+    <content type="html"><![CDATA[<p>Emoji是iOS自带的表情符号，在短信和一些通讯软件中使用起来非常有意思。而如果在iOS软件中能使用这些表情符号，更会让软件显得生机勃勃，比如下面这个软件的评价视图：</p>
+
+<p><img src="/images/Emoji-1.png" alt="image" /></p>
+
+<!-- more -->
+
+
+<p>
+那么如何使用这些表情呢？主要的思路是拿到Emoji表情的编码。获得Emoji编码的方法是在Mac OS 10.7（lion）及以上版本中随便打开一个程序，选择编辑菜单中的最后一项：特殊字符。
+在特殊字符窗口点击左上角下拉菜单，选择自定列表，在自定列表中如果表情符号没有勾选，请勾选。然后往下找到代码表，展开代码表并勾选Unicode选项，最后点击完成。</p>
+
+<p><img src="/images/Emoji-2.png" alt="image" /></p>
+
+<p>随便选择一个Emoji表情，右边的详细信息里就会显示这个表情的Unicode，我们需要的就是这个编码（不是括号中的）。</p>
+
+<p><img src="/images/Emoji-3.png" alt="image" /></p>
+
+<p>现在就可以使用这个表情了，将刚才查到表情的Unicode赋值给某个对象的text属性中。需要注意的是赋值时需要以"\U"开头，并写够8位，不够时用0在高位补齐。比如下面这个赋值写法：</p>
+
+<p><code>self.label.text = @"\U0001F603";</code></p>
+
+<p>在模拟器中的效果：</p>
+
+<p><img src="/images/Emoji-4.png" alt="image" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在iOS应用中使用自定义字体]]></title>
@@ -171,51 +203,9 @@ return cell;
 
 <p>从这个说明文档中可以知道这个方法也可以从复用队列中提取cell。如果cell没有在复用队列中，那就会调用cell的initWithStyle:reuseIdentifier:方法生成新的cell。至于之前在代码中指定cell的风格，现在已经可以在storyboard中指定了。</p>
 
-<p>上面这个例子充分说明了苹果在简化代码方面作出的巨大努力。Objective－C本身语法就有些长，如果不深入研究一些简化代码的写法，那么一个项目的代码就会变的非常冗余。这也是程序员经常说的把代码写多容易，而把代码量减少并且不丧失功能才是有难度的。</p>
+<p>上面这个例子充分说明了苹果在简化代码方面作出的巨大努力。Objective-C本身语法就有些长，如果不深入研究一些简化代码的写法，那么一个项目的代码就会变的非常冗余。这也是程序员经常说的把代码写多容易，而把代码量减少并且不丧失功能才是有难度的。</p>
 
 <p>另外我注意到这个方法是从iOS6.0版本开始支持的，可是在Xcode4.6.3中生成新的UITableViewController并不会默认生成新方法，只有Xcode5中才会生成，不知道这个方法在Xcode4.6.3中是否可以使用，需要通过实践来检验。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ARC在IBOutlet属性中的使用]]></title>
-    <link href="http://nijino.cn/blog/2013/06/24/iboutlet-arc/"/>
-    <updated>2013-06-24T22:12:00+08:00</updated>
-    <id>http://nijino.cn/blog/2013/06/24/iboutlet-arc</id>
-    <content type="html"><![CDATA[<p>ARC提供四种所有权修饰符:
-<li>strong<br/>
-<li>weak<br/>
-<li>unsafe_unretained<br/>
-<li>autoreleasing</p>
-
-<p>其中前三个可以用于属性中声明所有权。对于这三个用于属性声明的修饰符，下面分别讲讲他们对应的使用场景。</p>
-
-<p>1.strong<br/>
-strong与之前的retain差不多，可以增加属性引用计数的值。在不需要的时候，需要手动设置属性为nil。</p>
-
-<p>2.weak<br/>
-weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。可以只是持有指针而不增加引用计数来避免循环保留。当指针指向的内存被销毁后，声明weak的属性指针会自动置为nil，这也是它被称为归零弱引用的原因。</p>
-
-<!-- more -->
-
-
-<p>
-3.unsafe_unretained<br/>
-对于iOS5以下版本，并不支持ARC中的weak声明，可以用unsafe_unretained声明来代替weak。unsafe_unretained同样也是不增加引用计数的值，但它没有“归零”的动作，需要手动操作，一般作为支持iOS5以下weak的替代方案。</p>
-
-<p>解释了3种属性的意义，下面说说对于属性声明为IBOutlet时3种所有权修饰符的取舍以及使用技巧。<br/>
-由于我自己很熟悉Interface Bulider中的操作，所以非常喜欢那种拉控件然后连线并直接声称属性代码的操作。对于直接从xib或者storyboard拉出来生成的IBOutlet属性，一般是选择strong还是weak呢？  <br/>
-<strong>这里有个原则</strong>：如果该控件位于控件树的顶部，比如UIViewController下的view，那就应该选择strong，因为viewcontroller直接拥有该view。例如下图所示：</p>
-
-<p><img src="/images/IBOutlet-ARC-1.png" alt="image" /></p>
-
-<p>而如果控件是viewcontroller中view的子视图，对于这个子视图，它的所有者是它的父视图，代码中只是想引用一下这个子视图的指针而已，那么就应该选择weak（iOS5以下选择unsafe_unretained）。例如下图的UILabel:</p>
-
-<p><img src="/images/IBOutlet-ARC-2.png" alt="image" /></p>
-
-<p>对于以上的概念，我用一张图表来说明：</p>
-
-<p><img src="/images/IBOutlet-ARC-3.png" alt="image" /></p>
 ]]></content>
   </entry>
   

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Emoji | 杨叫兽的技术博客]]></title>
+  <link href="http://nijino.cn/blog/categories/emoji/atom.xml" rel="self"/>
+  <link href="http://nijino.cn/"/>
+  <updated>2013-10-09T23:31:48+08:00</updated>
+  <id>http://nijino.cn/</id>
+  <author>
+    <name><![CDATA[杨叫兽]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[iOS调用Emoji表情的方法]]></title>
+    <link href="http://nijino.cn/blog/2013/10/05/emoji/"/>
+    <updated>2013-10-05T22:11:00+08:00</updated>
+    <id>http://nijino.cn/blog/2013/10/05/emoji</id>
+    <content type="html"><![CDATA[<p>Emoji是iOS自带的表情符号，在短信和一些通讯软件中使用起来非常有意思。而如果在iOS软件中能使用这些表情符号，更会让软件显得生机勃勃，比如下面这个软件的评价视图：</p>
+
+<p><img src="/images/Emoji-1.png" alt="image" /></p>
+
+<!-- more -->
+
+
+<p>
+那么如何使用这些表情呢？主要的思路是拿到Emoji表情的编码。获得Emoji编码的方法是在Mac OS 10.7（lion）及以上版本中随便打开一个程序，选择编辑菜单中的最后一项：特殊字符。
+在特殊字符窗口点击左上角下拉菜单，选择自定列表，在自定列表中如果表情符号没有勾选，请勾选。然后往下找到代码表，展开代码表并勾选Unicode选项，最后点击完成。</p>
+
+<p><img src="/images/Emoji-2.png" alt="image" /></p>
+
+<p>随便选择一个Emoji表情，右边的详细信息里就会显示这个表情的Unicode，我们需要的就是这个编码（不是括号中的）。</p>
+
+<p><img src="/images/Emoji-3.png" alt="image" /></p>
+
+<p>现在就可以使用这个表情了，将刚才查到表情的Unicode赋值给某个对象的text属性中。需要注意的是赋值时需要以"\U"开头，并写够8位，不够时用0在高位补齐。比如下面这个赋值写法：</p>
+
+<p><code>self.label.text = @"\U0001F603";</code></p>
+
+<p>在模拟器中的效果：</p>
+
+<p><img src="/images/Emoji-4.png" alt="image" /></p>
+]]></content>
+  </entry>
+  
+</feed>
