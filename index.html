@@ -155,15 +155,26 @@
 
 <p>其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。</p>
 
-<pre><code>NSArray *familyNames = [UIFont familyNames];
-for (NSString *familyName in familyNames) {
-    printf("Family: %s \n",[familyName UTF8String]);
-    NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
-    for (NSString * fontName in fontNames) {
-        printf("\tFont: %s \n",[fontName UTF8String]);
-    }
-}  
-</code></pre>
+<figure class='code'><figcaption><span>查询系统内置全部字体 </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">familyNames</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="n">familyNames</span><span class="p">];</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">familyName</span> <span class="k">in</span> <span class="n">familyNames</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Family: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,[</span><span class="n">familyName</span> <span class="n">UTF8String</span><span class="p">]);</span>
+</span><span class='line'>  <span class="n">NSArray</span> <span class="o">*</span><span class="n">fontNames</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nl">fontNamesForFamilyName:</span><span class="n">familyName</span><span class="p">];</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span> <span class="n">fontName</span> <span class="k">in</span> <span class="n">fontNames</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Font: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,[</span><span class="n">fontName</span> <span class="n">UTF8String</span><span class="p">]);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 </div>
   
@@ -300,16 +311,24 @@ for (NSString *familyName in familyNames) {
 
 <p>可复用的队列一般要写在UITableView的cellForRowAtIndexPath:方法中，之前的写法一般是这样：</p>
 
-<pre><code>static NSString *CellIdentifier = @"Cell";
-UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-if (cell == nil){
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-}
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">static</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">CellIdentifier</span> <span class="o">=</span> <span class="s">@&quot;Cell&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">UITableViewCell</span> <span class="o">*</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier:</span><span class="n">CellIdentifier</span><span class="p">];</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">cell</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">){</span>
+</span><span class='line'>      <span class="n">cell</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UITableViewCell</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithStyle:</span><span class="n">UITableViewCellStyleSubtitle</span> <span class="nl">reuseIdentifier:</span><span class="n">CellIdentifier</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="c1">// Configure the cell    </span>
+</span><span class='line'><span class="k">return</span> <span class="n">cell</span><span class="p">;</span> 
+</span></code></pre></td></tr></table></div></figure>
 
-// Configure the cell
-
-return cell;    
-</code></pre>
 
 </div>
   
@@ -356,12 +375,17 @@ return cell;
 
 <p>有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典：</p>
 
-<p><code>   NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}};</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">dict</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span><span class="s">@&quot;subDict&quot;</span><span class="o">:</span><span class="err">@</span><span class="p">{</span><span class="s">@&quot;subKey&quot;</span><span class="o">:</span><span class="s">@&quot;aStr&quot;</span><span class="p">}};</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>需要取出<code>subKey</code>这个键的值。以前总是用<code>valueForKey</code>嵌套的语法来做，其实根本不用那么麻烦，直接利用<code>valueForKeyPath</code>方法就可以实现。代码如下：</p>
 
-<pre><code>NSString *str = [dict valueForKeyPath:@"subDict.subKey"];
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKeyPath:</span><span class="s">@&quot;subDict.subKey&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 </div>
   
@@ -457,8 +481,12 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
 
   <div class="entry-content"><p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
 
-<p><code>[string1
-isEqualsToString:string2]</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">string1</span> <span class="nl">isEqualsToString:</span><span class="n">string2</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
 
@@ -466,8 +494,12 @@ isEqualsToString:string2]</code></p>
 
 <p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
 
-<p><code>if ([string1 hash] == [string2 hash]){  
-}</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span> <span class="p">([</span><span class="n">string1</span> <span class="n">hash</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="n">string2</span> <span class="n">hash</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 </div>
   

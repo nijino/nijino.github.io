@@ -9,7 +9,8 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="说两个与KVC相关的技巧。 1.KVC与字典 有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典： NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}}; 需要取出subKey这个键的值。 &hellip;">
+  <meta name="description" content="说两个与KVC相关的技巧。 1.KVC与字典 有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典： 1
+NSDictionary *dict = @{@&quot;subDict&quot;:@{@&quot;subKey&quot;:@&quot;aStr&quot;}}; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -111,12 +112,17 @@
 
 <p>有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典：</p>
 
-<p><code>   NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}};</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">dict</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span><span class="s">@&quot;subDict&quot;</span><span class="o">:</span><span class="err">@</span><span class="p">{</span><span class="s">@&quot;subKey&quot;</span><span class="o">:</span><span class="s">@&quot;aStr&quot;</span><span class="p">}};</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>需要取出<code>subKey</code>这个键的值。以前总是用<code>valueForKey</code>嵌套的语法来做，其实根本不用那么麻烦，直接利用<code>valueForKeyPath</code>方法就可以实现。代码如下：</p>
 
-<pre><code>NSString *str = [dict valueForKeyPath:@"subDict.subKey"];
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKeyPath:</span><span class="s">@&quot;subDict.subKey&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <!-- more -->
 
@@ -125,14 +131,21 @@
 
 <p>有时候需要对数组中每个对象调用某一个方法后生成新的数组，我们可以利用KVC的高阶消息传递功能来实现。例如有下面这样一个数组：</p>
 
-<p><code>   NSArray *originArr = @[@"octopress",@"nijino",@"saki"];</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">originArr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;octopress&quot;</span><span class="p">,</span><span class="s">@&quot;nijino&quot;</span><span class="p">,</span><span class="s">@&quot;saki&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <p>我想将这个数组中的每一个元素首字母大写，然后生成新的数组，如果按照常规做法需要利用快速枚举对数组每一个元素进行操作，并且还要分配一个空数组来存储处理过的元素。</p>
 
 <p>而利用KVC的高阶消息传递，只需一句话就可以达到目的：</p>
 
-<pre><code>NSArray *resultArr = [originArr valueForKey:@"capitalizedString"];
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">resultArr</span> <span class="o">=</span> <span class="p">[</span><span class="n">originArr</span> <span class="nl">valueForKey:</span><span class="s">@&quot;capitalizedString&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>这样一步就实现了需求。</p>
 

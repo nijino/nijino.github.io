@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Emoji | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/emoji/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2013-10-09T23:31:48+08:00</updated>
+  <updated>2013-12-23T23:08:43+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -35,11 +35,11 @@
 
 <p><img src="/images/Emoji-3.png" alt="image" /></p>
 
-<p>现在就可以使用这个表情了，将刚才查到表情的Unicode赋值给某个对象的text属性中。需要注意的是赋值时需要以"\U"开头，并写够8位，不够时用0在高位补齐。比如下面这个赋值写法：</p>
-
-<p><code>self.label.text = @"\U0001F603";</code></p>
-
-<p>在模拟器中的效果：</p>
+<p>现在就可以使用这个表情了，将刚才查到表情的Unicode赋值给某个对象的text属性中。需要注意的是赋值时需要以"\U"开头，并写够8位，不够时用0在高位补齐。比如下面这个赋值写法：
+<code>objc
+self.label.text = @"\U0001F603";`    
+</code>
+在模拟器中的效果：</p>
 
 <p><img src="/images/Emoji-4.png" alt="image" /></p>
 ]]></content>

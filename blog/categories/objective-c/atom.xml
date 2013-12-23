@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Objective-C | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/objective-c/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2013-10-09T23:31:48+08:00</updated>
+  <updated>2013-12-23T23:08:43+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -24,12 +24,15 @@
 
 <p>有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典：</p>
 
-<p><code>   NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}};</code></p>
+<p><code>objc
+NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}};
+</code></p>
 
 <p>需要取出<code>subKey</code>这个键的值。以前总是用<code>valueForKey</code>嵌套的语法来做，其实根本不用那么麻烦，直接利用<code>valueForKeyPath</code>方法就可以实现。代码如下：</p>
 
-<pre><code>NSString *str = [dict valueForKeyPath:@"subDict.subKey"];
-</code></pre>
+<p><code>objc
+NSString *str = [dict valueForKeyPath:@"subDict.subKey"];
+</code></p>
 
 <!-- more -->
 
@@ -38,14 +41,17 @@
 
 <p>有时候需要对数组中每个对象调用某一个方法后生成新的数组，我们可以利用KVC的高阶消息传递功能来实现。例如有下面这样一个数组：</p>
 
-<p><code>   NSArray *originArr = @[@"octopress",@"nijino",@"saki"];</code></p>
+<p><code>objc    
+NSArray *originArr = @[@"octopress",@"nijino",@"saki"];
+</code></p>
 
 <p>我想将这个数组中的每一个元素首字母大写，然后生成新的数组，如果按照常规做法需要利用快速枚举对数组每一个元素进行操作，并且还要分配一个空数组来存储处理过的元素。</p>
 
 <p>而利用KVC的高阶消息传递，只需一句话就可以达到目的：</p>
 
-<pre><code>NSArray *resultArr = [originArr valueForKey:@"capitalizedString"];
-</code></pre>
+<p><code>objc  
+NSArray *resultArr = [originArr valueForKey:@"capitalizedString"];
+</code></p>
 
 <p>这样一步就实现了需求。</p>
 
@@ -62,8 +68,9 @@
     <id>http://nijino.cn/blog/2013/06/19/nsstring-hash</id>
     <content type="html"><![CDATA[<p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
 
-<p><code>[string1
-isEqualsToString:string2]</code></p>
+<p><code>objc
+[string1 isEqualsToString:string2]
+</code></p>
 
 <p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
 
@@ -71,29 +78,28 @@ isEqualsToString:string2]</code></p>
 
 <p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
 
-<p><code>if ([string1 hash] == [string2 hash]){  
-}</code></p>
+<p><code>objc
+if ([string1 hash] == [string2 hash])
+</code></p>
 
 <!-- more -->
 
 
 <p>实践中发现了一个问题：有时候字符串返回的散列值为负数，而苹果文档说hash方法一定返回无符号数，不知是不是位数问题造成的。</p>
 
-<p><img src="/images/nsstring-hash.png" alt="image" /></p>
+<p><img src="/images/nsstring-hash.png" title="NSString hash method reference" ></p>
 
-<p>例如：</p>
-
-<pre><code>NSString *string1 = @"yyb";
+<p>例如：  <br/>
+<code>objc 示例代码
+NSString *string1 = @"yyb";
 NSString *string2 = @"nijino_saki";
 NSLog(@"string1 hash %d",[string1 hash]);
 NSLog(@"string2 hash %d",[string2 hash]);  
-</code></pre>
+</code>
+输出结果为：</p>
 
-<p>输出结果为：</p>
-
-<p>  2013-06-19 18:47:11.612 test[26719:c07] string1 hash 530522127</p>
-
-<p>2013-06-19 18:47:11.613 test[26719:c07] string2 hash -975949159</p>
+<p>  2013-06-19 18:47:11.612 test[26719:c07] string1 hash 530522127<br/>
+2013-06-19 18:47:11.613 test[26719:c07] string2 hash -975949159</p>
 ]]></content>
   </entry>
   

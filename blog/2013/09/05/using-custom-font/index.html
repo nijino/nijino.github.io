@@ -9,7 +9,11 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="开发过iOS应用的朋友都知道，iOS平台里的字体样式很多，其中的大多数都很美观。但是在这些字体中并没有中文字体，如果想用一些好看的中文字体（比如楷体、隶书等）该怎么做呢？ 其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。 NSArray *familyNames &hellip;">
+  <meta name="description" content="开发过iOS应用的朋友都知道，iOS平台里的字体样式很多，其中的大多数都很美观。但是在这些字体中并没有中文字体，如果想用一些好看的中文字体（比如楷体、隶书等）该怎么做呢？ 其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。 查询系统内置全部字体 1
+2
+3
+4
+5 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -109,15 +113,26 @@
 
 <p>其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。</p>
 
-<pre><code>NSArray *familyNames = [UIFont familyNames];
-for (NSString *familyName in familyNames) {
-    printf("Family: %s \n",[familyName UTF8String]);
-    NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
-    for (NSString * fontName in fontNames) {
-        printf("\tFont: %s \n",[fontName UTF8String]);
-    }
-}  
-</code></pre>
+<figure class='code'><figcaption><span>查询系统内置全部字体 </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">familyNames</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="n">familyNames</span><span class="p">];</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">familyName</span> <span class="k">in</span> <span class="n">familyNames</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Family: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,[</span><span class="n">familyName</span> <span class="n">UTF8String</span><span class="p">]);</span>
+</span><span class='line'>  <span class="n">NSArray</span> <span class="o">*</span><span class="n">fontNames</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nl">fontNamesForFamilyName:</span><span class="n">familyName</span><span class="p">];</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span> <span class="n">fontName</span> <span class="k">in</span> <span class="n">fontNames</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Font: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,[</span><span class="n">fontName</span> <span class="n">UTF8String</span><span class="p">]);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <!-- more -->
 
@@ -135,10 +150,13 @@ for (NSString *familyName in familyNames) {
 
 <p>现在就可以在项目中使用这个自定义字体了，例如将一个UILabel对象的字体设置为楷体_GB2312，代码如下：</p>
 
-<pre><code>self.KaitiLabel.font = [UIFont fontWithName:@"STKaiti" size:25];  
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">KaitiLabel</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nl">fontWithName:</span><span class="s">@&quot;STKaiti&quot;</span> <span class="nl">size:</span><span class="mi">25</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>最后，送给大家一个使用了娃娃体Label的效果图：</p>
+
+<p>
+最后，送给大家一个使用了娃娃体Label的效果图：</p>
 
 <p><img src="/images/using-custom-font-3.png" alt="image" /></p>
 </div>

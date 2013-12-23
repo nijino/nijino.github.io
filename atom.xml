@@ -4,7 +4,7 @@
   <title><![CDATA[杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2013-10-09T23:31:48+08:00</updated>
+  <updated>2013-12-23T23:08:43+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -37,7 +37,10 @@
 
 <p>现在就可以使用这个表情了，将刚才查到表情的Unicode赋值给某个对象的text属性中。需要注意的是赋值时需要以&#8221;\U&#8221;开头，并写够8位，不够时用0在高位补齐。比如下面这个赋值写法：</p>
 
-<p><code>self.label.text = @"\U0001F603";</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">@&quot;\U0001F603&quot;</span><span class="p">;</span><span class="err">`</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>在模拟器中的效果：</p>
 
@@ -54,15 +57,26 @@
 
 <p>其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。</p>
 
-<pre><code>NSArray *familyNames = [UIFont familyNames];
-for (NSString *familyName in familyNames) {
-    printf("Family: %s \n",[familyName UTF8String]);
-    NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
-    for (NSString * fontName in fontNames) {
-        printf("\tFont: %s \n",[fontName UTF8String]);
-    }
-}  
-</code></pre>
+<figure class='code'><figcaption><span>查询系统内置全部字体 </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">familyNames</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="n">familyNames</span><span class="p">];</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">familyName</span> <span class="k">in</span> <span class="n">familyNames</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Family: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,[</span><span class="n">familyName</span> <span class="n">UTF8String</span><span class="p">]);</span>
+</span><span class='line'>  <span class="n">NSArray</span> <span class="o">*</span><span class="n">fontNames</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nl">fontNamesForFamilyName:</span><span class="n">familyName</span><span class="p">];</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span> <span class="n">fontName</span> <span class="k">in</span> <span class="n">fontNames</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Font: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,[</span><span class="n">fontName</span> <span class="n">UTF8String</span><span class="p">]);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <!-- more -->
 
@@ -80,10 +94,13 @@ for (NSString *familyName in familyNames) {
 
 <p>现在就可以在项目中使用这个自定义字体了，例如将一个UILabel对象的字体设置为楷体_GB2312，代码如下：</p>
 
-<pre><code>self.KaitiLabel.font = [UIFont fontWithName:@"STKaiti" size:25];  
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">KaitiLabel</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nl">fontWithName:</span><span class="s">@&quot;STKaiti&quot;</span> <span class="nl">size:</span><span class="mi">25</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>最后，送给大家一个使用了娃娃体Label的效果图：</p>
+
+<p>
+最后，送给大家一个使用了娃娃体Label的效果图：</p>
 
 <p><img src="http://nijino.cn/images/using-custom-font-3.png" alt="image" /></p>
 ]]></content>
@@ -171,16 +188,24 @@ IB中是可以添加水平和垂直的辅助线的。并且辅助线是可以拖
 
 <p>可复用的队列一般要写在UITableView的cellForRowAtIndexPath:方法中，之前的写法一般是这样：</p>
 
-<pre><code>static NSString *CellIdentifier = @"Cell";
-UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-if (cell == nil){
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-}
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">static</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">CellIdentifier</span> <span class="o">=</span> <span class="s">@&quot;Cell&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">UITableViewCell</span> <span class="o">*</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier:</span><span class="n">CellIdentifier</span><span class="p">];</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">cell</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">){</span>
+</span><span class='line'>      <span class="n">cell</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UITableViewCell</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithStyle:</span><span class="n">UITableViewCellStyleSubtitle</span> <span class="nl">reuseIdentifier:</span><span class="n">CellIdentifier</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="c1">// Configure the cell    </span>
+</span><span class='line'><span class="k">return</span> <span class="n">cell</span><span class="p">;</span> 
+</span></code></pre></td></tr></table></div></figure>
 
-// Configure the cell
-
-return cell;    
-</code></pre>
 
 <!-- more -->
 
@@ -189,17 +214,22 @@ return cell;
 
 <p>对于一些拥有一段iOS开发经验的开发者来说这段代码应该是再熟悉不过，因为好多应用都会用到UITableView。但是最近我在Xcode DP版本上发现这段代码有了变化，在Xcode5中新生成UITableView的cellForRowAtIndexPath:方法中的写法变成了以下这样：</p>
 
-<pre><code>static NSString *CellIdentifier = @"Cell";
-UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">static</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">CellIdentifier</span> <span class="o">=</span> <span class="s">@&quot;Cell&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">UITableViewCell</span> <span class="o">*</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier:</span><span class="n">CellIdentifier</span> <span class="nl">forIndexPath:</span><span class="n">indexPath</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Configure the cell... </span>
+</span><span class='line'><span class="k">return</span> <span class="n">cell</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-// Configure the cell...
 
-return cell;
-</code></pre>
-
-<p>表面上看UITableView好像支持了一个新方法：dequeueReusableCellWithIdentifier:forIndexPath:,这个方法是怎么回事呢？赶紧来看看这个方法的说明：</p>
-
-<p><img src="http://nijino.cn/images/xcode5-cellForRow.png" alt="image" /></p>
+<p>  <br/>
+表面上看UITableView好像支持了一个新方法：dequeueReusableCellWithIdentifier:forIndexPath:,这个方法是怎么回事呢？赶紧来看看这个方法的说明：
+<img src="http://nijino.cn/images/xcode5-cellForRow.png" title="UITableView reference" ></p>
 
 <p>从这个说明文档中可以知道这个方法也可以从复用队列中提取cell。如果cell没有在复用队列中，那就会调用cell的initWithStyle:reuseIdentifier:方法生成新的cell。至于之前在代码中指定cell的风格，现在已经可以在storyboard中指定了。</p>
 
@@ -220,12 +250,17 @@ return cell;
 
 <p>有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典：</p>
 
-<p><code>   NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}};</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">dict</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span><span class="s">@&quot;subDict&quot;</span><span class="o">:</span><span class="err">@</span><span class="p">{</span><span class="s">@&quot;subKey&quot;</span><span class="o">:</span><span class="s">@&quot;aStr&quot;</span><span class="p">}};</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>需要取出<code>subKey</code>这个键的值。以前总是用<code>valueForKey</code>嵌套的语法来做，其实根本不用那么麻烦，直接利用<code>valueForKeyPath</code>方法就可以实现。代码如下：</p>
 
-<pre><code>NSString *str = [dict valueForKeyPath:@"subDict.subKey"];
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKeyPath:</span><span class="s">@&quot;subDict.subKey&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <!-- more -->
 
@@ -234,14 +269,21 @@ return cell;
 
 <p>有时候需要对数组中每个对象调用某一个方法后生成新的数组，我们可以利用KVC的高阶消息传递功能来实现。例如有下面这样一个数组：</p>
 
-<p><code>   NSArray *originArr = @[@"octopress",@"nijino",@"saki"];</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">originArr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;octopress&quot;</span><span class="p">,</span><span class="s">@&quot;nijino&quot;</span><span class="p">,</span><span class="s">@&quot;saki&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <p>我想将这个数组中的每一个元素首字母大写，然后生成新的数组，如果按照常规做法需要利用快速枚举对数组每一个元素进行操作，并且还要分配一个空数组来存储处理过的元素。</p>
 
 <p>而利用KVC的高阶消息传递，只需一句话就可以达到目的：</p>
 
-<pre><code>NSArray *resultArr = [originArr valueForKey:@"capitalizedString"];
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">resultArr</span> <span class="o">=</span> <span class="p">[</span><span class="n">originArr</span> <span class="nl">valueForKey:</span><span class="s">@&quot;capitalizedString&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>这样一步就实现了需求。</p>
 
@@ -278,18 +320,20 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
 对于iOS5以下版本，并不支持ARC中的weak声明，可以用unsafe_unretained声明来代替weak。unsafe_unretained同样也是不增加引用计数的值，但它没有“归零”的动作，需要手动操作，一般作为支持iOS5以下weak的替代方案。</p>
 
 <p>解释了3种属性的意义，下面说说对于属性声明为IBOutlet时3种所有权修饰符的取舍以及使用技巧。<br/>
-由于我自己很熟悉Interface Bulider中的操作，所以非常喜欢那种拉控件然后连线并直接声称属性代码的操作。对于直接从xib或者storyboard拉出来生成的IBOutlet属性，一般是选择strong还是weak呢？  <br/>
-<strong>这里有个原则</strong>：如果该控件位于控件树的顶部，比如UIViewController下的view，那就应该选择strong，因为viewcontroller直接拥有该view。例如下图所示：</p>
+由于我自己很熟悉Interface Bulider中的操作，所以非常喜欢那种拉控件然后连线并直接声称属性代码的操作。对于直接从xib或者storyboard拉出来生成的IBOutlet属性，一般是选择strong还是weak呢？</p>
 
-<p><img src="http://nijino.cn/images/IBOutlet-ARC-1.png" alt="image" /></p>
+<p><img class="right" src="http://nijino.cn/images/IBOutlet-ARC-1.png" title="IBOutlet strong property instance" ></p>
 
-<p>而如果控件是viewcontroller中view的子视图，对于这个子视图，它的所有者是它的父视图，代码中只是想引用一下这个子视图的指针而已，那么就应该选择weak（iOS5以下选择unsafe_unretained）。例如下图的UILabel:</p>
+<p><strong>这里有个原则</strong>：</p>
 
-<p><img src="http://nijino.cn/images/IBOutlet-ARC-2.png" alt="image" /></p>
+<p>如果该控件位于控件树的顶部，比如
+UIViewController下的view，那就应该选择strong，因为viewcontroller直接拥有该view。例如右图中的View。</p>
 
-<p>对于以上的概念，我用一张图表来说明：</p>
+<p><img class="left" src="http://nijino.cn/images/IBOutlet-ARC-2.png" title="IBOutlet weak property instance" >
+而如果控件是viewcontroller中view的子视图，对于这个子视图，它的所有者是它的父视图，代码中只是想引用一下这个子视图的指针而已，那么就应该选择weak（iOS5以下选择unsafe_unretained）。例如左图中的UILabel。</p>
 
-<p><img src="http://nijino.cn/images/IBOutlet-ARC-3.png" alt="image" /></p>
+<p>对于以上的概念，我用一张图表来说明：<br/>
+<img src="http://nijino.cn/images/IBOutlet-ARC-3.png" title="property choosing diagram" ></p>
 ]]></content>
   </entry>
   
@@ -300,8 +344,12 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
     <id>http://nijino.cn/blog/2013/06/19/nsstring-hash</id>
     <content type="html"><![CDATA[<p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
 
-<p><code>[string1
-isEqualsToString:string2]</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">string1</span> <span class="nl">isEqualsToString:</span><span class="n">string2</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
 
@@ -309,29 +357,37 @@ isEqualsToString:string2]</code></p>
 
 <p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
 
-<p><code>if ([string1 hash] == [string2 hash]){  
-}</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span> <span class="p">([</span><span class="n">string1</span> <span class="n">hash</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="n">string2</span> <span class="n">hash</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <!-- more -->
 
 
 <p>实践中发现了一个问题：有时候字符串返回的散列值为负数，而苹果文档说hash方法一定返回无符号数，不知是不是位数问题造成的。</p>
 
-<p><img src="http://nijino.cn/images/nsstring-hash.png" alt="image" /></p>
+<p><img src="http://nijino.cn/images/nsstring-hash.png" title="NSString hash method reference" ></p>
 
 <p>例如：</p>
 
-<pre><code>NSString *string1 = @"yyb";
-NSString *string2 = @"nijino_saki";
-NSLog(@"string1 hash %d",[string1 hash]);
-NSLog(@"string2 hash %d",[string2 hash]);  
-</code></pre>
+<figure class='code'><figcaption><span>示例代码</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">string1</span> <span class="o">=</span> <span class="s">@&quot;yyb&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">string2</span> <span class="o">=</span> <span class="s">@&quot;nijino_saki&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;string1 hash %d&quot;</span><span class="p">,[</span><span class="n">string1</span> <span class="n">hash</span><span class="p">]);</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;string2 hash %d&quot;</span><span class="p">,[</span><span class="n">string2</span> <span class="n">hash</span><span class="p">]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>输出结果为：</p>
 
-<p>  2013-06-19 18:47:11.612 test[26719:c07] string1 hash 530522127</p>
-
-<p>2013-06-19 18:47:11.613 test[26719:c07] string2 hash -975949159</p>
+<p>  2013-06-19 18:47:11.612 test[26719:c07] string1 hash 530522127<br/>
+2013-06-19 18:47:11.613 test[26719:c07] string2 hash -975949159</p>
 ]]></content>
   </entry>
   
