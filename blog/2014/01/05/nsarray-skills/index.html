@@ -5,12 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>利用NSString的Hash方法比较字符串 - 杨叫兽的技术博客</title>
+  <title>NSArray技巧两则 - 杨叫兽的技术博客</title>
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="实际编程总会涉及到比较两个字符串的内容，一般会用 1
-[string1 isEqualsToString:string2] 来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。 偶然间我发现NSString类里有个hash方法， &hellip;">
+  <meta name="description" content="之前我在网易的技术博客中讲到去除NSArray中重复元素的方法(地址)。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。 1.NSArray逆序 NSArray逆序1
+2
+3
+NSArray *arr = @[@&quot; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://nijino.cn/blog/2013/06/19/nsstring-hash">
+  <link rel="canonical" href="http://nijino.cn/blog/2014/01/05/nsarray-skills">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杨叫兽的技术博客" type="application/atom+xml">
@@ -83,7 +85,7 @@
   
   <header>
     
-      <h1 class="entry-title">利用NSString的Hash方法比较字符串</h1>
+      <h1 class="entry-title">NSArray技巧两则</h1>
     
     
       <p class="meta">
@@ -99,59 +101,50 @@
   
 
 
-<time datetime="2013-06-19T14:10:00+08:00" pubdate data-updated="true">Jun 19<span>th</span>, 2013</time>
+<time datetime="2014-01-05T12:21:00+08:00" pubdate data-updated="true">Jan 5<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
+<div class="entry-content"><p>之前我在网易的技术博客中讲到去除NSArray中重复元素的方法(<a href="http://blog.163.com/nijino_saki/blog/static/800921442013421114117193/">地址</a>)。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">string1</span> <span class="nl">isEqualsToString:</span><span class="n">string2</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>1.NSArray逆序</p>
 
-
-<p></p>
-
-<p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
-
-<p>偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。</p>
-
-<p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span> <span class="p">([</span><span class="n">string1</span> <span class="n">hash</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="n">string2</span> <span class="n">hash</span><span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<!-- more -->
-
-
-<p>实践中发现了一个问题：有时候字符串返回的散列值为负数，而苹果文档说hash方法一定返回无符号数，不知是不是位数问题造成的。</p>
-
-<p><img src="/images/nsstring-hash.png" title="NSString hash method reference" ></p>
-
-<p>例如：</p>
-
-<figure class='code'><figcaption><span>示例代码</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>NSArray逆序</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">string1</span> <span class="o">=</span> <span class="s">@&quot;yyb&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">string2</span> <span class="o">=</span> <span class="s">@&quot;nijino_saki&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;string1 hash %d&quot;</span><span class="p">,[</span><span class="n">string1</span> <span class="n">hash</span><span class="p">]);</span>
-</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;string2 hash %d&quot;</span><span class="p">,[</span><span class="n">string2</span> <span class="n">hash</span><span class="p">]);</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;first&quot;</span><span class="p">,</span><span class="s">@&quot;second&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="n">reverseObjectEnumerator</span><span class="p">.</span><span class="n">allObjects</span><span class="p">;</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">arr</span><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>输出结果为：</p>
+<p>输出结果为：
+2014-01-05 13:52:09.303 CircleAudio[39584:70b] (
+second,
+first
+)</p>
 
-<p>  2013-06-19 18:47:11.612 test[26719:c07] string1 hash 530522127<br/>
-2013-06-19 18:47:11.613 test[26719:c07] string2 hash -975949159</p>
+<p>2.NSArray快速去重</p>
+
+<figure class='code'><figcaption><span>NSArray快速去重</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;first&quot;</span><span class="p">,</span><span class="s">@&quot;second&quot;</span><span class="p">,</span><span class="s">@&quot;first&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span> <span class="nl">valueForKeyPath:</span><span class="s">@&quot;@distinctUnionOfObjects.self&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">arr</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出结果：
+2014-01-05 13:54:53.457 CircleAudio[39976:70b] (
+first,
+second
+)</p>
+
+<p>以上的技巧都是从WWDC2013 session 228中学到的，其中还有一些技巧比如：联合两个数组并去重，感兴趣的同学可以自行下载视频研究。</p>
 </div>
 
 
@@ -174,12 +167,12 @@
   
 
 
-<time datetime="2013-06-19T14:10:00+08:00" pubdate data-updated="true">Jun 19<span>th</span>, 2013</time>
+<time datetime="2014-01-05T12:21:00+08:00" pubdate data-updated="true">Jan 5<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/nsstring/'>NSString</a>, <a class='category' href='/blog/categories/objective-c/'>Objective-C</a>
+    <a class='category' href='/blog/categories/nsarray/'>NSArray</a>, <a class='category' href='/blog/categories/ios/'>iOS</a>
   
 </span>
 
@@ -220,10 +213,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/06/01/my-first-blog/" title="Previous Post: My First Blog on Octopress">&laquo; My First Blog on Octopress</a>
+        <a class="basic-alignment left" href="/blog/2013/10/05/emoji/" title="Previous Post: iOS调用Emoji表情的方法">&laquo; iOS调用Emoji表情的方法</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/06/24/iboutlet-arc/" title="Next Post: ARC在IBOutlet属性中的使用">ARC在IBOutlet属性中的使用 &raquo;</a>
       
     </p>
   </footer>

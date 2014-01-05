@@ -9,7 +9,10 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="Emoji是iOS自带的表情符号，在短信和一些通讯软件中使用起来非常有意思。而如果在iOS软件中能使用这些表情符号，更会让软件显得生机勃勃，比如下面这个软件的评价视图： ">
+  <meta name="description" content="之前我在网易的技术博客中讲到去除NSArray中重复元素的方法(地址)。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。 1.NSArray逆序 NSArray逆序1
+2
+3
+NSArray *arr = @[@&quot; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +82,78 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/05/nsarray-skills/">NSArray技巧两则</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-05T12:21:00+08:00" pubdate data-updated="true">Jan 5<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前我在网易的技术博客中讲到去除NSArray中重复元素的方法(<a href="http://blog.163.com/nijino_saki/blog/static/800921442013421114117193/">地址</a>)。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。</p>
+
+<p>1.NSArray逆序</p>
+
+<figure class='code'><figcaption><span>NSArray逆序</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;first&quot;</span><span class="p">,</span><span class="s">@&quot;second&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="n">reverseObjectEnumerator</span><span class="p">.</span><span class="n">allObjects</span><span class="p">;</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">arr</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出结果为：
+2014-01-05 13:52:09.303 CircleAudio[39584:70b] (
+second,
+first
+)</p>
+
+<p>2.NSArray快速去重</p>
+
+<figure class='code'><figcaption><span>NSArray快速去重</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;first&quot;</span><span class="p">,</span><span class="s">@&quot;second&quot;</span><span class="p">,</span><span class="s">@&quot;first&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span> <span class="nl">valueForKeyPath:</span><span class="s">@&quot;@distinctUnionOfObjects.self&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">arr</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出结果：
+2014-01-05 13:54:53.457 CircleAudio[39976:70b] (
+first,
+second
+)</p>
+
+<p>以上的技巧都是从WWDC2013 session 228中学到的，其中还有一些技巧比如：联合两个数组并去重，感兴趣的同学可以自行下载视频研究。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -573,6 +648,10 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/01/05/nsarray-skills/">NSArray技巧两则</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/05/emoji/">iOS调用Emoji表情的方法</a>
       </li>
     
@@ -588,15 +667,11 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
         <a href="/blog/2013/08/28/interface-builder-skills/">Interface Builder中的技巧</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/08/12/new-cell-for-row/">Xcode5中cellForRowAtIndexPath:方法</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (6)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
 </section>
 
 <section>
@@ -660,7 +735,7 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - 杨叫兽 -
+  Copyright &copy; 2014 - 杨叫兽 -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span><br>
   原创文章，版权声明：自由转载-非商用-非衍生-保持署名  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh"><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
 </p>

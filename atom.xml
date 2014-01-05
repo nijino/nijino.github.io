@@ -4,7 +4,7 @@
   <title><![CDATA[杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2013-12-23T23:52:17+08:00</updated>
+  <updated>2014-01-05T21:50:47+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NSArray技巧两则]]></title>
+    <link href="http://nijino.cn/blog/2014/01/05/nsarray-skills/"/>
+    <updated>2014-01-05T12:21:00+08:00</updated>
+    <id>http://nijino.cn/blog/2014/01/05/nsarray-skills</id>
+    <content type="html"><![CDATA[<p>之前我在网易的技术博客中讲到去除NSArray中重复元素的方法(<a href="http://blog.163.com/nijino_saki/blog/static/800921442013421114117193/">地址</a>)。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。</p>
+
+<p>1.NSArray逆序</p>
+
+<figure class='code'><figcaption><span>NSArray逆序</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;first&quot;</span><span class="p">,</span><span class="s">@&quot;second&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="n">reverseObjectEnumerator</span><span class="p">.</span><span class="n">allObjects</span><span class="p">;</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">arr</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出结果为：
+2014-01-05 13:52:09.303 CircleAudio[39584:70b] (
+second,
+first
+)</p>
+
+<p>2.NSArray快速去重</p>
+
+<figure class='code'><figcaption><span>NSArray快速去重</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;first&quot;</span><span class="p">,</span><span class="s">@&quot;second&quot;</span><span class="p">,</span><span class="s">@&quot;first&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span> <span class="nl">valueForKeyPath:</span><span class="s">@&quot;@distinctUnionOfObjects.self&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">arr</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出结果：
+2014-01-05 13:54:53.457 CircleAudio[39976:70b] (
+first,
+second
+)</p>
+
+<p>以上的技巧都是从WWDC2013 session 228中学到的，其中还有一些技巧比如：联合两个数组并去重，感兴趣的同学可以自行下载视频研究。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS调用Emoji表情的方法]]></title>
