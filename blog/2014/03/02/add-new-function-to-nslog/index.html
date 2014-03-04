@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: ARC - 杨叫兽的技术博客</title>
+  <title>给NSLog增加输出功能 - 杨叫兽的技术博客</title>
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="Category: ARC">
+  <meta name="description" content="之前在老博客里讲到编写一个DLog宏替代NSLog输出更多的打印信息。如果之前工程里NSLog很多就需要把所有的NSLog替换成DLog。这么做是不是感觉有点麻烦？其实还有更简单的办法，就是直接写一个NSLog的宏，替换掉Xcode中已存在的宏，同样可以打印需要的信息。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://nijino.cnblog/categories/arc">
+  <link rel="canonical" href="http://nijino.cn/blog/2014/03/02/add-new-function-to-nslog">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="杨叫兽的技术博客" type="application/atom+xml">
@@ -78,35 +78,126 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: ARC</h1>
+    
+      <h1 class="entry-title">给NSLog增加输出功能</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-02T21:34:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>之前在<a href="http://blog.163.com/nijino_saki/blog/static/8009214420134128146215/">老博客</a>里讲到编写一个DLog宏替代NSLog输出更多的打印信息。如果之前工程里NSLog很多就需要把所有的NSLog替换成DLog。这么做是不是感觉有点麻烦？其实还有更简单的办法，就是直接写一个NSLog的宏，替换掉Xcode中已存在的宏，同样可以打印需要的信息。只需将下列代码放入prefix.pch文件中：</p>
 
-  
-  <h2>2013</h2>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#define NSLog(format, ...) do {\</span>
+</span><span class='line'><span class="cp">fprintf(stderr, &quot;&lt;%s : %d&gt; %s\n&quot;,\</span>
+</span><span class='line'><span class="cp">        [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],\</span>
+</span><span class='line'><span class="cp">        __LINE__, __func__);\</span>
+</span><span class='line'><span class="cp">(NSLog)((format), ##__VA_ARGS__);\</span>
+</span><span class='line'><span class="cp">fprintf(stderr, &quot;-------\n&quot;);\</span>
+</span><span class='line'><span class="cp">} while (0)</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<article>
-  
-<h1><a href="/blog/2013/06/24/iboutlet-arc/">ARC在IBOutlet属性中的使用</a></h1>
-<time datetime="2013-06-24T22:12:00+08:00" pubdate><span class='month'>Jun</span> <span class='day'>24</span> <span class='year'>2013</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/arc/'>ARC</a>, <a class='category' href='/blog/categories/ios/'>iOS</a></span>
-</footer>
-
-
-</article>
-
+<p>如果还想深入了解宏定义的知识，请参考<a href="http://www.cocoachina.com/applenews/devnews/2014/0122/7738.html">这里</a>。</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">杨叫兽</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-02T21:34:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/nslog/'>NSLog</a>, <a class='category' href='/blog/categories/objective-c/'>Objective-C</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  
+	  <!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_tsina"></a>
+<a class="bds_t163"></a>
+<a class="bds_tsohu"></a>
+<a class="bds_tqq"></a>
+<a class="bds_qzone"></a>
+<a class="bds_renren"></a>
+<a class="bds_tieba"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=5697822" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1808039" async=""></script>
+<!-- UY END -->
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/01/05/nsarray-skills/" title="Previous Post: NSArray技巧两则">&laquo; NSArray技巧两则</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

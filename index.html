@@ -9,10 +9,7 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="之前我在网易的技术博客中讲到去除NSArray中重复元素的方法(地址)。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。 1.NSArray逆序 NSArray逆序1
-2
-3
-NSArray *arr = @[@&quot; &hellip;">
+  <meta name="description" content="之前在老博客里讲到编写一个DLog宏替代NSLog输出更多的打印信息。如果之前工程里NSLog很多就需要把所有的NSLog替换成DLog。这么做是不是感觉有点麻烦？其实还有更简单的办法，就是直接写一个NSLog的宏，替换掉Xcode中已存在的宏，同样可以打印需要的信息。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +79,61 @@ NSArray *arr = @[@&quot; &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/02/add-new-function-to-nslog/">给NSLog增加输出功能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-02T21:34:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前在<a href="http://blog.163.com/nijino_saki/blog/static/8009214420134128146215/">老博客</a>里讲到编写一个DLog宏替代NSLog输出更多的打印信息。如果之前工程里NSLog很多就需要把所有的NSLog替换成DLog。这么做是不是感觉有点麻烦？其实还有更简单的办法，就是直接写一个NSLog的宏，替换掉Xcode中已存在的宏，同样可以打印需要的信息。只需将下列代码放入prefix.pch文件中：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#define NSLog(format, ...) do {\</span>
+</span><span class='line'><span class="cp">fprintf(stderr, &quot;&lt;%s : %d&gt; %s\n&quot;,\</span>
+</span><span class='line'><span class="cp">        [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],\</span>
+</span><span class='line'><span class="cp">        __LINE__, __func__);\</span>
+</span><span class='line'><span class="cp">(NSLog)((format), ##__VA_ARGS__);\</span>
+</span><span class='line'><span class="cp">fprintf(stderr, &quot;-------\n&quot;);\</span>
+</span><span class='line'><span class="cp">} while (0)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果还想深入了解宏定义的知识，请参考<a href="http://www.cocoachina.com/applenews/devnews/2014/0122/7738.html">这里</a>。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -587,46 +639,9 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/01/my-first-blog/">My First Blog on Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-01T06:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Hello Octopress!</h2>
-
-<p>欢迎来到我的技术博客，这个博客是由Octopress构建的。
-同时也欢迎访问我在<a href="http://blog.163.com/nijino_saki/">网易的博客</a>。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -648,6 +663,10 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/02/add-new-function-to-nslog/">给NSLog增加输出功能</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/01/05/nsarray-skills/">NSArray技巧两则</a>
       </li>
     
@@ -663,15 +682,11 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
         <a href="/blog/2013/08/31/settings-bundle/">Settings.bundle的应用</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/08/28/interface-builder-skills/">Interface Builder中的技巧</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (1)</a></li><li><a href='/blog/categories/nslog/'>NSLog (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (3)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
 </section>
 
 <section>
