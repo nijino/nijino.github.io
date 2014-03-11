@@ -4,7 +4,7 @@
   <title><![CDATA[杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-03-04T09:52:11+08:00</updated>
+  <updated>2014-03-11T15:51:07+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Objective-C中3种枚举方法耗时比较]]></title>
+    <link href="http://nijino.cn/blog/2014/03/11/comparison-for-3-enumeration-methods-in-objective-c/"/>
+    <updated>2014-03-11T14:29:00+08:00</updated>
+    <id>http://nijino.cn/blog/2014/03/11/comparison-for-3-enumeration-methods-in-objective-c</id>
+    <content type="html"><![CDATA[<p>集合类对象（NSArray、NSDictionary、NSSet及其子类）在Objective－C中十分常见。经常会有遍历集合中所有对象的需求，Objective－C中遍历集合中对象的方法有三种：</p>
+
+<p>1.C语言的for循环遍历;<br/>
+2.Objective-C的快速枚举;<br/>
+3.集合对象的枚举块语法。</p>
+
+<p>为了测试以上三种枚举方法消耗的时间，我写了一个小程序，对含有1万个元素的数组进行打印操作，看看分别都消耗了多长时间。核心代码如下：</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<figure class='code'><figcaption><span>示例代码</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSUInteger</span> <span class="n">totalCount</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
+</span><span class='line'><span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableArray</span> <span class="nl">arrayWithCapacity:</span><span class="n">totalCount</span><span class="p">];</span>
+</span><span class='line'>    <span class="c1">//create an array including 10000 elements</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">totalCount</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="err">@</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">stringValue</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>    <span class="c1">//C Language For Loop Enumeration</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">start1</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span> <span class="n">totalCount</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">end1</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;C Language For Loop method %f&quot;</span><span class="p">,</span><span class="n">end1</span> <span class="o">-</span> <span class="n">start1</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">//Objective-C Fast Enumeration</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">start2</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">string</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">string</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">end2</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Objective-C Fast Enumeration method %f&quot;</span><span class="p">,</span><span class="n">end2</span> <span class="o">-</span> <span class="n">start2</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">//Objective-C Block Enumeration</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">start3</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="p">[</span><span class="n">array</span> <span class="nl">enumerateObjectsWithOptions:</span><span class="n">NSEnumerationConcurrent</span> <span class="nl">usingBlock:</span><span class="o">^</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span> <span class="n">obj</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">obj</span><span class="p">);</span>
+</span><span class='line'><span class="p">}];</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">end3</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Objective-C Block Enumeration method %f&quot;</span><span class="p">,</span><span class="n">end3</span> <span class="o">-</span> <span class="n">start3</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+其中CACurrentMediaTime()是一个返回系统时间的函数(<a href="https://developer.apple.com/library/mac/documentation/cocoa/Reference/CoreAnimation_functions/Reference/reference.html">苹果参考文档</a>)，可以通过结束时间减去开始时间计算代码所消耗的时间。(附：在Mac终端中输入w可以查询机器已经运行的时间信息，w属于Unix命令。)</p>
+
+<p>部分运行结果：<br/>
+2014-03-11 15:04:41.522 testspeed[19780:70b] C Language For Loop method 7.750710<br/>
+2014-03-11 15:04:47.847 testspeed[19780:70b] Objective-C Fast Enumeration method 6.323673<br/>
+2014-03-11 15:04:53.715 testspeed[19780:70b] Objective-C Block Enumeration method 5.866547</p>
+
+<p>从以上结果可以看出，语法块的枚举耗时最短，快速枚举次之，for循环最慢。语法块枚举快的主要原因是枚举options中采用了NSEnumerationConcurrent，也就是并行处理，充分发挥了多核心的优势。当然这么做会导致输出顺序错乱，如果需求对顺序要求严格，就不能使用这个选项。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[给NSLog增加输出功能]]></title>

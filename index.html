@@ -9,7 +9,9 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="之前在老博客里讲到编写一个DLog宏替代NSLog输出更多的打印信息。如果之前工程里NSLog很多就需要把所有的NSLog替换成DLog。这么做是不是感觉有点麻烦？其实还有更简单的办法，就是直接写一个NSLog的宏，替换掉Xcode中已存在的宏，同样可以打印需要的信息。 &hellip;">
+  <meta name="description" content="集合类对象（NSArray、NSDictionary、NSSet及其子类）在Objective－C中十分常见。经常会有遍历集合中所有对象的需求，Objective－C中遍历集合中对象的方法有三种： 1.C语言的for循环遍历;
+2.Objective-C的快速枚举;
+3.集合对象的枚举块语法。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +81,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/11/comparison-for-3-enumeration-methods-in-objective-c/">Objective-C中3种枚举方法耗时比较</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-11T14:29:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>集合类对象（NSArray、NSDictionary、NSSet及其子类）在Objective－C中十分常见。经常会有遍历集合中所有对象的需求，Objective－C中遍历集合中对象的方法有三种：</p>
+
+<p>1.C语言的for循环遍历;<br/>
+2.Objective-C的快速枚举;<br/>
+3.集合对象的枚举块语法。</p>
+
+<p>为了测试以上三种枚举方法消耗的时间，我写了一个小程序，对含有1万个元素的数组进行打印操作，看看分别都消耗了多长时间。核心代码如下：</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/11/comparison-for-3-enumeration-methods-in-objective-c/">继续阅读 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -578,67 +627,6 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/19/nsstring-hash/">利用NSString的Hash方法比较字符串</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-19T14:10:00+08:00" pubdate data-updated="true">Jun 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">string1</span> <span class="nl">isEqualsToString:</span><span class="n">string2</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
-
-<p>偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。</p>
-
-<p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span> <span class="p">([</span><span class="n">string1</span> <span class="n">hash</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="n">string2</span> <span class="n">hash</span><span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/06/19/nsstring-hash/">继续阅读 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -663,6 +651,10 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/11/comparison-for-3-enumeration-methods-in-objective-c/">Objective-C中3种枚举方法耗时比较</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/03/02/add-new-function-to-nslog/">给NSLog增加输出功能</a>
       </li>
     
@@ -678,15 +670,11 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
         <a href="/blog/2013/09/05/using-custom-font/">在iOS应用中使用自定义字体</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/08/31/settings-bundle/">Settings.bundle的应用</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (1)</a></li><li><a href='/blog/categories/nslog/'>NSLog (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (3)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/enumeration/'>Enumeration (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (2)</a></li><li><a href='/blog/categories/nslog/'>NSLog (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (4)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
 </section>
 
 <section>

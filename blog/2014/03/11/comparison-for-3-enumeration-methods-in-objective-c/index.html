@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Objective-C中3种枚举方法耗时比较 - 杨叫兽的技术博客</title>
+  <meta name="author" content="杨叫兽">
+
+  
+  <meta name="description" content="集合类对象（NSArray、NSDictionary、NSSet及其子类）在Objective－C中十分常见。经常会有遍历集合中所有对象的需求，Objective－C中遍历集合中对象的方法有三种： 1.C语言的for循环遍历;
+2.Objective-C的快速枚举;
+3.集合对象的枚举块语法。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://nijino.cn/blog/2014/03/11/comparison-for-3-enumeration-methods-in-objective-c">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="杨叫兽的技术博客" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-41583050-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">杨叫兽的技术博客</a></h1>
+  
+    <h2>专注Objective－C、iOS、Mac开发技巧，重视代码的简洁与质量</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:nijino.cn" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">全部文章</a></li>
+  <li><a href="http://blog.163.com/nijino_saki" target="_blank">网易博客老文章</a></li>
+  <!-- <li><a href="/blog/categories">分类目录</a></li> -->
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Objective-C中3种枚举方法耗时比较</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-11T14:29:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>集合类对象（NSArray、NSDictionary、NSSet及其子类）在Objective－C中十分常见。经常会有遍历集合中所有对象的需求，Objective－C中遍历集合中对象的方法有三种：</p>
+
+<p>1.C语言的for循环遍历;<br/>
+2.Objective-C的快速枚举;<br/>
+3.集合对象的枚举块语法。</p>
+
+<p>为了测试以上三种枚举方法消耗的时间，我写了一个小程序，对含有1万个元素的数组进行打印操作，看看分别都消耗了多长时间。核心代码如下：</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<figure class='code'><figcaption><span>示例代码</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSUInteger</span> <span class="n">totalCount</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
+</span><span class='line'><span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableArray</span> <span class="nl">arrayWithCapacity:</span><span class="n">totalCount</span><span class="p">];</span>
+</span><span class='line'>    <span class="c1">//create an array including 10000 elements</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">totalCount</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="err">@</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">stringValue</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>    <span class="c1">//C Language For Loop Enumeration</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">start1</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span> <span class="n">totalCount</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">end1</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;C Language For Loop method %f&quot;</span><span class="p">,</span><span class="n">end1</span> <span class="o">-</span> <span class="n">start1</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">//Objective-C Fast Enumeration</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">start2</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">string</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">string</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">end2</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Objective-C Fast Enumeration method %f&quot;</span><span class="p">,</span><span class="n">end2</span> <span class="o">-</span> <span class="n">start2</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">//Objective-C Block Enumeration</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">start3</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="p">[</span><span class="n">array</span> <span class="nl">enumerateObjectsWithOptions:</span><span class="n">NSEnumerationConcurrent</span> <span class="nl">usingBlock:</span><span class="o">^</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span> <span class="n">obj</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">obj</span><span class="p">);</span>
+</span><span class='line'><span class="p">}];</span>
+</span><span class='line'><span class="n">CFTimeInterval</span> <span class="n">end3</span> <span class="o">=</span> <span class="n">CACurrentMediaTime</span><span class="p">();</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Objective-C Block Enumeration method %f&quot;</span><span class="p">,</span><span class="n">end3</span> <span class="o">-</span> <span class="n">start3</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+其中CACurrentMediaTime()是一个返回系统时间的函数(<a href="https://developer.apple.com/library/mac/documentation/cocoa/Reference/CoreAnimation_functions/Reference/reference.html">苹果参考文档</a>)，可以通过结束时间减去开始时间计算代码所消耗的时间。(附：在Mac终端中输入w可以查询机器已经运行的时间信息，w属于Unix命令。)</p>
+
+<p>部分运行结果：<br/>
+2014-03-11 15:04:41.522 testspeed[19780:70b] C Language For Loop method 7.750710<br/>
+2014-03-11 15:04:47.847 testspeed[19780:70b] Objective-C Fast Enumeration method 6.323673<br/>
+2014-03-11 15:04:53.715 testspeed[19780:70b] Objective-C Block Enumeration method 5.866547</p>
+
+<p>从以上结果可以看出，语法块的枚举耗时最短，快速枚举次之，for循环最慢。语法块枚举快的主要原因是枚举options中采用了NSEnumerationConcurrent，也就是并行处理，充分发挥了多核心的优势。当然这么做会导致输出顺序错乱，如果需求对顺序要求严格，就不能使用这个选项。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">杨叫兽</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-11T14:29:00+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/enumeration/'>Enumeration</a>, <a class='category' href='/blog/categories/nsarray/'>NSArray</a>, <a class='category' href='/blog/categories/objective-c/'>Objective-C</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  
+	  <!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_tsina"></a>
+<a class="bds_t163"></a>
+<a class="bds_tsohu"></a>
+<a class="bds_tqq"></a>
+<a class="bds_qzone"></a>
+<a class="bds_renren"></a>
+<a class="bds_tieba"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=5697822" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1808039" async=""></script>
+<!-- UY END -->
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/03/02/add-new-function-to-nslog/" title="Previous Post: 给NSLog增加输出功能">&laquo; 给NSLog增加输出功能</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>关于我</h1>
+  <p><img width="220" src="/images/avatar.png"><br>
+    杨叫兽，80后，魔羯座，iOS开发者，果粉，曾供职于陌陌科技、联想集团<br>
+    新浪微博：<a href="http://www.weibo.com/nijinosaki" target="_blank">3G杨叫兽</a><br>
+    QQ:20118368<br />
+    E-mail:nijino_saki@163.com<br>
+    <a href="http://blog.163.com/nijino_saki">我在网易的技术博客（已停止维护）</a></p>
+</section>
+<section>
+  <h1>最近发表</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/11/comparison-for-3-enumeration-methods-in-objective-c/">Objective-C中3种枚举方法耗时比较</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/02/add-new-function-to-nslog/">给NSLog增加输出功能</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/05/nsarray-skills/">NSArray技巧两则</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/05/emoji/">iOS调用Emoji表情的方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/05/using-custom-font/">在iOS应用中使用自定义字体</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>分类目录</h1>
+    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/enumeration/'>Enumeration (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (2)</a></li><li><a href='/blog/categories/nslog/'>NSLog (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (4)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
+</section>
+
+<section>
+  <h1>GitHub开源项目</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/nijino">@nijino</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'nijino',
+            count: 2,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>友情链接</h1>
+  <li> <a href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
+  <li> <a href="http://blog.hellosa.org">陌陌系统运维工程师小虫的博客</a></li>
+  <li><a href="http://macshuo.com">MacTalk-池建强的随想录</a></li>
+  <li> <a href="http://www.macx.cn">MacX</a></li>
+  <li> <a href="http://www.macdang.com">Mac党</a></li>
+  <li> <a href="http://www.macgg.com/archives/category/mac软件">MacGG</a></li>
+  <li><a href="http://www.waerfa.com">玩儿法</a></li>
+  </p>
+</section>
+<section>
+  <h1>在微信上关注我</h1>
+  <p>
+  <img width="220" src="/images/wechatQR.png"><br>	
+  </p>
+</section><section>
+	<h1>新浪微博</h1>
+	<p>
+		<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1410220154&verifier=ef43caf4&dpc=1">
+		</iframe>
+	</p>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - 杨叫兽 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span><br>
+  原创文章，版权声明：自由转载-非商用-非衍生-保持署名  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh"><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: NSArray | 杨叫兽的技术博客]]></title>
-  <link href="http://nijino.cn/blog/categories/nsarray/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Enumeration | 杨叫兽的技术博客]]></title>
+  <link href="http://nijino.cn/blog/categories/enumeration/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
   <updated>2014-03-11T15:51:07+08:00</updated>
   <id>http://nijino.cn/</id>
@@ -70,41 +70,6 @@ NSLog(@"Objective-C Block Enumeration method %f",end3 - start3);
 2014-03-11 15:04:53.715 testspeed[19780:70b] Objective-C Block Enumeration method 5.866547</p>
 
 <p>从以上结果可以看出，语法块的枚举耗时最短，快速枚举次之，for循环最慢。语法块枚举快的主要原因是枚举options中采用了NSEnumerationConcurrent，也就是并行处理，充分发挥了多核心的优势。当然这么做会导致输出顺序错乱，如果需求对顺序要求严格，就不能使用这个选项。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[NSArray技巧两则]]></title>
-    <link href="http://nijino.cn/blog/2014/01/05/nsarray-skills/"/>
-    <updated>2014-01-05T12:21:00+08:00</updated>
-    <id>http://nijino.cn/blog/2014/01/05/nsarray-skills</id>
-    <content type="html"><![CDATA[<p>之前我在网易的技术博客中讲到去除NSArray中重复元素的方法(<a href="http://blog.163.com/nijino_saki/blog/static/800921442013421114117193/">地址</a>)。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。</p>
-
-<p>1.NSArray逆序
-<code>objc NSArray逆序
-NSArray *arr = @[@"first",@"second"];
-arr = arr.reverseObjectEnumerator.allObjects;
-NSLog(@"%@",arr);
-</code>
-输出结果为：
-2014-01-05 13:52:09.303 CircleAudio[39584:70b] (
-second,
-first
-)</p>
-
-<p>2.NSArray快速去重
-<code>objc NSArray快速去重
-NSArray *arr = @[@"first",@"second",@"first"];
-arr = [arr valueForKeyPath:@"@distinctUnionOfObjects.self"];
-NSLog(@"%@",arr);
-</code>
-输出结果：
-2014-01-05 13:54:53.457 CircleAudio[39976:70b] (
-first,
-second
-)</p>
-
-<p>以上的技巧都是从WWDC2013 session 228中学到的，其中还有一些技巧比如：联合两个数组并去重，感兴趣的同学可以自行下载视频研究。</p>
 ]]></content>
   </entry>
   
