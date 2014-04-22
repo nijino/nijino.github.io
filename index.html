@@ -214,43 +214,12 @@
 
   <div class="entry-content"><p>之前我在网易的技术博客中讲到去除NSArray中重复元素的方法(<a href="http://blog.163.com/nijino_saki/blog/static/800921442013421114117193/">地址</a>)。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。</p>
 
-<p>1.NSArray逆序</p>
-
-<figure class='code'><figcaption><span>NSArray逆序</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;first&quot;</span><span class="p">,</span><span class="s">@&quot;second&quot;</span><span class="p">];</span>
-</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="n">reverseObjectEnumerator</span><span class="p">.</span><span class="n">allObjects</span><span class="p">;</span>
-</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">arr</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>输出结果为：
-2014-01-05 13:52:09.303 CircleAudio[39584:70b] (
-second,
-first
-)</p>
-
-<p>2.NSArray快速去重</p>
-
-<figure class='code'><figcaption><span>NSArray快速去重</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;first&quot;</span><span class="p">,</span><span class="s">@&quot;second&quot;</span><span class="p">,</span><span class="s">@&quot;first&quot;</span><span class="p">];</span>
-</span><span class='line'><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span> <span class="nl">valueForKeyPath:</span><span class="s">@&quot;@distinctUnionOfObjects.self&quot;</span><span class="p">];</span>
-</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">arr</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>输出结果：
-2014-01-05 13:54:53.457 CircleAudio[39976:70b] (
-first,
-second
-)</p>
-
-<p>以上的技巧都是从WWDC2013 session 228中学到的，其中还有一些技巧比如：联合两个数组并去重，感兴趣的同学可以自行下载视频研究。</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/05/nsarray-skills/">继续阅读 &rarr;</a>
+    </footer>
   
 
 
@@ -708,13 +677,10 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
 
 <section>
   <h1>友情链接</h1>
-  <li> <a href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
-  <li> <a href="http://blog.hellosa.org">陌陌系统运维工程师小虫的博客</a></li>
-  <li><a href="http://macshuo.com">MacTalk-池建强的随想录</a></li>
-  <li> <a href="http://www.macx.cn">MacX</a></li>
-  <li> <a href="http://www.macdang.com">Mac党</a></li>
-  <li> <a href="http://www.macgg.com/archives/category/mac软件">MacGG</a></li>
-  <li><a href="http://www.waerfa.com">玩儿法</a></li>
+  <li> <a target="_blank" href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
+  <li> <a target="_blank" href="http://blog.csdn.net/rhljiayou">一位女程序猿的博客</a></li>
+  <li> <a target="_blank" href="http://nshipster.com">NSHipster</a></li>
+  <li> <a target="_blank" href="http://www.raywenderlich.com">raywenderlich</a></li>
   </p>
 </section>
 <section>

@@ -4,7 +4,7 @@
   <title><![CDATA[杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-03-11T15:51:07+08:00</updated>
+  <updated>2014-04-22T23:06:59+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -135,7 +135,11 @@
     <id>http://nijino.cn/blog/2014/01/05/nsarray-skills</id>
     <content type="html"><![CDATA[<p>之前我在网易的技术博客中讲到去除NSArray中重复元素的方法(<a href="http://blog.163.com/nijino_saki/blog/static/800921442013421114117193/">地址</a>)。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。</p>
 
-<p>1.NSArray逆序</p>
+<!-- more -->
+
+
+<p>
+1.NSArray逆序</p>
 
 <figure class='code'><figcaption><span>NSArray逆序</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -170,6 +174,8 @@ second
 )</p>
 
 <p>以上的技巧都是从WWDC2013 session 228中学到的，其中还有一些技巧比如：联合两个数组并去重，感兴趣的同学可以自行下载视频研究。</p>
+
+<p>[2014.4.21更新]对于更多有关KVC运算符的介绍，可以参考NSHipster的<a href="http://nshipster.cn/kvc-collection-operators/">博文</a>。</p>
 ]]></content>
   </entry>
   
