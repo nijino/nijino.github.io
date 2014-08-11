@@ -9,9 +9,8 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="实际编程总会涉及到比较两个字符串的内容，一般会用 1
-[string1 isEqualsToString:string2] 来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。 偶然间我发现NSString类里有个hash方法， &hellip;">
-  
+  <meta name="description" content="杨叫兽的技术博客">
+  <meta name="keywords" content="iOS,Mac,杨叫兽,Apple,Xcode,Objective-C">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -30,7 +29,6 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
-
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -51,7 +49,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">杨叫兽的技术博客</a></h1>
   
-    <h2>专注Objective－C、iOS、Mac开发技巧，重视代码的简洁与质量</h2>
+    <h2>关注Objective－C、iOS、Mac开发与技巧，重视代码的简洁与质量</h2>
   
 </hgroup>
 
@@ -61,7 +59,7 @@
   
 </ul>
   
-<form action="http://google.com/search" method="get">
+<form action="https://duckduckgo.com/" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:nijino.cn" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -70,9 +68,10 @@
   
 <ul class="main-navigation">
   <li><a href="/">首页</a></li>
+  <li><a href="/blog/categories">分类目录</a></li>
   <li><a href="/blog/archives">全部文章</a></li>
   <li><a href="http://blog.163.com/nijino_saki" target="_blank">网易博客老文章</a></li>
-  <!-- <li><a href="/blog/categories">分类目录</a></li> -->
+  <li><a href="/about">关于我</a></li>
 </ul>
 
 </nav>
@@ -111,25 +110,12 @@
 
   <div class="entry-content"><p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">string1</span> <span class="nl">isEqualsToString:</span><span class="n">string2</span><span class="p">]</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">string1</span> <span class="nl">isEqualsToString:</span><span class="n">string2</span><span class="p">];</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p></p>
 
 <p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
-
-<p>偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。</p>
-
-<p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span> <span class="p">([</span><span class="n">string1</span> <span class="n">hash</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="n">string2</span> <span class="n">hash</span><span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
 
 </div>
   
@@ -147,7 +133,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/06/01/my-first-blog/">My First Blog on Octopress</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/06/01/my-first-blog/">我的第一篇Octopress博客</a></h1>
     
     
       <p class="meta">
@@ -173,7 +159,7 @@
   <div class="entry-content"><h2>Hello Octopress!</h2>
 
 <p>欢迎来到我的技术博客，这个博客是由Octopress构建的。
-同时也欢迎访问我在<a href="http://blog.163.com/nijino_saki/">网易的博客</a>。</p>
+同时也欢迎访问我在<a href="http://blog.163.com/nijino_saki/" title="杨叫兽的技术博客(网易)">网易的博客</a>。</p>
 </div>
   
   
@@ -192,15 +178,6 @@
 <aside class="sidebar">
   
     <section>
-  <h1>关于我</h1>
-  <p><img width="220" src="/images/avatar.png"><br>
-    杨叫兽，80后，魔羯座，iOS开发者，果粉，曾供职于陌陌科技、联想集团<br>
-    新浪微博：<a href="http://www.weibo.com/nijinosaki" target="_blank">3G杨叫兽</a><br>
-    QQ:20118368<br />
-    E-mail:nijino_saki@163.com<br>
-    <a href="http://blog.163.com/nijino_saki">我在网易的技术博客（已停止维护）</a></p>
-</section>
-<section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
     
@@ -226,10 +203,6 @@
     
   </ul>
 </section>
-<section>
-  <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/enumeration/'>Enumeration (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (2)</a></li><li><a href='/blog/categories/nslog/'>NSLog (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (4)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
-</section>
 
 <section>
   <h1>GitHub开源项目</h1>
@@ -251,7 +224,7 @@
 
         github.showRepos({
             user: 'nijino',
-            count: 2,
+            count: 1,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -261,25 +234,26 @@
 </section>
 
 <section>
-  <h1>友情链接</h1>
-  <li> <a target="_blank" href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
-  <li> <a target="_blank" href="http://blog.csdn.net/rhljiayou">一位女程序猿的博客</a></li>
-  <li> <a target="_blank" href="http://nshipster.com">NSHipster</a></li>
-  <li> <a target="_blank" href="http://www.raywenderlich.com">raywenderlich</a></li>
-  </p>
-</section>
-<section>
-  <h1>在微信上关注我</h1>
-  <p>
-  <img width="220" src="/images/wechatQR.png"><br>	
-  </p>
-</section><section>
-	<h1>新浪微博</h1>
+	<h1>最新微博</h1>
 	<p>
 		<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1410220154&verifier=ef43caf4&dpc=1">
 		</iframe>
 	</p>
+</section><section>
+  <h1>标签云</h1>
+    <span id="tag-cloud"><a href='/blog/categories/arc' style='font-size: 108.57142857142857%'>ARC(1)</a> <a href='/blog/categories/custom-font' style='font-size: 108.57142857142857%'>Custom Font(1)</a> <a href='/blog/categories/emoji' style='font-size: 108.57142857142857%'>Emoji(1)</a> <a href='/blog/categories/enumeration' style='font-size: 108.57142857142857%'>Enumeration(1)</a> <a href='/blog/categories/interface-builder' style='font-size: 108.57142857142857%'>Interface Builder(1)</a> <a href='/blog/categories/ios' style='font-size: 160.0%'>iOS(7)</a> <a href='/blog/categories/kvc' style='font-size: 108.57142857142857%'>KVC(1)</a> <a href='/blog/categories/nsarray' style='font-size: 117.14285714285714%'>NSArray(2)</a> <a href='/blog/categories/nslog' style='font-size: 108.57142857142857%'>NSLog(1)</a> <a href='/blog/categories/nsstring' style='font-size: 108.57142857142857%'>NSString(1)</a> <a href='/blog/categories/objective-c' style='font-size: 134.28571428571428%'>Objective-C(4)</a> <a href='/blog/categories/octopress' style='font-size: 108.57142857142857%'>Octopress(1)</a> <a href='/blog/categories/settings-bundle' style='font-size: 108.57142857142857%'>Settings Bundle(1)</a> <a href='/blog/categories/uitableview' style='font-size: 108.57142857142857%'>UITableView(1)</a> </span>
 </section>
+<section>
+  <h1>友情链接</h1>
+  <ul>
+    <li><a target="_blank" href="http://blog.devtang.com">唐巧的技术博客</a></li>
+    <li><a target="_blank" href="http://geeklu.com/">卢克的博客</a></li> 
+    <li><a target="_blank" href="http://macshuo.com">池建强的随想录</a></li>
+    <li><a target="_blank" href="http://nshipster.com">NSHipster</a></li>
+    <li><a target="_blank" href="http://www.raywenderlich.com">Ray Wenderlich</a></li>
+  </ul>
+</section>
+
 
 
 
@@ -293,7 +267,6 @@
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span><br>
   原创文章，版权声明：自由转载-非商用-非衍生-保持署名  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh"><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
 </p>
-
 </footer>
   
 

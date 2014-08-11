@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Custom Font | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/custom-font/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-04-22T23:06:59+08:00</updated>
+  <updated>2014-08-11T21:37:58+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -20,42 +20,52 @@
     <id>http://nijino.cn/blog/2013/09/05/using-custom-font</id>
     <content type="html"><![CDATA[<p>开发过iOS应用的朋友都知道，iOS平台里的字体样式很多，其中的大多数都很美观。但是在这些字体中并没有中文字体，如果想用一些好看的中文字体（比如楷体、隶书等）该怎么做呢？</p>
 
-<p>其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。  <br/>
-``` objc 查询系统内置全部字体
-NSArray <em>familyNames = [UIFont familyNames];
-for (NSString </em>familyName in familyNames) {</p>
-
-<pre><code>printf("Family: %s \n",[familyName UTF8String]);
-NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
-for (NSString * fontName in fontNames) {
-    printf("\tFont: %s \n",[fontName UTF8String]);
-}
-</code></pre>
-
-<p>}
-```</p>
-
 <!-- more -->
 
 
-<p> <br/>
+<p>
+其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Find All Fonts in iOS </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">familyNames</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="n">familyNames</span><span class="p">];</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">familyName</span> <span class="k">in</span> <span class="n">familyNames</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Family: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,[</span><span class="n">familyName</span> <span class="n">UTF8String</span><span class="p">]);</span>
+</span><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">fontNames</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nl">fontNamesForFamilyName:</span><span class="n">familyName</span><span class="p">];</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span> <span class="n">fontName</span> <span class="k">in</span> <span class="n">fontNames</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Font: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,[</span><span class="n">fontName</span> <span class="n">UTF8String</span><span class="p">]);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 从网上下载到自己想要的字体文件，比如：楷体_GB2312.ttf（.ttf和.odf均可）。将字体文件添加到项目中，并确保字体文件已加入工程的Copy Bundle Resources中：</p>
 
-<p><img src="/images/using-custom-font-1.png" alt="image" /></p>
+<p><img src="/images/using-custom-font-1.png"></p>
 
 <p>同时要在工程的info.plist文件中添加一个名为"Fonts provided by application"的键，这个键的值是一个数组，将自定义字体文件的全名添加进去。</p>
 
-<p><img src="/images/using-custom-font-2.png" alt="image" /></p>
+<p><img src="/images/using-custom-font-2.png"></p>
 
 <p>以上两步做完之后，还需要再执行一下之前提到的列举所有字体的代码，从打印的字体名称中找到自定义字体的名称。例如楷体_GB2312的字体名称为：KaiTi_GB2312。</p>
 
-<p>现在就可以在项目中使用这个自定义字体了，例如将一个UILabel对象的字体设置为楷体_GB2312，代码如下：<br/>
-<code>objc  
-self.KaitiLabel.font = [UIFont fontWithName:@"STKaiti" size:25];  
-</code><br/>
-最后，送给大家一个使用了娃娃体Label的效果图：</p>
+<p>现在就可以在项目中使用这个自定义字体了，例如将一个UILabel对象的字体设置为楷体_GB2312，代码如下：
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">KaitiLabel</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nl">fontWithName:</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">STKaiti</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="nl">size:</span><span class="mi">25</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+最后，送给大家一个使用了娃娃体Label的效果图:</p>
 
-<p><img src="/images/using-custom-font-3.png" alt="image" /></p>
+<p><img src="/images/using-custom-font-3.png" title="娃娃体" ></p>
 ]]></content>
   </entry>
   

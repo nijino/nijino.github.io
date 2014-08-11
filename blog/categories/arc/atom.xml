@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ARC | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/arc/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-04-22T23:06:59+08:00</updated>
+  <updated>2014-08-11T21:37:58+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -18,33 +18,34 @@
     <link href="http://nijino.cn/blog/2013/06/24/iboutlet-arc/"/>
     <updated>2013-06-24T22:12:00+08:00</updated>
     <id>http://nijino.cn/blog/2013/06/24/iboutlet-arc</id>
-    <content type="html"><![CDATA[<p>ARC提供四种所有权修饰符:
-<li>strong<br/>
-<li>weak<br/>
-<li>unsafe_unretained<br/>
-<li>autoreleasing</p>
+    <content type="html"><![CDATA[<p>ARC提供四种所有权修饰符:</p>
+
+<ul>
+<li>strong</li>
+<li>weak</li>
+<li>unsafe_unretained</li>
+<li>autoreleasing</li>
+</ul>
+
 
 <p>其中前三个可以用于属性中声明所有权。对于这三个用于属性声明的修饰符，下面分别讲讲他们对应的使用场景。</p>
-
-<p>1.strong<br/>
-strong与之前的retain差不多，可以增加属性引用计数的值。在不需要的时候，需要手动设置属性为nil。</p>
-
-<p>2.weak<br/>
-weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。可以只是持有指针而不增加引用计数来避免循环保留。当指针指向的内存被销毁后，声明weak的属性指针会自动置为nil，这也是它被称为归零弱引用的原因。</p>
 
 <!-- more -->
 
 
-<p>
-3.unsafe_unretained<br/>
-对于iOS5以下版本，并不支持ARC中的weak声明，可以用unsafe_unretained声明来代替weak。unsafe_unretained同样也是不增加引用计数的值，但它没有“归零”的动作，需要手动操作，一般作为支持iOS5以下weak的替代方案。</p>
+<ol>
+<li><p><em>strong</em>：与之前的retain差不多，可以增加属性引用计数的值。在不需要的时候，需要手动设置属性为nil。</p></li>
+<li><p><em>weak</em>：是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。可以只是持有指针而不增加引用计数来避免循环保留。当指针指向的内存被销毁后，声明weak的属性指针会自动置为nil，这也是它被称为归零弱引用的原因。</p></li>
+<li><p><em>unsafe_unretained</em>：对于iOS5以下版本，并不支持ARC中的weak声明，可以用unsafe_unretained声明来代替weak。unsafe_unretained同样也是不增加引用计数的值，但它没有“归零”的动作，需要手动操作，一般作为支持iOS5以下weak的替代方案。</p></li>
+</ol>
+
 
 <p>解释了3种属性的意义，下面说说对于属性声明为IBOutlet时3种所有权修饰符的取舍以及使用技巧。<br/>
 由于我自己很熟悉Interface Bulider中的操作，所以非常喜欢那种拉控件然后连线并直接声称属性代码的操作。对于直接从xib或者storyboard拉出来生成的IBOutlet属性，一般是选择strong还是weak呢？</p>
 
 <p><img class="right" src="/images/IBOutlet-ARC-1.png" title="IBOutlet strong property instance" ></p>
 
-<p><strong>这里有个原则</strong>：</p>
+<h4>这里有个原则：</h4>
 
 <p>如果该控件位于控件树的顶部，比如
 UIViewController下的view，那就应该选择strong，因为viewcontroller直接拥有该view。例如右图中的View。</p>
@@ -52,7 +53,7 @@ UIViewController下的view，那就应该选择strong，因为viewcontroller直�
 <p><img class="left" src="/images/IBOutlet-ARC-2.png" title="IBOutlet weak property instance" >
 而如果控件是viewcontroller中view的子视图，对于这个子视图，它的所有者是它的父视图，代码中只是想引用一下这个子视图的指针而已，那么就应该选择weak（iOS5以下选择unsafe_unretained）。例如左图中的UILabel。</p>
 
-<p>对于以上的概念，我用一张图表来说明：<br/>
+<p>对于以上的概念，我用一张图表来说明：
 <img src="/images/IBOutlet-ARC-3.png" title="property choosing diagram" ></p>
 ]]></content>
   </entry>

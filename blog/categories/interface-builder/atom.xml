@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: interface builder | 杨叫兽的技术博客]]></title>
+  <title><![CDATA[Category: Interface Builder | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/interface-builder/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-04-22T23:06:59+08:00</updated>
+  <updated>2014-08-11T21:37:58+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -14,42 +14,52 @@
 
   
   <entry>
-    <title type="html"><![CDATA[interface builder中的技巧]]></title>
+    <title type="html"><![CDATA[Interface Builder中的技巧]]></title>
     <link href="http://nijino.cn/blog/2013/08/28/interface-builder-skills/"/>
     <updated>2013-08-28T14:28:00+08:00</updated>
     <id>http://nijino.cn/blog/2013/08/28/interface-builder-skills</id>
-    <content type="html"><![CDATA[<p>在我工作中经常会遇到有人吐槽Xcode中的interface builder（以下简称IB）不好用的开发者。在我看来，IB是一个非常棒的可视化开发工具，可以非常快捷的设置UI控件的大部分常用属性。下面就说两个IB中的技巧：</p>
-
-<p>1.快速显示元素相对位置<br/>
-这个技巧由<a href="http://weibo.com/ysy441088327">@余书懿</a>在新浪微博分享。<br/>
-在IB中，选中一个control A,然后按住alt键，鼠标指向B，就显示A和B的相对位置关系，指向父view也行。</p>
-
-<p><img src="/images/IB-skills-1.png" alt="image" /></p>
+    <content type="html"><![CDATA[<p>在我工作中经常会遇到有人吐槽Xcode中的Interface Builder（以下简称IB）不好用的开发者。在我看来，IB是一个非常棒的可视化开发工具，可以非常快捷的设置UI控件的大部分常用属性。下面就说两个IB中的技巧。</p>
 
 <!-- more -->
 
 
-<p>
-2.给页面添加水平、垂直辅助线<br/>
-这个技巧是由我一个好朋友，同时也是陌陌的产品经理<a href="http://weibo.com/memtimen">@Memtimen</a>发现的。<br/>
-IB中是可以添加水平和垂直的辅助线的。并且辅助线是可以拖动、重复添加和删除的。  <br/>
-水平辅助线的快捷键是：Command ＋ Shift ＋ －<br/>
-垂直辅助线的快捷键是：Command ＋ Shift ＋ ｜<br/>
-当然，也可以通过菜单命令来生成，位置在Editor菜单下,如下图：</p>
+<ul>
+<li>快速显示元素相对位置</li>
+</ul>
 
-<p><img src="/images/IB-skills-3.png" alt="image" /></p>
 
-<p>辅助线的生成位置是由当前选定的view的中心点决定的，也就是说，如果当前选定了根view，那么将生成根view的辅助线；如果选中的是某一个UI控件，那就以这个控件的中心点生成。 （注意下图的UILabel &amp; UIButton）</p>
+<p><img src="/images/IB-skills-1.png" title="relative position relationships" ></p>
 
-<p><img src="/images/IB-skills-2.png" alt="image" /></p>
+<p>这个技巧由<a href="http://weibo.com/ysy441088327" title="余书懿">余书懿</a>在新浪微博分享。
+在IB中，选中一个control A,然后按住alt键，鼠标指向B，就显示A和B的相对位置关系，指向父view也行。</p>
+
+<ul>
+<li>给页面添加水平、垂直辅助线</li>
+</ul>
+
+
+<p>这个技巧是由我一个好朋友，同时也是陌陌的产品经理<a href="http://weibo.com/memtimen" title="Memtimen">Memtimen</a>发现的。IB中是可以添加水平和垂直的辅助线的。并且辅助线是可以拖动、重复添加和删除的。</p>
+
+<h4>水平辅助线的快捷键是：Command ＋ Shift ＋ －</h4>
+
+<h4>垂直辅助线的快捷键是：Command ＋ Shift ＋ ｜</h4>
+
+<p>当然，也可以通过菜单命令来生成，位置在Editor菜单下,如下图：  <br/>
+<img src="/images/IB-skills-3.png" title="Horizontal &amp; Vertical Guide" ></p>
+
+<p>辅助线的生成位置是由当前选定的view的中心点决定的，也就是说，如果当前选定了根view，那么将生成根view的辅助线；如果选中的是某一个UI控件，那就以这个控件的中心点生成。（注意下图的UILabel &amp; UIButton）</p>
+
+<p><img src="/images/IB-skills-2.png"></p>
 
 <p>有了辅助线就可以轻松根据辅助线对齐控件（辅助线可以吸附），拖动辅助线可以查看辅助线把视图分割的两部分大小。</p>
 
-<p><img src="/images/IB-skills-4.png" alt="image" /></p>
+<p><img src="/images/IB-skills-4.png"></p>
 
 <p>至于删除辅助线嘛，就是把辅助线在其方向上移出视图边界，你会听到嗖地一声同时会看到一个丢纸团的动画，那就表明删除辅助线成功了。</p>
 
-<p>小结：从我自身来讲，一开始做iOS开发也不是很爱用IB这个东西，感觉调整起来非常别扭。但是随着我做开发时间的变长，我越来越觉得IB非常好使，非常直观与节省时间。之前在《程序员》上看过一位计算机博士写的连载文章：<a href="http://www.douban.com/group/topic/23658084/">《Mac OS X 背后的故事》</a>，其中有一个章节是讲<a href="http://www.programmer.com.cn/9234/">Interface Builder</a>的，了解了IB的来龙去脉，才知道IB是乔帮主极力推崇的好东西。在我看来，IB才是Xcode这个IDE与众不同和精华所在，不会使用IB的iOS开发者不能算是真正iOS开发者，因为他从没有真正走进乔帮主的内心世界！</p>
+<h3><em>小结：</em></h3>
+
+<p>从我自身来讲，一开始做iOS开发也不是很爱用IB这个东西，感觉调整起来非常别扭。但是随着我做开发时间的变长，我越来越觉得IB非常好使，非常直观与节省时间。之前在《程序员》上看过一位计算机博士写的连载文章：<a href="http://www.douban.com/group/topic/23658084/" title="Mac OS X 背后的故事">《Mac OS X 背后的故事》</a>，其中有一个章节是讲<a href="http://www.programmer.com.cn/9234/" title="Jean-Marie Hullot的Interface Builder神话">Interface Builder</a>的，了解了IB的来龙去脉，才知道IB是乔帮主极力推崇的好东西。在我看来，IB才是Xcode这个IDE与众不同和精华所在，不会使用IB的iOS开发者不能算是真正iOS开发者，因为他从没有真正走进乔帮主的内心世界！</p>
 
 <p>以上只是本人一家之言，各位看看了解一下就可以了，习惯这个东西不是那么容易改的。</p>
 ]]></content>

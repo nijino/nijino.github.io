@@ -9,10 +9,8 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="集合类对象（NSArray、NSDictionary、NSSet及其子类）在Objective－C中十分常见。经常会有遍历集合中所有对象的需求，Objective－C中遍历集合中对象的方法有三种： 1.C语言的for循环遍历;
-2.Objective-C的快速枚举;
-3.集合对象的枚举块语法。 &hellip;">
-  
+  <meta name="description" content="杨叫兽的技术博客">
+  <meta name="keywords" content="iOS,Mac,杨叫兽,Apple,Xcode,Objective-C">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -31,7 +29,6 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
-
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -52,7 +49,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">杨叫兽的技术博客</a></h1>
   
-    <h2>专注Objective－C、iOS、Mac开发技巧，重视代码的简洁与质量</h2>
+    <h2>关注Objective－C、iOS、Mac开发与技巧，重视代码的简洁与质量</h2>
   
 </hgroup>
 
@@ -62,7 +59,7 @@
   
 </ul>
   
-<form action="http://google.com/search" method="get">
+<form action="https://duckduckgo.com/" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:nijino.cn" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -71,9 +68,10 @@
   
 <ul class="main-navigation">
   <li><a href="/">首页</a></li>
+  <li><a href="/blog/categories">分类目录</a></li>
   <li><a href="/blog/archives">全部文章</a></li>
   <li><a href="http://blog.163.com/nijino_saki" target="_blank">网易博客老文章</a></li>
-  <!-- <li><a href="/blog/categories">分类目录</a></li> -->
+  <li><a href="/about">关于我</a></li>
 </ul>
 
 </nav>
@@ -112,11 +110,12 @@
 
   <div class="entry-content"><p>集合类对象（NSArray、NSDictionary、NSSet及其子类）在Objective－C中十分常见。经常会有遍历集合中所有对象的需求，Objective－C中遍历集合中对象的方法有三种：</p>
 
-<p>1.C语言的for循环遍历;<br/>
-2.Objective-C的快速枚举;<br/>
-3.集合对象的枚举块语法。</p>
+<ol>
+<li>C语言的for循环遍历;</li>
+<li>Objective-C的快速枚举;</li>
+<li>集合对象的枚举块语法。</li>
+</ol>
 
-<p>为了测试以上三种枚举方法消耗的时间，我写了一个小程序，对含有1万个元素的数组进行打印操作，看看分别都消耗了多长时间。核心代码如下：</p>
 
 </div>
   
@@ -157,28 +156,14 @@
   </header>
 
 
-  <div class="entry-content"><p>之前在<a href="http://blog.163.com/nijino_saki/blog/static/8009214420134128146215/">老博客</a>里讲到编写一个DLog宏替代NSLog输出更多的打印信息。如果之前工程里NSLog很多就需要把所有的NSLog替换成DLog。这么做是不是感觉有点麻烦？其实还有更简单的办法，就是直接写一个NSLog的宏，替换掉Xcode中已存在的宏，同样可以打印需要的信息。只需将下列代码放入prefix.pch文件中：</p>
+  <div class="entry-content"><p>之前在<a href="http://blog.163.com/nijino_saki/blog/static/8009214420134128146215/" title="DLog的使用">网易老博客:DLog的使用</a>里讲到编写一个DLog宏替代NSLog输出更多的打印信息。如果之前工程里NSLog很多就需要把所有的NSLog替换成DLog。这么做是不是感觉有点麻烦？其实还有更简单的办法，就是直接写一个NSLog的宏，替换掉Xcode中已存在的宏，同样可以打印需要的信息。只需将下列代码放入prefix.pch文件中：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#define NSLog(format, ...) do {\</span>
-</span><span class='line'><span class="cp">fprintf(stderr, &quot;&lt;%s : %d&gt; %s\n&quot;,\</span>
-</span><span class='line'><span class="cp">        [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],\</span>
-</span><span class='line'><span class="cp">        __LINE__, __func__);\</span>
-</span><span class='line'><span class="cp">(NSLog)((format), ##__VA_ARGS__);\</span>
-</span><span class='line'><span class="cp">fprintf(stderr, &quot;-------\n&quot;);\</span>
-</span><span class='line'><span class="cp">} while (0)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果还想深入了解宏定义的知识，请参考<a href="http://www.cocoachina.com/applenews/devnews/2014/0122/7738.html">这里</a>。</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/03/02/add-new-function-to-nslog/">继续阅读 &rarr;</a>
+    </footer>
   
 
 
@@ -212,7 +197,7 @@
   </header>
 
 
-  <div class="entry-content"><p>之前我在网易的技术博客中讲到去除NSArray中重复元素的方法(<a href="http://blog.163.com/nijino_saki/blog/static/800921442013421114117193/">地址</a>)。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。</p>
+  <div class="entry-content"><p>之前我在网易的技术博客中讲到<a href="http://blog.163.com/nijino_saki/blog/static/800921442013421114117193/" title="去除NSArray中重复元素的方法">去除NSArray中重复元素的方法</a>。最近在看WWDC2013视频，发现苹果工程师对数组去重有更为简便的方法，还有一个对数组逆序的简便方法，赶紧记录下来备用。</p>
 
 </div>
   
@@ -255,8 +240,6 @@
 
   <div class="entry-content"><p>Emoji是iOS自带的表情符号，在短信和一些通讯软件中使用起来非常有意思。而如果在iOS软件中能使用这些表情符号，更会让软件显得生机勃勃，比如下面这个软件的评价视图：</p>
 
-<p><img src="/images/Emoji-1.png" alt="image" /></p>
-
 </div>
   
   
@@ -298,29 +281,6 @@
 
   <div class="entry-content"><p>开发过iOS应用的朋友都知道，iOS平台里的字体样式很多，其中的大多数都很美观。但是在这些字体中并没有中文字体，如果想用一些好看的中文字体（比如楷体、隶书等）该怎么做呢？</p>
 
-<p>其实iOS是支持自定义字体的。首先我们可以通过以下代码查看iOS都内置了哪些字体。</p>
-
-<figure class='code'><figcaption><span>查询系统内置全部字体 </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">familyNames</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="n">familyNames</span><span class="p">];</span>
-</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="n">familyName</span> <span class="k">in</span> <span class="n">familyNames</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Family: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,[</span><span class="n">familyName</span> <span class="n">UTF8String</span><span class="p">]);</span>
-</span><span class='line'>  <span class="n">NSArray</span> <span class="o">*</span><span class="n">fontNames</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIFont</span> <span class="nl">fontNamesForFamilyName:</span><span class="n">familyName</span><span class="p">];</span>
-</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span> <span class="n">fontName</span> <span class="k">in</span> <span class="n">fontNames</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Font: %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,[</span><span class="n">fontName</span> <span class="n">UTF8String</span><span class="p">]);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
 </div>
   
   
@@ -337,7 +297,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/08/31/settings-bundle/">Settings.bundle的应用</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/08/31/settings-bundle/">Settings Bundle的应用</a></h1>
     
     
       <p class="meta">
@@ -360,11 +320,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Settings bundle是iOS开发中独有的一个特性，它可以存放app的一些设置，使用起来非常方便。最近公司有一个项目用到了这个技术，于是我认真的研究了一下，发现了一些需要注意的地方，想跟大家分享一下。</p>
-
-<p>任何一个项目都可以设置它的settings bundle，settings bundle字面意思就是设置的大集合，里面可以存放系统的默认设置和用户选择的值。我们可以通过点击左下角的➕然后选择添加新文件（new file&hellip;）来生成：</p>
-
-<p><img src="/images/settings-bundle-1.png" alt="image" /></p>
+  <div class="entry-content"><p>Settings Bundle是iOS开发中独有的一个特性，它可以存放app的一些设置，使用起来非常方便。最近公司有一个项目用到了这个技术，于是我认真的研究了一下，发现了一些需要注意的地方，想跟大家分享一下。</p>
 
 </div>
   
@@ -405,13 +361,7 @@
   </header>
 
 
-  <div class="entry-content"><p>在我工作中经常会遇到有人吐槽Xcode中的interface builder（以下简称IB）不好用的开发者。在我看来，IB是一个非常棒的可视化开发工具，可以非常快捷的设置UI控件的大部分常用属性。下面就说两个IB中的技巧：</p>
-
-<p>1.快速显示元素相对位置<br/>
-这个技巧由<a href="http://weibo.com/ysy441088327">@余书懿</a>在新浪微博分享。<br/>
-在IB中，选中一个control A,然后按住alt键，鼠标指向B，就显示A和B的相对位置关系，指向父view也行。</p>
-
-<p><img src="/images/IB-skills-1.png" alt="image" /></p>
+  <div class="entry-content"><p>在我工作中经常会遇到有人吐槽Xcode中的Interface Builder（以下简称IB）不好用的开发者。在我看来，IB是一个非常棒的可视化开发工具，可以非常快捷的设置UI控件的大部分常用属性。下面就说两个IB中的技巧。</p>
 
 </div>
   
@@ -429,7 +379,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/08/12/new-cell-for-row/">Xcode5中cellForRowAtIndexPath:方法</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/08/12/new-cell-for-row/">iOS6中的cellForRowAtIndexPath方法</a></h1>
     
     
       <p class="meta">
@@ -453,27 +403,6 @@
 
 
   <div class="entry-content"><p>UITableView是绝大部分iOS开发中必不可少的类。它的优势在于自身会维持一个可复用的队列，对于提高系统运行的流畅性有着不可磨灭的作用。</p>
-
-<p>可复用的队列一般要写在UITableView的cellForRowAtIndexPath:方法中，之前的写法一般是这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">static</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">CellIdentifier</span> <span class="o">=</span> <span class="s">@&quot;Cell&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="n">UITableViewCell</span> <span class="o">*</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier:</span><span class="n">CellIdentifier</span><span class="p">];</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">cell</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">){</span>
-</span><span class='line'>      <span class="n">cell</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UITableViewCell</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithStyle:</span><span class="n">UITableViewCellStyleSubtitle</span> <span class="nl">reuseIdentifier:</span><span class="n">CellIdentifier</span><span class="p">];</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  
-</span><span class='line'><span class="c1">// Configure the cell    </span>
-</span><span class='line'><span class="k">return</span> <span class="n">cell</span><span class="p">;</span> 
-</span></code></pre></td></tr></table></div></figure>
-
 
 </div>
   
@@ -516,22 +445,6 @@
 
   <div class="entry-content"><p>说两个与KVC相关的技巧。</p>
 
-<p>1.KVC与字典</p>
-
-<p>有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">dict</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span><span class="s">@&quot;subDict&quot;</span><span class="o">:</span><span class="err">@</span><span class="p">{</span><span class="s">@&quot;subKey&quot;</span><span class="o">:</span><span class="s">@&quot;aStr&quot;</span><span class="p">}};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>需要取出<code>subKey</code>这个键的值。以前总是用<code>valueForKey</code>嵌套的语法来做，其实根本不用那么麻烦，直接利用<code>valueForKeyPath</code>方法就可以实现。代码如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKeyPath:</span><span class="s">@&quot;subDict.subKey&quot;</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
 </div>
   
   
@@ -571,19 +484,17 @@
   </header>
 
 
-  <div class="entry-content"><p>ARC提供四种所有权修饰符:
-<li>strong<br/>
-<li>weak<br/>
-<li>unsafe_unretained<br/>
-<li>autoreleasing</p>
+  <div class="entry-content"><p>ARC提供四种所有权修饰符:</p>
+
+<ul>
+<li>strong</li>
+<li>weak</li>
+<li>unsafe_unretained</li>
+<li>autoreleasing</li>
+</ul>
+
 
 <p>其中前三个可以用于属性中声明所有权。对于这三个用于属性声明的修饰符，下面分别讲讲他们对应的使用场景。</p>
-
-<p>1.strong<br/>
-strong与之前的retain差不多，可以增加属性引用计数的值。在不需要的时候，需要手动设置属性为nil。</p>
-
-<p>2.weak<br/>
-weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。可以只是持有指针而不增加引用计数来避免循环保留。当指针指向的内存被销毁后，声明weak的属性指针会自动置为nil，这也是它被称为归零弱引用的原因。</p>
 
 </div>
   
@@ -607,15 +518,6 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
 <aside class="sidebar">
   
     <section>
-  <h1>关于我</h1>
-  <p><img width="220" src="/images/avatar.png"><br>
-    杨叫兽，80后，魔羯座，iOS开发者，果粉，曾供职于陌陌科技、联想集团<br>
-    新浪微博：<a href="http://www.weibo.com/nijinosaki" target="_blank">3G杨叫兽</a><br>
-    QQ:20118368<br />
-    E-mail:nijino_saki@163.com<br>
-    <a href="http://blog.163.com/nijino_saki">我在网易的技术博客（已停止维护）</a></p>
-</section>
-<section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
     
@@ -641,10 +543,6 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
     
   </ul>
 </section>
-<section>
-  <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/enumeration/'>Enumeration (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (2)</a></li><li><a href='/blog/categories/nslog/'>NSLog (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (4)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
-</section>
 
 <section>
   <h1>GitHub开源项目</h1>
@@ -666,7 +564,7 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
 
         github.showRepos({
             user: 'nijino',
-            count: 2,
+            count: 1,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -676,25 +574,26 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
 </section>
 
 <section>
-  <h1>友情链接</h1>
-  <li> <a target="_blank" href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
-  <li> <a target="_blank" href="http://blog.csdn.net/rhljiayou">一位女程序猿的博客</a></li>
-  <li> <a target="_blank" href="http://nshipster.com">NSHipster</a></li>
-  <li> <a target="_blank" href="http://www.raywenderlich.com">raywenderlich</a></li>
-  </p>
-</section>
-<section>
-  <h1>在微信上关注我</h1>
-  <p>
-  <img width="220" src="/images/wechatQR.png"><br>	
-  </p>
-</section><section>
-	<h1>新浪微博</h1>
+	<h1>最新微博</h1>
 	<p>
 		<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1410220154&verifier=ef43caf4&dpc=1">
 		</iframe>
 	</p>
+</section><section>
+  <h1>标签云</h1>
+    <span id="tag-cloud"><a href='/blog/categories/arc' style='font-size: 108.57142857142857%'>ARC(1)</a> <a href='/blog/categories/custom-font' style='font-size: 108.57142857142857%'>Custom Font(1)</a> <a href='/blog/categories/emoji' style='font-size: 108.57142857142857%'>Emoji(1)</a> <a href='/blog/categories/enumeration' style='font-size: 108.57142857142857%'>Enumeration(1)</a> <a href='/blog/categories/interface-builder' style='font-size: 108.57142857142857%'>Interface Builder(1)</a> <a href='/blog/categories/ios' style='font-size: 160.0%'>iOS(7)</a> <a href='/blog/categories/kvc' style='font-size: 108.57142857142857%'>KVC(1)</a> <a href='/blog/categories/nsarray' style='font-size: 117.14285714285714%'>NSArray(2)</a> <a href='/blog/categories/nslog' style='font-size: 108.57142857142857%'>NSLog(1)</a> <a href='/blog/categories/nsstring' style='font-size: 108.57142857142857%'>NSString(1)</a> <a href='/blog/categories/objective-c' style='font-size: 134.28571428571428%'>Objective-C(4)</a> <a href='/blog/categories/octopress' style='font-size: 108.57142857142857%'>Octopress(1)</a> <a href='/blog/categories/settings-bundle' style='font-size: 108.57142857142857%'>Settings Bundle(1)</a> <a href='/blog/categories/uitableview' style='font-size: 108.57142857142857%'>UITableView(1)</a> </span>
 </section>
+<section>
+  <h1>友情链接</h1>
+  <ul>
+    <li><a target="_blank" href="http://blog.devtang.com">唐巧的技术博客</a></li>
+    <li><a target="_blank" href="http://geeklu.com/">卢克的博客</a></li> 
+    <li><a target="_blank" href="http://macshuo.com">池建强的随想录</a></li>
+    <li><a target="_blank" href="http://nshipster.com">NSHipster</a></li>
+    <li><a target="_blank" href="http://www.raywenderlich.com">Ray Wenderlich</a></li>
+  </ul>
+</section>
+
 
 
 
@@ -708,7 +607,6 @@ weak是iOS5及以上才支持的修饰符。它被称为“归零弱引用”。
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span><br>
   原创文章，版权声明：自由转载-非商用-非衍生-保持署名  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh"><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
 </p>
-
 </footer>
   
 

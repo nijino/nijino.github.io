@@ -4,7 +4,7 @@
   <title><![CDATA[Category: NSLog | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/nslog/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-04-22T23:06:59+08:00</updated>
+  <updated>2014-08-11T21:37:58+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -18,24 +18,40 @@
     <link href="http://nijino.cn/blog/2014/03/02/add-new-function-to-nslog/"/>
     <updated>2014-03-02T21:34:00+08:00</updated>
     <id>http://nijino.cn/blog/2014/03/02/add-new-function-to-nslog</id>
-    <content type="html"><![CDATA[<p>之前在<a href="http://blog.163.com/nijino_saki/blog/static/8009214420134128146215/">老博客</a>里讲到编写一个DLog宏替代NSLog输出更多的打印信息。如果之前工程里NSLog很多就需要把所有的NSLog替换成DLog。这么做是不是感觉有点麻烦？其实还有更简单的办法，就是直接写一个NSLog的宏，替换掉Xcode中已存在的宏，同样可以打印需要的信息。只需将下列代码放入prefix.pch文件中：</p>
+    <content type="html"><![CDATA[<p>之前在<a href="http://blog.163.com/nijino_saki/blog/static/8009214420134128146215/" title="DLog的使用">网易老博客:DLog的使用</a>里讲到编写一个DLog宏替代NSLog输出更多的打印信息。如果之前工程里NSLog很多就需要把所有的NSLog替换成DLog。这么做是不是感觉有点麻烦？其实还有更简单的办法，就是直接写一个NSLog的宏，替换掉Xcode中已存在的宏，同样可以打印需要的信息。只需将下列代码放入prefix.pch文件中：</p>
 
-<p>``` objc</p>
+<!-- more -->
 
-<h1>define NSLog(format, &hellip;) do {\</h1>
 
-<p>fprintf(stderr, &ldquo;&lt;%s : %d> %s\n&rdquo;,\</p>
-
-<pre><code>    [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],\
-    __LINE__, __func__);\
-</code></pre>
-
-<p>(NSLog)((format), ##<strong>VA_ARGS</strong>);\
-fprintf(stderr, &ldquo;&mdash;&mdash;&mdash;&ndash;\n&rdquo;);\
-} while (0)
-```</p>
-
-<p>如果还想深入了解宏定义的知识，请参考<a href="http://www.cocoachina.com/applenews/devnews/2014/0122/7738.html">这里</a>。</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Add additional Print Funtion For NSLog </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">NSLog</span><span class="p">(</span><span class="n">format</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="p">;)</span> <span class="k">do</span> <span class="p">{</span><span class="err">\</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">%</span><span class="n">s</span> <span class="o">:</span> <span class="o">%</span><span class="n">d</span><span class="o">&gt;</span> <span class="o">%</span><span class="n">s</span><span class="err">\</span><span class="n">n</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span><span class="err">\</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>    <span class="p">[[[</span><span class="n">NSString</span> <span class="nl">stringWithUTF8String:</span><span class="n">__FILE__</span><span class="p">]</span> <span class="n">lastPathComponent</span><span class="p">]</span> <span class="n">UTF8String</span><span class="p">],</span>\
+</span><span class='line'>    <span class="n">__LINE__</span><span class="p">,</span> <span class="n">__func__</span><span class="p">);</span>\
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">(</span><span class="n">NSLog</span><span class="p">)((</span><span class="n">format</span><span class="p">),</span> <span class="err">##</span><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">VA_ARGS</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span><span class="p">);</span>\
+</span><span class='line'><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="o">&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="o">&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="err">\</span><span class="n">n</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;);</span>\
+</span><span class='line'><span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+如果还想深入了解宏定义的知识，请参考<a href="http://www.cocoachina.com/applenews/devnews/2014/0122/7738.html" title="宏定义的黑魔法 - 宏菜鸟起飞手册">这里</a>。</p>
 ]]></content>
   </entry>
   

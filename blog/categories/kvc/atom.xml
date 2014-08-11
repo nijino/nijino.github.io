@@ -4,7 +4,7 @@
   <title><![CDATA[Category: KVC | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/kvc/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-04-22T23:06:59+08:00</updated>
+  <updated>2014-08-11T21:37:58+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -20,42 +20,37 @@
     <id>http://nijino.cn/blog/2013/07/02/using-kvc</id>
     <content type="html"><![CDATA[<p>说两个与KVC相关的技巧。</p>
 
-<p>1.KVC与字典</p>
-
-<p>有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典：</p>
-
-<p><code>objc
-NSDictionary *dict = @{@"subDict":@{@"subKey":@"aStr"}};
-</code></p>
-
-<p>需要取出<code>subKey</code>这个键的值。以前总是用<code>valueForKey</code>嵌套的语法来做，其实根本不用那么麻烦，直接利用<code>valueForKeyPath</code>方法就可以实现。代码如下：</p>
-
-<p><code>objc
-NSString *str = [dict valueForKeyPath:@"subDict.subKey"];
-</code></p>
-
 <!-- more -->
 
 
-<p>2.KVC实现高阶消息传递</p>
+<ul>
+<li>KVC与字典</li>
+</ul>
 
-<p>有时候需要对数组中每个对象调用某一个方法后生成新的数组，我们可以利用KVC的高阶消息传递功能来实现。例如有下面这样一个数组：</p>
 
-<p><code>objc    
-NSArray *originArr = @[@"octopress",@"nijino",@"saki"];
-</code></p>
+<p>有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典：
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">dict</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">subDict</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">:</span><span class="err">@</span><span class="p">{</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">subKey</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">:</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">aStr</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;}};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+需要取出 <code>subKey</code> 这个键的值。以前总是用 <code>valueForKey</code> 嵌套的语法来做，其实根本不用那么麻烦，直接利用 <code>valueForKeyPath</code> 方法就可以实现。代码如下：
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">str</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKeyPath:</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">subDict</span><span class="p">.</span><span class="n">subKey</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;];</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+* KVC实现高阶消息传递</p>
 
-<p>我想将这个数组中的每一个元素首字母大写，然后生成新的数组，如果按照常规做法需要利用快速枚举对数组每一个元素进行操作，并且还要分配一个空数组来存储处理过的元素。</p>
+<p>有时候需要对数组中每个对象调用某一个方法后生成新的数组，我们可以利用KVC的高阶消息传递功能来实现。例如有下面这样一个数组：
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">originArr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">octopress</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">nijino</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">saki</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;];</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+我想将这个数组中的每一个元素首字母大写，然后生成新的数组，如果按照常规做法需要利用快速枚举对数组每一个元素进行操作，并且还要分配一个空数组来存储处理过的元素。</p>
 
-<p>而利用KVC的高阶消息传递，只需一句话就可以达到目的：</p>
+<p>而利用KVC的高阶消息传递，只需一句话就可以达到目的：
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">resultArr</span> <span class="o">=</span> <span class="p">[</span><span class="n">originArr</span> <span class="nl">valueForKey:</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">capitalizedString</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;];</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+这样一步就实现了需求。</p>
 
-<p><code>objc  
-NSArray *resultArr = [originArr valueForKey:@"capitalizedString"];
-</code></p>
-
-<p>这样一步就实现了需求。</p>
-
-<p>小结：</p>
+<h3><em>小结：</em></h3>
 
 <p>KVC是Objective－C特有的语法现象，可以加以利用实现代码的简洁性和可维护性。</p>
 ]]></content>

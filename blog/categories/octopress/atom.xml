@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-04-22T23:06:59+08:00</updated>
+  <updated>2014-08-11T21:37:58+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -14,14 +14,14 @@
 
   
   <entry>
-    <title type="html"><![CDATA[My First Blog on Octopress]]></title>
+    <title type="html"><![CDATA[我的第一篇Octopress博客]]></title>
     <link href="http://nijino.cn/blog/2013/06/01/my-first-blog/"/>
     <updated>2013-06-01T06:00:00+08:00</updated>
     <id>http://nijino.cn/blog/2013/06/01/my-first-blog</id>
     <content type="html"><![CDATA[<h2>Hello Octopress!</h2>
 
 <p>欢迎来到我的技术博客，这个博客是由Octopress构建的。
-同时也欢迎访问我在<a href="http://blog.163.com/nijino_saki/">网易的博客</a>。</p>
+同时也欢迎访问我在<a href="http://blog.163.com/nijino_saki/" title="杨叫兽的技术博客(网易)">网易的博客</a>。</p>
 ]]></content>
   </entry>
   

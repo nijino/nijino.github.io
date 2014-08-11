@@ -5,14 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>interface builder中的技巧 - 杨叫兽的技术博客</title>
+  <title>Interface Builder中的技巧 - 杨叫兽的技术博客</title>
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="在我工作中经常会遇到有人吐槽Xcode中的interface builder（以下简称IB）不好用的开发者。在我看来，IB是一个非常棒的可视化开发工具，可以非常快捷的设置UI控件的大部分常用属性。下面就说两个IB中的技巧： 1.快速显示元素相对位置
-这个技巧由@余书懿在新浪微博分享。
-在IB中， &hellip;">
-  
+  <meta name="description" content="Interface Builder中的技巧">
+  <meta name="keywords" content="iOS,Interface Builder">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -31,7 +29,6 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
-
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -52,7 +49,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">杨叫兽的技术博客</a></h1>
   
-    <h2>专注Objective－C、iOS、Mac开发技巧，重视代码的简洁与质量</h2>
+    <h2>关注Objective－C、iOS、Mac开发与技巧，重视代码的简洁与质量</h2>
   
 </hgroup>
 
@@ -62,7 +59,7 @@
   
 </ul>
   
-<form action="http://google.com/search" method="get">
+<form action="https://duckduckgo.com/" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:nijino.cn" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -71,9 +68,10 @@
   
 <ul class="main-navigation">
   <li><a href="/">首页</a></li>
+  <li><a href="/blog/categories">分类目录</a></li>
   <li><a href="/blog/archives">全部文章</a></li>
   <li><a href="http://blog.163.com/nijino_saki" target="_blank">网易博客老文章</a></li>
-  <!-- <li><a href="/blog/categories">分类目录</a></li> -->
+  <li><a href="/about">关于我</a></li>
 </ul>
 
 </nav>
@@ -107,38 +105,48 @@
   </header>
 
 
-<div class="entry-content"><p>在我工作中经常会遇到有人吐槽Xcode中的interface builder（以下简称IB）不好用的开发者。在我看来，IB是一个非常棒的可视化开发工具，可以非常快捷的设置UI控件的大部分常用属性。下面就说两个IB中的技巧：</p>
-
-<p>1.快速显示元素相对位置<br/>
-这个技巧由<a href="http://weibo.com/ysy441088327">@余书懿</a>在新浪微博分享。<br/>
-在IB中，选中一个control A,然后按住alt键，鼠标指向B，就显示A和B的相对位置关系，指向父view也行。</p>
-
-<p><img src="/images/IB-skills-1.png" alt="image" /></p>
+<div class="entry-content"><p>在我工作中经常会遇到有人吐槽Xcode中的Interface Builder（以下简称IB）不好用的开发者。在我看来，IB是一个非常棒的可视化开发工具，可以非常快捷的设置UI控件的大部分常用属性。下面就说两个IB中的技巧。</p>
 
 <!-- more -->
 
 
-<p>
-2.给页面添加水平、垂直辅助线<br/>
-这个技巧是由我一个好朋友，同时也是陌陌的产品经理<a href="http://weibo.com/memtimen">@Memtimen</a>发现的。<br/>
-IB中是可以添加水平和垂直的辅助线的。并且辅助线是可以拖动、重复添加和删除的。  <br/>
-水平辅助线的快捷键是：Command ＋ Shift ＋ －<br/>
-垂直辅助线的快捷键是：Command ＋ Shift ＋ ｜<br/>
-当然，也可以通过菜单命令来生成，位置在Editor菜单下,如下图：</p>
+<ul>
+<li>快速显示元素相对位置</li>
+</ul>
 
-<p><img src="/images/IB-skills-3.png" alt="image" /></p>
 
-<p>辅助线的生成位置是由当前选定的view的中心点决定的，也就是说，如果当前选定了根view，那么将生成根view的辅助线；如果选中的是某一个UI控件，那就以这个控件的中心点生成。 （注意下图的UILabel &amp; UIButton）</p>
+<p><img src="/images/IB-skills-1.png" title="relative position relationships" ></p>
 
-<p><img src="/images/IB-skills-2.png" alt="image" /></p>
+<p>这个技巧由<a href="http://weibo.com/ysy441088327" title="余书懿">余书懿</a>在新浪微博分享。
+在IB中，选中一个control A,然后按住alt键，鼠标指向B，就显示A和B的相对位置关系，指向父view也行。</p>
+
+<ul>
+<li>给页面添加水平、垂直辅助线</li>
+</ul>
+
+
+<p>这个技巧是由我一个好朋友，同时也是陌陌的产品经理<a href="http://weibo.com/memtimen" title="Memtimen">Memtimen</a>发现的。IB中是可以添加水平和垂直的辅助线的。并且辅助线是可以拖动、重复添加和删除的。</p>
+
+<h4>水平辅助线的快捷键是：Command ＋ Shift ＋ －</h4>
+
+<h4>垂直辅助线的快捷键是：Command ＋ Shift ＋ ｜</h4>
+
+<p>当然，也可以通过菜单命令来生成，位置在Editor菜单下,如下图：  <br/>
+<img src="/images/IB-skills-3.png" title="Horizontal & Vertical Guide" ></p>
+
+<p>辅助线的生成位置是由当前选定的view的中心点决定的，也就是说，如果当前选定了根view，那么将生成根view的辅助线；如果选中的是某一个UI控件，那就以这个控件的中心点生成。（注意下图的UILabel &amp; UIButton）</p>
+
+<p><img src="/images/IB-skills-2.png"></p>
 
 <p>有了辅助线就可以轻松根据辅助线对齐控件（辅助线可以吸附），拖动辅助线可以查看辅助线把视图分割的两部分大小。</p>
 
-<p><img src="/images/IB-skills-4.png" alt="image" /></p>
+<p><img src="/images/IB-skills-4.png"></p>
 
 <p>至于删除辅助线嘛，就是把辅助线在其方向上移出视图边界，你会听到嗖地一声同时会看到一个丢纸团的动画，那就表明删除辅助线成功了。</p>
 
-<p>小结：从我自身来讲，一开始做iOS开发也不是很爱用IB这个东西，感觉调整起来非常别扭。但是随着我做开发时间的变长，我越来越觉得IB非常好使，非常直观与节省时间。之前在《程序员》上看过一位计算机博士写的连载文章：<a href="http://www.douban.com/group/topic/23658084/">《Mac OS X 背后的故事》</a>，其中有一个章节是讲<a href="http://www.programmer.com.cn/9234/">Interface Builder</a>的，了解了IB的来龙去脉，才知道IB是乔帮主极力推崇的好东西。在我看来，IB才是Xcode这个IDE与众不同和精华所在，不会使用IB的iOS开发者不能算是真正iOS开发者，因为他从没有真正走进乔帮主的内心世界！</p>
+<h3><em>小结：</em></h3>
+
+<p>从我自身来讲，一开始做iOS开发也不是很爱用IB这个东西，感觉调整起来非常别扭。但是随着我做开发时间的变长，我越来越觉得IB非常好使，非常直观与节省时间。之前在《程序员》上看过一位计算机博士写的连载文章：<a href="http://www.douban.com/group/topic/23658084/" title="Mac OS X 背后的故事">《Mac OS X 背后的故事》</a>，其中有一个章节是讲<a href="http://www.programmer.com.cn/9234/" title="Jean-Marie Hullot的Interface Builder神话">Interface Builder</a>的，了解了IB的来龙去脉，才知道IB是乔帮主极力推崇的好东西。在我看来，IB才是Xcode这个IDE与众不同和精华所在，不会使用IB的iOS开发者不能算是真正iOS开发者，因为他从没有真正走进乔帮主的内心世界！</p>
 
 <p>以上只是本人一家之言，各位看看了解一下就可以了，习惯这个东西不是那么容易改的。</p>
 </div>
@@ -168,7 +176,7 @@ IB中是可以添加水平和垂直的辅助线的。并且辅助线是可以拖
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ios/'>iOS</a>, <a class='category' href='/blog/categories/interface-builder/'>interface builder</a>
+    <a class='category' href='/blog/categories/interface-builder/'>Interface Builder</a>, <a class='category' href='/blog/categories/ios/'>iOS</a>
   
 </span>
 
@@ -209,10 +217,10 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/08/12/new-cell-for-row/" title="Previous Post: Xcode5中cellForRowAtIndexPath:方法">&laquo; Xcode5中cellForRowAtIndexPath:方法</a>
+        <a class="basic-alignment left" href="/blog/2013/08/12/new-cell-for-row/" title="Previous Post: iOS6中的cellForRowAtIndexPath方法">&laquo; iOS6中的cellForRowAtIndexPath方法</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/08/31/settings-bundle/" title="Next Post: Settings.bundle的应用">Settings.bundle的应用 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/08/31/settings-bundle/" title="Next Post: Settings Bundle的应用">Settings Bundle的应用 &raquo;</a>
       
     </p>
   </footer>
@@ -223,15 +231,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <aside class="sidebar">
   
     <section>
-  <h1>关于我</h1>
-  <p><img width="220" src="/images/avatar.png"><br>
-    杨叫兽，80后，魔羯座，iOS开发者，果粉，曾供职于陌陌科技、联想集团<br>
-    新浪微博：<a href="http://www.weibo.com/nijinosaki" target="_blank">3G杨叫兽</a><br>
-    QQ:20118368<br />
-    E-mail:nijino_saki@163.com<br>
-    <a href="http://blog.163.com/nijino_saki">我在网易的技术博客（已停止维护）</a></p>
-</section>
-<section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
     
@@ -257,10 +256,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     
   </ul>
 </section>
-<section>
-  <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/enumeration/'>Enumeration (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (2)</a></li><li><a href='/blog/categories/nslog/'>NSLog (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (4)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
-</section>
 
 <section>
   <h1>GitHub开源项目</h1>
@@ -282,7 +277,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
         github.showRepos({
             user: 'nijino',
-            count: 2,
+            count: 1,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -292,25 +287,26 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 </section>
 
 <section>
-  <h1>友情链接</h1>
-  <li> <a target="_blank" href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
-  <li> <a target="_blank" href="http://blog.csdn.net/rhljiayou">一位女程序猿的博客</a></li>
-  <li> <a target="_blank" href="http://nshipster.com">NSHipster</a></li>
-  <li> <a target="_blank" href="http://www.raywenderlich.com">raywenderlich</a></li>
-  </p>
-</section>
-<section>
-  <h1>在微信上关注我</h1>
-  <p>
-  <img width="220" src="/images/wechatQR.png"><br>	
-  </p>
-</section><section>
-	<h1>新浪微博</h1>
+	<h1>最新微博</h1>
 	<p>
 		<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1410220154&verifier=ef43caf4&dpc=1">
 		</iframe>
 	</p>
+</section><section>
+  <h1>标签云</h1>
+    <span id="tag-cloud"><a href='/blog/categories/arc' style='font-size: 108.57142857142857%'>ARC(1)</a> <a href='/blog/categories/custom-font' style='font-size: 108.57142857142857%'>Custom Font(1)</a> <a href='/blog/categories/emoji' style='font-size: 108.57142857142857%'>Emoji(1)</a> <a href='/blog/categories/enumeration' style='font-size: 108.57142857142857%'>Enumeration(1)</a> <a href='/blog/categories/interface-builder' style='font-size: 108.57142857142857%'>Interface Builder(1)</a> <a href='/blog/categories/ios' style='font-size: 160.0%'>iOS(7)</a> <a href='/blog/categories/kvc' style='font-size: 108.57142857142857%'>KVC(1)</a> <a href='/blog/categories/nsarray' style='font-size: 117.14285714285714%'>NSArray(2)</a> <a href='/blog/categories/nslog' style='font-size: 108.57142857142857%'>NSLog(1)</a> <a href='/blog/categories/nsstring' style='font-size: 108.57142857142857%'>NSString(1)</a> <a href='/blog/categories/objective-c' style='font-size: 134.28571428571428%'>Objective-C(4)</a> <a href='/blog/categories/octopress' style='font-size: 108.57142857142857%'>Octopress(1)</a> <a href='/blog/categories/settings-bundle' style='font-size: 108.57142857142857%'>Settings Bundle(1)</a> <a href='/blog/categories/uitableview' style='font-size: 108.57142857142857%'>UITableView(1)</a> </span>
 </section>
+<section>
+  <h1>友情链接</h1>
+  <ul>
+    <li><a target="_blank" href="http://blog.devtang.com">唐巧的技术博客</a></li>
+    <li><a target="_blank" href="http://geeklu.com/">卢克的博客</a></li> 
+    <li><a target="_blank" href="http://macshuo.com">池建强的随想录</a></li>
+    <li><a target="_blank" href="http://nshipster.com">NSHipster</a></li>
+    <li><a target="_blank" href="http://www.raywenderlich.com">Ray Wenderlich</a></li>
+  </ul>
+</section>
+
 
 
 
@@ -325,7 +321,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span><br>
   原创文章，版权声明：自由转载-非商用-非衍生-保持署名  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh"><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
 </p>
-
 </footer>
   
 

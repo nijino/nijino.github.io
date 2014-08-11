@@ -9,9 +9,8 @@
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="说两个与KVC相关的技巧。 1.KVC与字典 有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典： 1
-NSDictionary *dict = @{@&quot;subDict&quot;:@{@&quot;subKey&quot;:@&quot;aStr&quot;}}; &hellip;">
-  
+  <meta name="description" content="KVC技巧二则">
+  <meta name="keywords" content="KVC,Objective-C">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -30,7 +29,6 @@ NSDictionary *dict = @{@&quot;subDict&quot;:@{@&quot;subKey&quot;:@&quot;aStr&qu
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
-
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -51,7 +49,7 @@ NSDictionary *dict = @{@&quot;subDict&quot;:@{@&quot;subKey&quot;:@&quot;aStr&qu
   <header role="banner"><hgroup>
   <h1><a href="/">杨叫兽的技术博客</a></h1>
   
-    <h2>专注Objective－C、iOS、Mac开发技巧，重视代码的简洁与质量</h2>
+    <h2>关注Objective－C、iOS、Mac开发与技巧，重视代码的简洁与质量</h2>
   
 </hgroup>
 
@@ -61,7 +59,7 @@ NSDictionary *dict = @{@&quot;subDict&quot;:@{@&quot;subKey&quot;:@&quot;aStr&qu
   
 </ul>
   
-<form action="http://google.com/search" method="get">
+<form action="https://duckduckgo.com/" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:nijino.cn" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -70,9 +68,10 @@ NSDictionary *dict = @{@&quot;subDict&quot;:@{@&quot;subKey&quot;:@&quot;aStr&qu
   
 <ul class="main-navigation">
   <li><a href="/">首页</a></li>
+  <li><a href="/blog/categories">分类目录</a></li>
   <li><a href="/blog/archives">全部文章</a></li>
   <li><a href="http://blog.163.com/nijino_saki" target="_blank">网易博客老文章</a></li>
-  <!-- <li><a href="/blog/categories">分类目录</a></li> -->
+  <li><a href="/about">关于我</a></li>
 </ul>
 
 </nav>
@@ -108,48 +107,52 @@ NSDictionary *dict = @{@&quot;subDict&quot;:@{@&quot;subKey&quot;:@&quot;aStr&qu
 
 <div class="entry-content"><p>说两个与KVC相关的技巧。</p>
 
-<p>1.KVC与字典</p>
+<!-- more -->
+
+
+<ul>
+<li>KVC与字典</li>
+</ul>
+
 
 <p>有时候我们需要取出嵌套字典中的某个键的值。例如某个嵌套字典：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">dict</span> <span class="o">=</span> <span class="err">@</span><span class="p">{</span><span class="s">@&quot;subDict&quot;</span><span class="o">:</span><span class="err">@</span><span class="p">{</span><span class="s">@&quot;subKey&quot;</span><span class="o">:</span><span class="s">@&quot;aStr&quot;</span><span class="p">}};</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>需要取出<code>subKey</code>这个键的值。以前总是用<code>valueForKey</code>嵌套的语法来做，其实根本不用那么麻烦，直接利用<code>valueForKeyPath</code>方法就可以实现。代码如下：</p>
+<p>需要取出 <code>subKey</code> 这个键的值。以前总是用 <code>valueForKey</code> 嵌套的语法来做，其实根本不用那么麻烦，直接利用 <code>valueForKeyPath</code> 方法就可以实现。代码如下：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">[</span><span class="n">dict</span> <span class="nl">valueForKeyPath:</span><span class="s">@&quot;subDict.subKey&quot;</span><span class="p">];</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<!-- more -->
+<ul>
+<li>KVC实现高阶消息传递</li>
+</ul>
 
-
-<p>2.KVC实现高阶消息传递</p>
 
 <p>有时候需要对数组中每个对象调用某一个方法后生成新的数组，我们可以利用KVC的高阶消息传递功能来实现。例如有下面这样一个数组：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">originArr</span> <span class="o">=</span> <span class="err">@</span><span class="p">[</span><span class="s">@&quot;octopress&quot;</span><span class="p">,</span><span class="s">@&quot;nijino&quot;</span><span class="p">,</span><span class="s">@&quot;saki&quot;</span><span class="p">];</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p></p>
 
 <p>我想将这个数组中的每一个元素首字母大写，然后生成新的数组，如果按照常规做法需要利用快速枚举对数组每一个元素进行操作，并且还要分配一个空数组来存储处理过的元素。</p>
 
 <p>而利用KVC的高阶消息传递，只需一句话就可以达到目的：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSArray</span> <span class="o">*</span><span class="n">resultArr</span> <span class="o">=</span> <span class="p">[</span><span class="n">originArr</span> <span class="nl">valueForKey:</span><span class="s">@&quot;capitalizedString&quot;</span><span class="p">];</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样一步就实现了需求。</p>
 
-<p>小结：</p>
+<h3><em>小结：</em></h3>
 
 <p>KVC是Objective－C特有的语法现象，可以加以利用实现代码的简洁性和可维护性。</p>
 </div>
@@ -223,7 +226,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
         <a class="basic-alignment left" href="/blog/2013/06/24/iboutlet-arc/" title="Previous Post: ARC在IBOutlet属性中的使用">&laquo; ARC在IBOutlet属性中的使用</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/08/12/new-cell-for-row/" title="Next Post: Xcode5中cellForRowAtIndexPath:方法">Xcode5中cellForRowAtIndexPath:方法 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/08/12/new-cell-for-row/" title="Next Post: iOS6中的cellForRowAtIndexPath方法">iOS6中的cellForRowAtIndexPath方法 &raquo;</a>
       
     </p>
   </footer>
@@ -234,15 +237,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <aside class="sidebar">
   
     <section>
-  <h1>关于我</h1>
-  <p><img width="220" src="/images/avatar.png"><br>
-    杨叫兽，80后，魔羯座，iOS开发者，果粉，曾供职于陌陌科技、联想集团<br>
-    新浪微博：<a href="http://www.weibo.com/nijinosaki" target="_blank">3G杨叫兽</a><br>
-    QQ:20118368<br />
-    E-mail:nijino_saki@163.com<br>
-    <a href="http://blog.163.com/nijino_saki">我在网易的技术博客（已停止维护）</a></p>
-</section>
-<section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
     
@@ -268,10 +262,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     
   </ul>
 </section>
-<section>
-  <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/enumeration/'>Enumeration (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (2)</a></li><li><a href='/blog/categories/nslog/'>NSLog (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (4)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
-</section>
 
 <section>
   <h1>GitHub开源项目</h1>
@@ -293,7 +283,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
         github.showRepos({
             user: 'nijino',
-            count: 2,
+            count: 1,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -303,25 +293,26 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 </section>
 
 <section>
-  <h1>友情链接</h1>
-  <li> <a target="_blank" href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
-  <li> <a target="_blank" href="http://blog.csdn.net/rhljiayou">一位女程序猿的博客</a></li>
-  <li> <a target="_blank" href="http://nshipster.com">NSHipster</a></li>
-  <li> <a target="_blank" href="http://www.raywenderlich.com">raywenderlich</a></li>
-  </p>
-</section>
-<section>
-  <h1>在微信上关注我</h1>
-  <p>
-  <img width="220" src="/images/wechatQR.png"><br>	
-  </p>
-</section><section>
-	<h1>新浪微博</h1>
+	<h1>最新微博</h1>
 	<p>
 		<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1410220154&verifier=ef43caf4&dpc=1">
 		</iframe>
 	</p>
+</section><section>
+  <h1>标签云</h1>
+    <span id="tag-cloud"><a href='/blog/categories/arc' style='font-size: 108.57142857142857%'>ARC(1)</a> <a href='/blog/categories/custom-font' style='font-size: 108.57142857142857%'>Custom Font(1)</a> <a href='/blog/categories/emoji' style='font-size: 108.57142857142857%'>Emoji(1)</a> <a href='/blog/categories/enumeration' style='font-size: 108.57142857142857%'>Enumeration(1)</a> <a href='/blog/categories/interface-builder' style='font-size: 108.57142857142857%'>Interface Builder(1)</a> <a href='/blog/categories/ios' style='font-size: 160.0%'>iOS(7)</a> <a href='/blog/categories/kvc' style='font-size: 108.57142857142857%'>KVC(1)</a> <a href='/blog/categories/nsarray' style='font-size: 117.14285714285714%'>NSArray(2)</a> <a href='/blog/categories/nslog' style='font-size: 108.57142857142857%'>NSLog(1)</a> <a href='/blog/categories/nsstring' style='font-size: 108.57142857142857%'>NSString(1)</a> <a href='/blog/categories/objective-c' style='font-size: 134.28571428571428%'>Objective-C(4)</a> <a href='/blog/categories/octopress' style='font-size: 108.57142857142857%'>Octopress(1)</a> <a href='/blog/categories/settings-bundle' style='font-size: 108.57142857142857%'>Settings Bundle(1)</a> <a href='/blog/categories/uitableview' style='font-size: 108.57142857142857%'>UITableView(1)</a> </span>
 </section>
+<section>
+  <h1>友情链接</h1>
+  <ul>
+    <li><a target="_blank" href="http://blog.devtang.com">唐巧的技术博客</a></li>
+    <li><a target="_blank" href="http://geeklu.com/">卢克的博客</a></li> 
+    <li><a target="_blank" href="http://macshuo.com">池建强的随想录</a></li>
+    <li><a target="_blank" href="http://nshipster.com">NSHipster</a></li>
+    <li><a target="_blank" href="http://www.raywenderlich.com">Ray Wenderlich</a></li>
+  </ul>
+</section>
+
 
 
 
@@ -336,7 +327,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span><br>
   原创文章，版权声明：自由转载-非商用-非衍生-保持署名  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh"><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
 </p>
-
 </footer>
   
 

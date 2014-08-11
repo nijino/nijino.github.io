@@ -5,19 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Xcode5中cellForRowAtIndexPath:方法 - 杨叫兽的技术博客</title>
+  <title>iOS6中的cellForRowAtIndexPath方法 - 杨叫兽的技术博客</title>
   <meta name="author" content="杨叫兽">
 
   
-  <meta name="description" content="UITableView是绝大部分iOS开发中必不可少的类。它的优势在于自身会维持一个可复用的队列，对于提高系统运行的流畅性有着不可磨灭的作用。 可复用的队列一般要写在UITableView的cellForRowAtIndexPath:方法中，之前的写法一般是这样： 1
-2
-3
-4
-5
-6
-7
-8 &hellip;">
-  
+  <meta name="description" content="iOS6中的cellForRowAtIndexPath方法">
+  <meta name="keywords" content="iOS6,UITableView">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -36,7 +29,6 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
-
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -57,7 +49,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">杨叫兽的技术博客</a></h1>
   
-    <h2>专注Objective－C、iOS、Mac开发技巧，重视代码的简洁与质量</h2>
+    <h2>关注Objective－C、iOS、Mac开发与技巧，重视代码的简洁与质量</h2>
   
 </hgroup>
 
@@ -67,7 +59,7 @@
   
 </ul>
   
-<form action="http://google.com/search" method="get">
+<form action="https://duckduckgo.com/" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:nijino.cn" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -76,9 +68,10 @@
   
 <ul class="main-navigation">
   <li><a href="/">首页</a></li>
+  <li><a href="/blog/categories">分类目录</a></li>
   <li><a href="/blog/archives">全部文章</a></li>
   <li><a href="http://blog.163.com/nijino_saki" target="_blank">网易博客老文章</a></li>
-  <!-- <li><a href="/blog/categories">分类目录</a></li> -->
+  <li><a href="/about">关于我</a></li>
 </ul>
 
 </nav>
@@ -89,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">Xcode5中cellForRowAtIndexPath:方法</h1>
+      <h1 class="entry-title">iOS6中的cellForRowAtIndexPath方法</h1>
     
     
       <p class="meta">
@@ -114,54 +107,51 @@
 
 <div class="entry-content"><p>UITableView是绝大部分iOS开发中必不可少的类。它的优势在于自身会维持一个可复用的队列，对于提高系统运行的流畅性有着不可磨灭的作用。</p>
 
-<p>可复用的队列一般要写在UITableView的cellForRowAtIndexPath:方法中，之前的写法一般是这样：</p>
+<!-- more -->
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p>可复用的队列一般要写在UITableView的cellForRowAtIndexPath方法中，之前的写法一般是这样：</p>
+
+<figure class='code'><figcaption><span>Standard cell for row method </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">static</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">CellIdentifier</span> <span class="o">=</span> <span class="s">@&quot;Cell&quot;</span><span class="p">;</span>
 </span><span class='line'><span class="n">UITableViewCell</span> <span class="o">*</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier:</span><span class="n">CellIdentifier</span><span class="p">];</span>
 </span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">cell</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">){</span>
 </span><span class='line'>      <span class="n">cell</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UITableViewCell</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithStyle:</span><span class="n">UITableViewCellStyleSubtitle</span> <span class="nl">reuseIdentifier:</span><span class="n">CellIdentifier</span><span class="p">];</span>
 </span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  
 </span><span class='line'><span class="c1">// Configure the cell    </span>
-</span><span class='line'><span class="k">return</span> <span class="n">cell</span><span class="p">;</span> 
+</span><span class='line'><span class="k">return</span> <span class="n">cell</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
 
 
 <p>上面这段代码的原理是首先会定义一个静态单元格标识，之后看看可复用队列中是否存在带有这个标识的单元格，如果没有就要重新生成。</p>
 
-<p>对于一些拥有一段iOS开发经验的开发者来说这段代码应该是再熟悉不过，因为好多应用都会用到UITableView。但是最近我在Xcode DP版本上发现这段代码有了变化，在Xcode5中新生成UITableView的cellForRowAtIndexPath:方法中的写法变成了以下这样：</p>
+<p>对于一些拥有一段iOS开发经验的开发者来说这段代码应该是再熟悉不过了，因为好多应用都会用到UITableView。但是我在Xcode5 DP版本上发现这段代码有了变化，在Xcode5 DP中新生成的UITableViewController类中的cellForRowAtIndexPath方法变成了以下这样：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>New cell for row method in iOS6 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">static</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">CellIdentifier</span> <span class="o">=</span> <span class="s">@&quot;Cell&quot;</span><span class="p">;</span>
 </span><span class='line'><span class="n">UITableViewCell</span> <span class="o">*</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier:</span><span class="n">CellIdentifier</span> <span class="nl">forIndexPath:</span><span class="n">indexPath</span><span class="p">];</span>
-</span><span class='line'>
 </span><span class='line'><span class="c1">// Configure the cell... </span>
 </span><span class='line'><span class="k">return</span> <span class="n">cell</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>  <br/>
-表面上看UITableView好像支持了一个新方法：dequeueReusableCellWithIdentifier:forIndexPath:,这个方法是怎么回事呢？赶紧来看看这个方法的说明：
+<p>表面上看UITableView好像支持了一个新方法：dequeueReusableCellWithIdentifier:forIndexPath:,这个方法是怎么回事呢？赶紧来看看这个方法的说明：
 <img src="/images/xcode5-cellForRow.png" title="UITableView reference" ></p>
 
-<p>从这个说明文档中可以知道这个方法也可以从复用队列中提取cell。如果cell没有在复用队列中，那就会调用cell的initWithStyle:reuseIdentifier:方法生成新的cell。至于之前在代码中指定cell的风格，现在已经可以在storyboard中指定了。</p>
+<p>说明文档中说这个方法也可以从复用队列中提取cell。如果cell没有在复用队列中，那就会调用cell的initWithStyle:reuseIdentifier:方法生成新的cell。至于之前在代码中指定cell的风格，现在已经可以在storyboard中指定了。</p>
 
-<p>上面这个例子充分说明了苹果在简化代码方面作出的巨大努力。Objective-C本身语法就有些长，如果不深入研究一些简化代码的写法，那么一个项目的代码就会变的非常冗余。这也是程序员经常说的把代码写多容易，而把代码量减少并且不丧失功能才是有难度的。</p>
+<p>上面这个例子充分说明了苹果在简化代码方面作出的巨大努力。Objective-C本身语法就有些长(verbose)，如果不深入研究一些简化代码的写法，那么一个项目的代码就会变的非常冗余。这也是程序员经常说的把代码写多容易，而把代码量减少并且不丧失功能才是有难度的。</p>
 
 <p>另外我注意到这个方法是从iOS6.0版本开始支持的，可是在Xcode4.6.3中生成新的UITableViewController并不会默认生成新方法，只有Xcode5中才会生成，不知道这个方法在Xcode4.6.3中是否可以使用，需要通过实践来检验。</p>
 </div>
@@ -235,7 +225,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
         <a class="basic-alignment left" href="/blog/2013/07/02/using-kvc/" title="Previous Post: KVC技巧二则">&laquo; KVC技巧二则</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/08/28/interface-builder-skills/" title="Next Post: interface builder中的技巧">interface builder中的技巧 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/08/28/interface-builder-skills/" title="Next Post: Interface Builder中的技巧">Interface Builder中的技巧 &raquo;</a>
       
     </p>
   </footer>
@@ -246,15 +236,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <aside class="sidebar">
   
     <section>
-  <h1>关于我</h1>
-  <p><img width="220" src="/images/avatar.png"><br>
-    杨叫兽，80后，魔羯座，iOS开发者，果粉，曾供职于陌陌科技、联想集团<br>
-    新浪微博：<a href="http://www.weibo.com/nijinosaki" target="_blank">3G杨叫兽</a><br>
-    QQ:20118368<br />
-    E-mail:nijino_saki@163.com<br>
-    <a href="http://blog.163.com/nijino_saki">我在网易的技术博客（已停止维护）</a></p>
-</section>
-<section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
     
@@ -280,10 +261,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     
   </ul>
 </section>
-<section>
-  <h1>分类目录</h1>
-    <ul id="category-list"><li><a href='/blog/categories/arc/'>ARC (1)</a></li><li><a href='/blog/categories/custom-font/'>Custom Font (1)</a></li><li><a href='/blog/categories/emoji/'>Emoji (1)</a></li><li><a href='/blog/categories/enumeration/'>Enumeration (1)</a></li><li><a href='/blog/categories/interface-builder/'>interface builder (1)</a></li><li><a href='/blog/categories/ios/'>iOS (7)</a></li><li><a href='/blog/categories/kvc/'>KVC (1)</a></li><li><a href='/blog/categories/nsarray/'>NSArray (2)</a></li><li><a href='/blog/categories/nslog/'>NSLog (1)</a></li><li><a href='/blog/categories/nsstring/'>NSString (1)</a></li><li><a href='/blog/categories/objective-c/'>Objective-C (4)</a></li><li><a href='/blog/categories/octopress/'>Octopress (1)</a></li><li><a href='/blog/categories/settings-bundle/'>Settings Bundle (1)</a></li><li><a href='/blog/categories/uitableview/'>UITableView (1)</a></li></ul>
-</section>
 
 <section>
   <h1>GitHub开源项目</h1>
@@ -305,7 +282,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
         github.showRepos({
             user: 'nijino',
-            count: 2,
+            count: 1,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -315,25 +292,26 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 </section>
 
 <section>
-  <h1>友情链接</h1>
-  <li> <a target="_blank" href="http://blog.devtang.com">粉笔网iOS开发工程师唐巧的技术博客</a></li>
-  <li> <a target="_blank" href="http://blog.csdn.net/rhljiayou">一位女程序猿的博客</a></li>
-  <li> <a target="_blank" href="http://nshipster.com">NSHipster</a></li>
-  <li> <a target="_blank" href="http://www.raywenderlich.com">raywenderlich</a></li>
-  </p>
-</section>
-<section>
-  <h1>在微信上关注我</h1>
-  <p>
-  <img width="220" src="/images/wechatQR.png"><br>	
-  </p>
-</section><section>
-	<h1>新浪微博</h1>
+	<h1>最新微博</h1>
 	<p>
 		<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=1410220154&verifier=ef43caf4&dpc=1">
 		</iframe>
 	</p>
+</section><section>
+  <h1>标签云</h1>
+    <span id="tag-cloud"><a href='/blog/categories/arc' style='font-size: 108.57142857142857%'>ARC(1)</a> <a href='/blog/categories/custom-font' style='font-size: 108.57142857142857%'>Custom Font(1)</a> <a href='/blog/categories/emoji' style='font-size: 108.57142857142857%'>Emoji(1)</a> <a href='/blog/categories/enumeration' style='font-size: 108.57142857142857%'>Enumeration(1)</a> <a href='/blog/categories/interface-builder' style='font-size: 108.57142857142857%'>Interface Builder(1)</a> <a href='/blog/categories/ios' style='font-size: 160.0%'>iOS(7)</a> <a href='/blog/categories/kvc' style='font-size: 108.57142857142857%'>KVC(1)</a> <a href='/blog/categories/nsarray' style='font-size: 117.14285714285714%'>NSArray(2)</a> <a href='/blog/categories/nslog' style='font-size: 108.57142857142857%'>NSLog(1)</a> <a href='/blog/categories/nsstring' style='font-size: 108.57142857142857%'>NSString(1)</a> <a href='/blog/categories/objective-c' style='font-size: 134.28571428571428%'>Objective-C(4)</a> <a href='/blog/categories/octopress' style='font-size: 108.57142857142857%'>Octopress(1)</a> <a href='/blog/categories/settings-bundle' style='font-size: 108.57142857142857%'>Settings Bundle(1)</a> <a href='/blog/categories/uitableview' style='font-size: 108.57142857142857%'>UITableView(1)</a> </span>
 </section>
+<section>
+  <h1>友情链接</h1>
+  <ul>
+    <li><a target="_blank" href="http://blog.devtang.com">唐巧的技术博客</a></li>
+    <li><a target="_blank" href="http://geeklu.com/">卢克的博客</a></li> 
+    <li><a target="_blank" href="http://macshuo.com">池建强的随想录</a></li>
+    <li><a target="_blank" href="http://nshipster.com">NSHipster</a></li>
+    <li><a target="_blank" href="http://www.raywenderlich.com">Ray Wenderlich</a></li>
+  </ul>
+</section>
+
 
 
 
@@ -348,7 +326,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span><br>
   原创文章，版权声明：自由转载-非商用-非衍生-保持署名  <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh"><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a>
 </p>
-
 </footer>
   
 

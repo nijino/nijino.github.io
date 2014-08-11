@@ -4,7 +4,7 @@
   <title><![CDATA[Category: NSString | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/nsstring/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-04-22T23:06:59+08:00</updated>
+  <updated>2014-08-11T21:37:58+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -18,40 +18,41 @@
     <link href="http://nijino.cn/blog/2013/06/19/nsstring-hash/"/>
     <updated>2013-06-19T14:10:00+08:00</updated>
     <id>http://nijino.cn/blog/2013/06/19/nsstring-hash</id>
-    <content type="html"><![CDATA[<p>实际编程总会涉及到比较两个字符串的内容，一般会用</p>
-
-<p><code>objc
-[string1 isEqualsToString:string2]
-</code></p>
-
-<p>来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
-
-<p>偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。</p>
-
-<p>于是上面比较字符串的写法可以这么写（一般比较字符串是if语句的判断条件）：</p>
-
-<p><code>objc
-if ([string1 hash] == [string2 hash])
-</code></p>
+    <content type="html"><![CDATA[<p>实际编程总会涉及到比较两个字符串的内容，一般会用
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">string1</span> <span class="nl">isEqualsToString:</span><span class="n">string2</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+来比较两个字符串是否一致。对于字符串的isEqualsToString方法，需要逐个比较字符串的内容，是比较耗时的操作。</p>
 
 <!-- more -->
 
 
-<p>实践中发现了一个问题：有时候字符串返回的散列值为负数，而苹果文档说hash方法一定返回无符号数，不知是不是位数问题造成的。</p>
+<p>偶然间我发现NSString类里有个hash方法，作用是返回NSString实例的散列值。众所周知，内容相同的字符串拥有相同的散列值，内容不同的字符串拥有不同的散列值。所以完全可以根据字符串散列值来判断两个字符串是否一致。
+于是上面比较字符串的写法可以这么写(一般比较字符串是if语句的判断条件):
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">if</span> <span class="p">([</span><span class="n">string1</span> <span class="n">hash</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="n">string2</span> <span class="n">hash</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p><img src="/images/nsstring-hash.png" title="NSString hash method reference" ></p>
+<p>实践中发现了一个问题：有时候字符串返回的散列值为负数，而苹果文档说hash方法一定返回无符号数，不知是不是位数问题造成的。
+<img src="/images/nsstring-hash.png" title="NSString hash method reference" ></p>
 
-<p>例如：  <br/>
-<code>objc 示例代码
-NSString *string1 = @"yyb";
-NSString *string2 = @"nijino_saki";
-NSLog(@"string1 hash %d",[string1 hash]);
-NSLog(@"string2 hash %d",[string2 hash]);  
-</code>
-输出结果为：</p>
-
-<p>  2013-06-19 18:47:11.612 test[26719:c07] string1 hash 530522127<br/>
-2013-06-19 18:47:11.613 test[26719:c07] string2 hash -975949159</p>
+<p>例如:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>NSString Hash Method Example </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">string1</span> <span class="o">=</span> <span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">yyb</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;;</span>
+</span><span class='line'><span class="n">NSString</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">string2</span> <span class="o">=</span> <span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">nijino_saki</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;;</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">string1</span> <span class="n">hash</span> <span class="o">%</span><span class="n">d</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,[</span><span class="n">string1</span> <span class="n">hash</span><span class="p">]);</span>
+</span><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="err">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">string2</span> <span class="n">hash</span> <span class="o">%</span><span class="n">d</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,[</span><span class="n">string2</span> <span class="n">hash</span><span class="p">]);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+输出结果为:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Hash Result </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>2013-06-19 18:47:11.612 test[26719:c07] string1 hash 530522127
+</span><span class='line'>2013-06-19 18:47:11.613 test[26719:c07] string2 hash -975949159</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   
