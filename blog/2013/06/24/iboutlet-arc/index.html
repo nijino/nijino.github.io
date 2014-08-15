@@ -130,18 +130,18 @@
 <p>解释了3种属性的意义，下面说说对于属性声明为IBOutlet时3种所有权修饰符的取舍以及使用技巧。<br/>
 由于我自己很熟悉Interface Bulider中的操作，所以非常喜欢那种拉控件然后连线并直接声称属性代码的操作。对于直接从xib或者storyboard拉出来生成的IBOutlet属性，一般是选择strong还是weak呢？</p>
 
-<p><img class="right" src="/images/IBOutlet-ARC-1.png" title="IBOutlet strong property instance" ></p>
+<p><img class="right" src="http://ww2.sinaimg.cn/large/540e407ajw1ejd95zm5ymj206y0473yj.jpg" title="IBOutlet strong property instance" ></p>
 
 <h4>这里有个原则：</h4>
 
 <p>如果该控件位于控件树的顶部，比如
 UIViewController下的view，那就应该选择strong，因为viewcontroller直接拥有该view。例如右图中的View。</p>
 
-<p><img class="left" src="/images/IBOutlet-ARC-2.png" title="IBOutlet weak property instance" >
+<p><img class="left" src="http://ww1.sinaimg.cn/large/540e407ajw1ejd96tvl2lj206h03b0sq.jpg" title="IBOutlet weak property instance" >
 而如果控件是viewcontroller中view的子视图，对于这个子视图，它的所有者是它的父视图，代码中只是想引用一下这个子视图的指针而已，那么就应该选择weak（iOS5以下选择unsafe_unretained）。例如左图中的UILabel。</p>
 
 <p>对于以上的概念，我用一张图表来说明：
-<img src="/images/IBOutlet-ARC-3.png" title="property choosing diagram" ></p>
+<img src="http://ww3.sinaimg.cn/large/540e407ajw1ejd97ytsjhj20e209874j.jpg" title="property choosing diagram" ></p>
 </div>
 
 
@@ -270,7 +270,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
         github.showRepos({
             user: 'nijino',
-            count: 1,
+            count: 2,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -293,8 +293,9 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
   <h1>友情链接</h1>
   <ul>
     <li><a target="_blank" href="http://blog.devtang.com">唐巧的技术博客</a></li>
-    <li><a target="_blank" href="http://geeklu.com/">卢克的博客</a></li> 
+    <li><a target="_blank" href="http://geeklu.com/">卢克的博客</a></li>
     <li><a target="_blank" href="http://macshuo.com">池建强的随想录</a></li>
+    <li><a target="_blank" href="http://onevcat.com/#blog">Onevcat</a></li>
     <li><a target="_blank" href="http://nshipster.com">NSHipster</a></li>
     <li><a target="_blank" href="http://www.raywenderlich.com">Ray Wenderlich</a></li>
   </ul>

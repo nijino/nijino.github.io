@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-08-11T21:37:58+08:00</updated>
+  <updated>2014-08-15T13:41:41+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -82,16 +82,16 @@
 <!-- more -->
 
 
-<p><img src="/images/Emoji-1.png"></p>
+<p><img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd9jo7pryj20fs08wgmd.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd9jo7pryj20fs08wgmd.jpg</a>"></p>
 
 <p>那么如何使用这些表情呢？主要的思路是拿到Emoji表情的编码。获得Emoji编码的方法是在Mac OS 10.7（lion）及以上版本中随便打开一个程序，选择编辑菜单中的最后一项：特殊字符。
 在特殊字符窗口点击左上角下拉菜单，选择自定列表，在自定列表中如果表情符号没有勾选，请勾选。然后往下找到代码表，展开代码表并勾选Unicode选项，最后点击完成。</p>
 
-<p><img src="/images/Emoji-2.png"></p>
+<p><img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd9k5qkluj20g40bvmyh.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd9k5qkluj20g40bvmyh.jpg</a>"></p>
 
 <p>随便选择一个Emoji表情，右边的详细信息里就会显示这个表情的Unicode，我们需要的就是这个编码（不是括号中的）。</p>
 
-<p><img src="/images/Emoji-3.png"></p>
+<p><img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd9kqx91tj207d070mxa.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd9kqx91tj207d070mxa.jpg</a>"></p>
 
 <p>现在就可以使用这个表情了，将刚才查到表情的Unicode赋值给某个对象的text属性中。需要注意的是赋值时需要以"\U"开头，并写够8位，不够时用0在高位补齐。比如下面这个赋值写法：
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -99,7 +99,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 在模拟器中的效果:</p>
 
-<p><img src="/images/Emoji-4.png"></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9lac5dcj20gi0rgt9c.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9lac5dcj20gi0rgt9c.jpg</a>"></p>
 ]]></content>
   </entry>
   
@@ -141,11 +141,11 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 从网上下载到自己想要的字体文件，比如：楷体_GB2312.ttf（.ttf和.odf均可）。将字体文件添加到项目中，并确保字体文件已加入工程的Copy Bundle Resources中：</p>
 
-<p><img src="/images/using-custom-font-1.png"></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9h73tz4j20jg05zmxo.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9h73tz4j20jg05zmxo.jpg</a>"></p>
 
 <p>同时要在工程的info.plist文件中添加一个名为"Fonts provided by application"的键，这个键的值是一个数组，将自定义字体文件的全名添加进去。</p>
 
-<p><img src="/images/using-custom-font-2.png"></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9i15dmkj20cw026glr.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9i15dmkj20cw026glr.jpg</a>"></p>
 
 <p>以上两步做完之后，还需要再执行一下之前提到的列举所有字体的代码，从打印的字体名称中找到自定义字体的名称。例如楷体_GB2312的字体名称为：KaiTi_GB2312。</p>
 
@@ -155,7 +155,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 最后，送给大家一个使用了娃娃体Label的效果图:</p>
 
-<p><img src="/images/using-custom-font-3.png" title="娃娃体" ></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9j2lqlyj20e501pdfv.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9j2lqlyj20e501pdfv.jpg</a>" title="娃娃体" ></p>
 ]]></content>
   </entry>
   
@@ -170,13 +170,13 @@
 
 
 <p>任何一个项目都可以设置它的Settings Bundle，Settings Bundle字面意思就是设置的大集合，里面可以存放系统的默认设置和用户选择的值。我们可以通过点击左下角的“+”然后选择添加新文件（new file&hellip;）来生成：    <br/>
-<img src="/images/settings-bundle-1.png" title="Settings Bundle Creation" ></p>
+<img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9ewg2vhj20kr0e840f.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9ewg2vhj20kr0e840f.jpg</a>" title="Settings Bundle Creation" ></p>
 
 <p>完成后会发现项目中多了一个Settings.bundle文件，展开后一般会有一个本地化的语言包（en.lproj）和Root.plist文件。本地化语言包是做国际化时用到的，而Root.plist就是用来控制这个app在系统设置中显示设置内容的文件。通过查看这个Root.plist文件你就会发现这个文件像一个大字典，并且它跟info.plist很接近，都是通过XML语法来实现的，你可以在“Preference Items”这个数组中添加一些设置项目，项目种类包括：Group、Multi Value、Slider、Text Field、Title和Toggle Switch。每一个项目都是一个字典，里面都包含有一些键值对。</p>
 
 <p>如果是顺序添加的话直接选中“Preference Items”后点击它旁边的“+”；如果不小心选错需要变更一下项目间的顺序怎么办呢？这里面有一个小技巧。因为Root.plist本质上是一个XML文件，所以我们可以通过查看它的源代码来调整顺序。在Root.plist文件单击右键，选择Open As→Source Code，将会显示XML格式的源码。把要更改顺序项目的 <code>&lt;dict&gt;</code> 和 <code>&lt;/dict&gt;</code> 标签之间的内容（包括 <code>&lt;dict&gt;</code> 和 <code>&lt;/dict&gt;</code> 标签）移到你想要的位置即可。</p>
 
-<p><img src="/images/settings-bundle-2.png"></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9fhl24yj20f40biabr.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9fhl24yj20f40biabr.jpg</a>"></p>
 
 <p>既然settings.bundle是app的设置总管，是不是程序一启动就会自动加载它里面的设置呢？我一开始也是这么认为的，可是在亲自尝试后发现不是那么回事。通过查阅相关文档我发现需要在程序启动成功后将settings.bundle中的设置注册到NSUserDefaults中去，这样才能取到设置的内容。</p>
 
@@ -203,7 +203,7 @@
 </ul>
 
 
-<p><img src="/images/IB-skills-1.png" title="relative position relationships" ></p>
+<p><img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd9ban3mvj20av07z3yq.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd9ban3mvj20av07z3yq.jpg</a>" title="relative position relationships" ></p>
 
 <p>这个技巧由<a href="http://weibo.com/ysy441088327" title="余书懿">余书懿</a>在新浪微博分享。
 在IB中，选中一个control A,然后按住alt键，鼠标指向B，就显示A和B的相对位置关系，指向父view也行。</p>
@@ -220,15 +220,15 @@
 <h4>垂直辅助线的快捷键是：Command ＋ Shift ＋ ｜</h4>
 
 <p>当然，也可以通过菜单命令来生成，位置在Editor菜单下,如下图：  <br/>
-<img src="/images/IB-skills-3.png" title="Horizontal &amp; Vertical Guide" ></p>
+<img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd9cmb5j6j20bu0alab6.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd9cmb5j6j20bu0alab6.jpg</a>" title="Horizontal &amp; Vertical Guide" ></p>
 
 <p>辅助线的生成位置是由当前选定的view的中心点决定的，也就是说，如果当前选定了根view，那么将生成根view的辅助线；如果选中的是某一个UI控件，那就以这个控件的中心点生成。（注意下图的UILabel &amp; UIButton）</p>
 
-<p><img src="/images/IB-skills-2.png"></p>
+<p><img class="<a" src="href="http://ww3.sinaimg.cn/large/540e407ajw1ejd9dbkdsgj20a50gt74h.jpg">http://ww3.sinaimg.cn/large/540e407ajw1ejd9dbkdsgj20a50gt74h.jpg</a>"></p>
 
 <p>有了辅助线就可以轻松根据辅助线对齐控件（辅助线可以吸附），拖动辅助线可以查看辅助线把视图分割的两部分大小。</p>
 
-<p><img src="/images/IB-skills-4.png"></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9dyqrrwj20ac070dfs.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9dyqrrwj20ac070dfs.jpg</a>"></p>
 
 <p>至于删除辅助线嘛，就是把辅助线在其方向上移出视图边界，你会听到嗖地一声同时会看到一个丢纸团的动画，那就表明删除辅助线成功了。</p>
 

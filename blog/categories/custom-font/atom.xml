@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Custom Font | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/custom-font/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-08-11T21:37:58+08:00</updated>
+  <updated>2014-08-15T13:41:41+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -51,11 +51,11 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 从网上下载到自己想要的字体文件，比如：楷体_GB2312.ttf（.ttf和.odf均可）。将字体文件添加到项目中，并确保字体文件已加入工程的Copy Bundle Resources中：</p>
 
-<p><img src="/images/using-custom-font-1.png"></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9h73tz4j20jg05zmxo.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9h73tz4j20jg05zmxo.jpg</a>"></p>
 
 <p>同时要在工程的info.plist文件中添加一个名为"Fonts provided by application"的键，这个键的值是一个数组，将自定义字体文件的全名添加进去。</p>
 
-<p><img src="/images/using-custom-font-2.png"></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9i15dmkj20cw026glr.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9i15dmkj20cw026glr.jpg</a>"></p>
 
 <p>以上两步做完之后，还需要再执行一下之前提到的列举所有字体的代码，从打印的字体名称中找到自定义字体的名称。例如楷体_GB2312的字体名称为：KaiTi_GB2312。</p>
 
@@ -65,7 +65,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 最后，送给大家一个使用了娃娃体Label的效果图:</p>
 
-<p><img src="/images/using-custom-font-3.png" title="娃娃体" ></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9j2lqlyj20e501pdfv.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9j2lqlyj20e501pdfv.jpg</a>" title="娃娃体" ></p>
 ]]></content>
   </entry>
   

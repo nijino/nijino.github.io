@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Interface Builder | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/interface-builder/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-08-11T21:37:58+08:00</updated>
+  <updated>2014-08-15T13:41:41+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -28,7 +28,7 @@
 </ul>
 
 
-<p><img src="/images/IB-skills-1.png" title="relative position relationships" ></p>
+<p><img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd9ban3mvj20av07z3yq.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd9ban3mvj20av07z3yq.jpg</a>" title="relative position relationships" ></p>
 
 <p>这个技巧由<a href="http://weibo.com/ysy441088327" title="余书懿">余书懿</a>在新浪微博分享。
 在IB中，选中一个control A,然后按住alt键，鼠标指向B，就显示A和B的相对位置关系，指向父view也行。</p>
@@ -45,15 +45,15 @@
 <h4>垂直辅助线的快捷键是：Command ＋ Shift ＋ ｜</h4>
 
 <p>当然，也可以通过菜单命令来生成，位置在Editor菜单下,如下图：  <br/>
-<img src="/images/IB-skills-3.png" title="Horizontal &amp; Vertical Guide" ></p>
+<img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd9cmb5j6j20bu0alab6.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd9cmb5j6j20bu0alab6.jpg</a>" title="Horizontal &amp; Vertical Guide" ></p>
 
 <p>辅助线的生成位置是由当前选定的view的中心点决定的，也就是说，如果当前选定了根view，那么将生成根view的辅助线；如果选中的是某一个UI控件，那就以这个控件的中心点生成。（注意下图的UILabel &amp; UIButton）</p>
 
-<p><img src="/images/IB-skills-2.png"></p>
+<p><img class="<a" src="href="http://ww3.sinaimg.cn/large/540e407ajw1ejd9dbkdsgj20a50gt74h.jpg">http://ww3.sinaimg.cn/large/540e407ajw1ejd9dbkdsgj20a50gt74h.jpg</a>"></p>
 
 <p>有了辅助线就可以轻松根据辅助线对齐控件（辅助线可以吸附），拖动辅助线可以查看辅助线把视图分割的两部分大小。</p>
 
-<p><img src="/images/IB-skills-4.png"></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9dyqrrwj20ac070dfs.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9dyqrrwj20ac070dfs.jpg</a>"></p>
 
 <p>至于删除辅助线嘛，就是把辅助线在其方向上移出视图边界，你会听到嗖地一声同时会看到一个丢纸团的动画，那就表明删除辅助线成功了。</p>
 

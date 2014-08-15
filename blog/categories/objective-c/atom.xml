@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Objective-C | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/objective-c/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-08-11T21:37:58+08:00</updated>
+  <updated>2014-08-15T13:41:41+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -215,7 +215,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>实践中发现了一个问题：有时候字符串返回的散列值为负数，而苹果文档说hash方法一定返回无符号数，不知是不是位数问题造成的。
-<img src="/images/nsstring-hash.png" title="NSString hash method reference" ></p>
+<img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd94lrb94j20e107mq47.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd94lrb94j20e107mq47.jpg</a>" title="NSString hash method reference" ></p>
 
 <p>例如:
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>NSString Hash Method Example </span></figcaption>

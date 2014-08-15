@@ -4,7 +4,7 @@
   <title><![CDATA[Category: UITableView | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/uitableview/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-08-11T21:37:58+08:00</updated>
+  <updated>2014-08-15T13:41:41+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -60,7 +60,7 @@
 </span><span class='line'><span class="k">return</span> <span class="n">cell</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 表面上看UITableView好像支持了一个新方法：dequeueReusableCellWithIdentifier:forIndexPath:,这个方法是怎么回事呢？赶紧来看看这个方法的说明：
-<img src="/images/xcode5-cellForRow.png" title="UITableView reference" ></p>
+<img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd99z3d97j20k20dxwi4.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd99z3d97j20k20dxwi4.jpg</a>" title="UITableView reference" ></p>
 
 <p>说明文档中说这个方法也可以从复用队列中提取cell。如果cell没有在复用队列中，那就会调用cell的initWithStyle:reuseIdentifier:方法生成新的cell。至于之前在代码中指定cell的风格，现在已经可以在storyboard中指定了。</p>
 

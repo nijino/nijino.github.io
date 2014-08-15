@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Emoji | 杨叫兽的技术博客]]></title>
   <link href="http://nijino.cn/blog/categories/emoji/atom.xml" rel="self"/>
   <link href="http://nijino.cn/"/>
-  <updated>2014-08-11T21:37:58+08:00</updated>
+  <updated>2014-08-15T13:41:41+08:00</updated>
   <id>http://nijino.cn/</id>
   <author>
     <name><![CDATA[杨叫兽]]></name>
@@ -23,16 +23,16 @@
 <!-- more -->
 
 
-<p><img src="/images/Emoji-1.png"></p>
+<p><img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd9jo7pryj20fs08wgmd.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd9jo7pryj20fs08wgmd.jpg</a>"></p>
 
 <p>那么如何使用这些表情呢？主要的思路是拿到Emoji表情的编码。获得Emoji编码的方法是在Mac OS 10.7（lion）及以上版本中随便打开一个程序，选择编辑菜单中的最后一项：特殊字符。
 在特殊字符窗口点击左上角下拉菜单，选择自定列表，在自定列表中如果表情符号没有勾选，请勾选。然后往下找到代码表，展开代码表并勾选Unicode选项，最后点击完成。</p>
 
-<p><img src="/images/Emoji-2.png"></p>
+<p><img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd9k5qkluj20g40bvmyh.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd9k5qkluj20g40bvmyh.jpg</a>"></p>
 
 <p>随便选择一个Emoji表情，右边的详细信息里就会显示这个表情的Unicode，我们需要的就是这个编码（不是括号中的）。</p>
 
-<p><img src="/images/Emoji-3.png"></p>
+<p><img class="<a" src="href="http://ww4.sinaimg.cn/large/540e407ajw1ejd9kqx91tj207d070mxa.jpg">http://ww4.sinaimg.cn/large/540e407ajw1ejd9kqx91tj207d070mxa.jpg</a>"></p>
 
 <p>现在就可以使用这个表情了，将刚才查到表情的Unicode赋值给某个对象的text属性中。需要注意的是赋值时需要以"\U"开头，并写够8位，不够时用0在高位补齐。比如下面这个赋值写法：
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -40,7 +40,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 在模拟器中的效果:</p>
 
-<p><img src="/images/Emoji-4.png"></p>
+<p><img class="<a" src="href="http://ww1.sinaimg.cn/large/540e407ajw1ejd9lac5dcj20gi0rgt9c.jpg">http://ww1.sinaimg.cn/large/540e407ajw1ejd9lac5dcj20gi0rgt9c.jpg</a>"></p>
 ]]></content>
   </entry>
   

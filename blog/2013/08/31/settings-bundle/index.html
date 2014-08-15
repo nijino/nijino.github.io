@@ -111,13 +111,13 @@
 
 
 <p>任何一个项目都可以设置它的Settings Bundle，Settings Bundle字面意思就是设置的大集合，里面可以存放系统的默认设置和用户选择的值。我们可以通过点击左下角的“+”然后选择添加新文件（new file&hellip;）来生成：    <br/>
-<img src="/images/settings-bundle-1.png" title="Settings Bundle Creation" ></p>
+<img src="http://ww1.sinaimg.cn/large/540e407ajw1ejd9ewg2vhj20kr0e840f.jpg" title="Settings Bundle Creation" ></p>
 
 <p>完成后会发现项目中多了一个Settings.bundle文件，展开后一般会有一个本地化的语言包（en.lproj）和Root.plist文件。本地化语言包是做国际化时用到的，而Root.plist就是用来控制这个app在系统设置中显示设置内容的文件。通过查看这个Root.plist文件你就会发现这个文件像一个大字典，并且它跟info.plist很接近，都是通过XML语法来实现的，你可以在“Preference Items”这个数组中添加一些设置项目，项目种类包括：Group、Multi Value、Slider、Text Field、Title和Toggle Switch。每一个项目都是一个字典，里面都包含有一些键值对。</p>
 
 <p>如果是顺序添加的话直接选中“Preference Items”后点击它旁边的“+”；如果不小心选错需要变更一下项目间的顺序怎么办呢？这里面有一个小技巧。因为Root.plist本质上是一个XML文件，所以我们可以通过查看它的源代码来调整顺序。在Root.plist文件单击右键，选择Open As→Source Code，将会显示XML格式的源码。把要更改顺序项目的 <code>&lt;dict&gt;</code> 和 <code>&lt;/dict&gt;</code> 标签之间的内容（包括 <code>&lt;dict&gt;</code> 和 <code>&lt;/dict&gt;</code> 标签）移到你想要的位置即可。</p>
 
-<p><img src="/images/settings-bundle-2.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/540e407ajw1ejd9fhl24yj20f40biabr.jpg"></p>
 
 <p>既然settings.bundle是app的设置总管，是不是程序一启动就会自动加载它里面的设置呢？我一开始也是这么认为的，可是在亲自尝试后发现不是那么回事。通过查阅相关文档我发现需要在程序启动成功后将settings.bundle中的设置注册到NSUserDefaults中去，这样才能取到设置的内容。</p>
 
@@ -254,7 +254,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
         github.showRepos({
             user: 'nijino',
-            count: 1,
+            count: 2,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -277,8 +277,9 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
   <h1>友情链接</h1>
   <ul>
     <li><a target="_blank" href="http://blog.devtang.com">唐巧的技术博客</a></li>
-    <li><a target="_blank" href="http://geeklu.com/">卢克的博客</a></li> 
+    <li><a target="_blank" href="http://geeklu.com/">卢克的博客</a></li>
     <li><a target="_blank" href="http://macshuo.com">池建强的随想录</a></li>
+    <li><a target="_blank" href="http://onevcat.com/#blog">Onevcat</a></li>
     <li><a target="_blank" href="http://nshipster.com">NSHipster</a></li>
     <li><a target="_blank" href="http://www.raywenderlich.com">Ray Wenderlich</a></li>
   </ul>
